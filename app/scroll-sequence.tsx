@@ -20,7 +20,7 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!section) return;
 
     let ticking = false;
     const update = () => {
@@ -59,8 +59,8 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
 
         <div className="site-shell relative min-h-[calc(100vh-9.5rem)]">
           <div className="relative z-30 flex flex-wrap items-center gap-5 pt-2">
-            <span className="eyebrow">Web designer desde 2014</span>
-            <span className="text-[0.66rem] uppercase tracking-[0.18em] text-slate-600">Brasil · Projetos digitais</span>
+            <span className="eyebrow">Sites · Branding · Identidade visual</span>
+            <span className="text-[0.66rem] uppercase tracking-[0.18em] text-slate-500">Brasil · Projetos digitais</span>
           </div>
 
           <h1 className="pointer-events-none absolute inset-x-0 top-[18%] text-[clamp(4rem,10.8vw,10.4rem)] font-semibold leading-[0.78] tracking-[-0.082em] sm:top-[16%]">
@@ -73,7 +73,7 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
             style={{ transform: `translate3d(calc(-50% + ${(progress - 0.5) * 8}px), 0, 0)` }}
           >
             {frames.length ? (
-              <div className="absolute -inset-[4%]">
+              <div className="hero-wallpaper-stage absolute -inset-[4%]">
                 {frames.map((frame, index) => {
                   const distance = Math.abs(framePosition - index);
                   const opacity = Math.max(0, 1 - distance * 1.7);
@@ -86,7 +86,7 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
                       width={1600}
                       height={900}
                       loading={index === 0 ? 'eager' : 'lazy'}
-                      className="hero-wallpaper-frame absolute inset-0 h-full w-full object-cover object-[62%_center] motion-reduce:!transform-none sm:object-center"
+                      className="hero-wallpaper-frame absolute inset-0 h-full w-full object-cover object-[62%_center] sm:object-center"
                       style={{ opacity, transform: `scale(${1.04 + progress * 0.04}) translate3d(${progress * 1.2}%, ${progress * -0.8}%, 0)` }}
                     />
                   );
@@ -103,6 +103,9 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
               </div>
             )}
             <div className="hero-wallpaper-overlay absolute inset-0" />
+            <div className="magic-particles absolute inset-0" aria-hidden="true">
+              {Array.from({ length: 7 }).map((_, index) => <span key={index} />)}
+            </div>
           </div>
 
           <div className="absolute bottom-[1%] left-0 z-40 flex max-w-sm flex-col gap-6 sm:bottom-[4%]">

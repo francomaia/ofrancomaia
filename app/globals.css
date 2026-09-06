@@ -140,10 +140,89 @@ a:focus-visible, button:focus-visible {
   transform-origin: 62% 48%;
 }
 
+.hero-wallpaper-stage {
+  animation: wallpaper-drift 7s ease-in-out infinite;
+}
+
 .hero-wallpaper-overlay {
   background:
     linear-gradient(90deg, rgb(3 6 7 / 78%) 0%, rgb(3 6 7 / 30%) 42%, rgb(3 6 7 / 5%) 72%),
     linear-gradient(180deg, rgb(3 6 7 / 34%) 0%, transparent 28%, rgb(3 6 7 / 66%) 100%);
+}
+
+.magic-particles span {
+  position: absolute;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: #d9fdff;
+  box-shadow: 0 0 10px #46f2ff, 0 0 24px rgb(70 242 255 / 75%);
+  animation: magic-rise 4.2s ease-in-out infinite;
+}
+
+.magic-particles span:nth-child(1) { left: 52%; top: 24%; animation-delay: -0.8s; }
+.magic-particles span:nth-child(2) { left: 68%; top: 18%; animation-delay: -2.1s; }
+.magic-particles span:nth-child(3) { left: 82%; top: 31%; animation-delay: -3.2s; }
+.magic-particles span:nth-child(4) { left: 57%; top: 62%; animation-delay: -1.4s; }
+.magic-particles span:nth-child(5) { left: 76%; top: 71%; animation-delay: -2.8s; }
+.magic-particles span:nth-child(6) { left: 91%; top: 56%; animation-delay: -0.3s; }
+.magic-particles span:nth-child(7) { left: 44%; top: 46%; animation-delay: -3.7s; }
+
+.story-card {
+  background: linear-gradient(145deg, rgb(8 18 22 / 92%), rgb(4 9 11 / 64%));
+  box-shadow: inset 0 1px rgb(255 255 255 / 3%);
+  animation: card-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 8% cover 30%;
+  transition: transform 420ms ease, border-color 420ms ease, box-shadow 420ms ease;
+}
+
+.story-card:hover {
+  border-color: rgb(70 242 255 / 34%);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 30%), 0 0 42px rgb(70 242 255 / 7%);
+}
+
+.story-card-featured {
+  background:
+    radial-gradient(circle at 82% 18%, rgb(70 242 255 / 17%), transparent 45%),
+    linear-gradient(145deg, rgb(8 26 31 / 96%), rgb(4 10 12 / 74%));
+}
+
+.story-orbit {
+  transition: scale 550ms ease, rotate 650ms ease, border-color 550ms ease;
+}
+
+.story-card:hover .story-orbit {
+  scale: 1.35;
+  rotate: 18deg;
+  border-color: rgb(70 242 255 / 38%);
+}
+
+.service-card {
+  min-height: 22rem;
+  background:
+    linear-gradient(145deg, rgb(9 19 23 / 94%), rgb(3 8 10 / 82%));
+  box-shadow: inset 0 1px rgb(255 255 255 / 4%);
+  animation: card-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 8% cover 30%;
+  transition: transform 420ms ease, border-color 420ms ease, background-color 420ms ease;
+}
+
+.service-card:hover {
+  border-color: rgb(70 242 255 / 38%);
+  transform: translateY(-6px);
+}
+
+.service-glow {
+  opacity: 0.5;
+  transition: opacity 500ms ease, scale 600ms ease;
+}
+
+.service-card:hover .service-glow {
+  opacity: 1;
+  scale: 1.4;
 }
 
 .case-card {
@@ -176,19 +255,22 @@ a:focus-visible, button:focus-visible {
   50% { filter: saturate(1.12) brightness(0.94); }
 }
 
+@keyframes wallpaper-drift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -1.2%; }
+}
+
+@keyframes magic-rise {
+  0%, 100% { opacity: 0.16; translate: 0 0; scale: 0.6; }
+  50% { opacity: 0.95; translate: 0 -1.4rem; scale: 1.35; }
+}
+
+@keyframes card-reveal {
+  from { opacity: 0.2; translate: 0 2.5rem; scale: 0.97; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+
 @media (max-width: 640px) {
   .site-shell { width: min(100% - 1.25rem, 90rem); }
   .grid-lines { background-size: 42px 42px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .hero-scroll { min-height: 100vh; }
-  .hero-sticky { position: relative; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
 }

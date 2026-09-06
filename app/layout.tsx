@@ -11,7 +11,7 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   title: 'O Franco Maia — Web Designer',
   description:
-    'Portfólio de O Franco Maia, web designer e criador de marcas desde 2014.',
+    'Portfólio de Franco Maia, especialista em criação de sites, branding e identidade visual.',
   icons: {
     icon: '/assets/brand/fm-mark.png',
   },

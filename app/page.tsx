@@ -27,20 +27,56 @@ const selectedProjects = [
 const services = [
   {
     number: '01',
-    title: 'UI / UX Design',
-    copy: 'Interfaces centradas nas pessoas, com hierarquia clara, fluxos sem atrito e uma linguagem visual que dá personalidade ao produto.',
+    label: 'Especialidade principal',
+    title: 'Sites & Landing Pages',
+    copy: 'Estratégia, arquitetura, interface e responsividade reunidas para transformar uma marca em uma experiência digital clara e convincente.',
+    skills: ['Web Design', 'UI / UX', 'Responsividade', 'Conversão'],
   },
   {
     number: '02',
-    title: 'Web Design',
-    copy: 'De landing pages a sites completos: experiências responsivas que capturam atenção e conduzem cada visita até uma ação concreta.',
+    label: 'Marcas com presença',
+    title: 'Branding & Identidade Visual',
+    copy: 'Sistemas visuais que dão unidade à marca: conceito, direção de arte, linguagem gráfica e aplicações consistentes.',
+    skills: ['Branding', 'Direção de arte', 'Identidade', 'Peças de campanha'],
   },
   {
     number: '03',
-    title: 'Branding',
-    copy: 'Identidades coesas e reconhecíveis, desenhadas para transmitir clareza e criar consistência em todos os pontos de contato.',
+    label: 'Conteúdo em movimento',
+    title: 'Design, Vídeo & Motion',
+    copy: 'Conteúdo para redes, edição de vídeo, GIFs e animações que estendem a identidade para campanhas e comunicação diária.',
+    skills: ['Social media', 'Edição de vídeo', 'Motion', 'Tratamento de imagem'],
   },
 ];
+
+const careerChapters = [
+  {
+    phase: 'Origem',
+    title: 'O design veio primeiro.',
+    copy: 'A relação com criação começou aos 13 anos. Antes de pensar em cargo, já existia curiosidade por imagem, composição e comunicação.',
+  },
+  {
+    phase: 'Produção',
+    title: 'Aprendi fazendo existir.',
+    copy: 'Na comunicação visual e na gráfica, trabalhei com impressos, adesivos, lonas, fachadas, acabamento e produção. A prática trouxe precisão e senso de material.',
+  },
+  {
+    phase: 'Comunicação',
+    title: 'Imagem, texto e contexto.',
+    copy: 'Passei por mercado imobiliário e comunicação pública, criando conteúdo, vídeo, editorial, campanhas, tratamento de imagens e presença digital.',
+  },
+  {
+    phase: 'Agências',
+    title: 'Marcas em ritmo real.',
+    copy: 'Em agências, conectei briefings, social media, campanhas, identidade visual, branding, motion e entregas para diferentes clientes.',
+  },
+  {
+    phase: 'Agora · EXAS',
+    title: 'Dois anos criando para crescer.',
+    copy: 'Hoje atuo na EXAS Assessoria de Marketing, com visão integrada de negócio, marca e experiência digital — especialmente na criação de sites.',
+  },
+];
+
+const toolkit = ['Photoshop', 'Illustrator', 'InDesign', 'CorelDRAW', 'Premiere', 'After Effects', 'CapCut Pro'];
 
 export default function Home() {
   return (
@@ -146,54 +182,86 @@ export default function Home() {
           <div>
             <span className="eyebrow">Sobre</span>
             <h2 className="mt-7 max-w-4xl text-[clamp(2.8rem,6.6vw,6.4rem)] font-semibold leading-[0.9] tracking-[-0.07em]">
-              Eu sou Franco Maia. Crio marcas e experiências digitais <span className="text-cyan-300">desde 2014.</span>
+              Minha especialidade é criar sites. Minha base é construir <span className="text-cyan-300">marcas completas.</span>
             </h2>
             <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
-              Meu trabalho conecta estratégia, interface e identidade para transformar uma ideia em uma presença digital clara, autoral e útil.
+              Sou Franco Maia, designer gráfico e estudante de Artes Visuais. Minha trajetória atravessa produção gráfica, conteúdo, vídeo, branding e comunicação — repertório que hoje aplico para criar experiências digitais com mais intenção.
             </p>
           </div>
         </div>
       </section>
 
       <section id="trajetoria" className="site-shell py-28 sm:py-36">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
             <span className="eyebrow">Trajetória</span>
-            <h2 className="mt-7 text-[clamp(3rem,7vw,6.6rem)] font-semibold leading-[0.88] tracking-[-0.07em]">Desde<br /><span className="text-cyan-300">2014.</span></h2>
+            <h2 className="mt-7 max-w-4xl text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.07em]">Da gráfica à<br /><span className="text-cyan-300">estratégia digital.</span></h2>
           </div>
-          <div className="border-t border-white/15">
-            <div className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[8rem_1fr]">
-              <span className="font-mono text-sm text-cyan-300">2014</span>
-              <div>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">O começo da prática</h3>
-                <p className="mt-3 max-w-xl leading-7 text-slate-400">O ponto de partida de uma trajetória dedicada à criação de marcas e experiências para a web.</p>
-              </div>
-            </div>
-            <div className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[8rem_1fr]">
-              <span className="font-mono text-sm text-cyan-300">Hoje</span>
-              <div>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">Visão integrada</h3>
-                <p className="mt-3 max-w-xl leading-7 text-slate-400">UI/UX, web design e branding trabalhando juntos para criar presenças digitais mais claras, memoráveis e úteis.</p>
-              </div>
-            </div>
+          <p className="max-w-xl text-lg leading-8 text-slate-400 lg:justify-self-end">
+            Cada etapa acrescentou uma camada: produção, conteúdo, comunicação, direção de arte e tecnologia. O resultado é um trabalho que entende tanto a marca quanto a tela.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-4 lg:grid-cols-12">
+          {careerChapters.map((chapter, index) => (
+            <article
+              key={chapter.phase}
+              className={cn(
+                'story-card group relative min-h-64 overflow-hidden rounded-[1.5rem] border border-white/10 p-7 sm:p-9',
+                index === 0 && 'lg:col-span-5',
+                index === 1 && 'lg:col-span-7',
+                index > 1 && 'lg:col-span-4',
+                index === 4 && 'story-card-featured',
+              )}
+            >
+              <span className="relative z-10 font-mono text-xs uppercase tracking-[0.16em] text-cyan-300">{chapter.phase}</span>
+              <h3 className="relative z-10 mt-10 max-w-md text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">{chapter.title}</h3>
+              <p className="relative z-10 mt-5 max-w-xl leading-7 text-slate-400">{chapter.copy}</p>
+              <span className="story-orbit absolute -bottom-20 -right-20 size-52 rounded-full border border-cyan-200/15" aria-hidden="true" />
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-7 sm:p-9 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-[0.16em] text-violet-300">Formação contínua</span>
+            <h3 className="mt-3 text-2xl font-semibold tracking-[-0.035em]">Design Gráfico + Artes Visuais</h3>
           </div>
+          <p className="leading-7 text-slate-400">Formação técnica em Design Gráfico pelo SENAC e graduação em Artes Visuais em andamento — estudo e prática caminhando juntos.</p>
         </div>
       </section>
 
       <section className="border-y border-white/10 bg-[#050a0c] py-28 sm:py-36" aria-labelledby="servicos-titulo">
         <div className="site-shell">
-          <div className="max-w-3xl">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+            <div>
             <span className="eyebrow">O que eu faço</span>
-            <h2 id="servicos-titulo" className="mt-7 text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.9] tracking-[-0.07em]">Forma, função<br />e direção.</h2>
+              <h2 id="servicos-titulo" className="mt-7 text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.9] tracking-[-0.07em]">Sites na frente.<br /><span className="text-cyan-300">Marca em tudo.</span></h2>
+            </div>
+            <p className="max-w-lg text-lg leading-8 text-slate-400 lg:justify-self-end">A web é o centro do meu trabalho. Branding, identidade e conteúdo dão ao projeto a personalidade que faz alguém lembrar dele.</p>
           </div>
-          <div className="mt-16 border-t border-white/15">
-            {services.map((service) => (
-              <article key={service.number} className="grid gap-6 border-b border-white/10 py-9 md:grid-cols-[5rem_0.8fr_1.2fr] md:items-start">
-                <span className="font-mono text-xs text-cyan-300">{service.number}</span>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">{service.title}</h3>
-                <p className="max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">{service.copy}</p>
+          <div className="mt-16 grid gap-4 lg:grid-cols-2">
+            {services.map((service, index) => (
+              <article key={service.number} className={cn('service-card group relative overflow-hidden rounded-[1.5rem] border border-white/10 p-7 sm:p-10', index === 0 && 'lg:col-span-2 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:gap-16')}>
+                <div className="relative z-10">
+                  <span className="font-mono text-xs text-cyan-300">{service.number} / {service.label}</span>
+                  <h3 className="mt-6 text-3xl font-semibold tracking-[-0.045em] sm:text-5xl">{service.title}</h3>
+                </div>
+                <div className="relative z-10 mt-8 lg:mt-0">
+                  <p className="max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">{service.copy}</p>
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {service.skills.map((skill) => <span key={skill} className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-xs uppercase tracking-[0.1em] text-slate-300">{skill}</span>)}
+                  </div>
+                </div>
+                <div className="service-glow pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-cyan-300/10 blur-3xl" aria-hidden="true" />
               </article>
             ))}
+          </div>
+
+          <div className="mt-16 overflow-hidden border-y border-white/10 py-5" aria-label="Ferramentas de criação">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 font-mono text-xs uppercase tracking-[0.14em] text-slate-500">
+              {toolkit.map((tool) => <span key={tool} className="transition-colors hover:text-cyan-200">{tool}</span>)}
+            </div>
           </div>
         </div>
       </section>
