@@ -318,17 +318,22 @@ footer a:hover {
 
 .behance-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
-  gap: 3rem;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+.behance-heading .display-title {
+  max-width: 100%;
+  font-size: clamp(5rem, 12vw, 13rem);
 }
 
 .behance-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.75rem;
-  padding-bottom: 0.6rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+  padding-top: 1.5rem;
 }
 
 .behance-intro p {
@@ -359,7 +364,7 @@ footer a:hover {
 
 .behance-image-wrap {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 404 / 316;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 17%);
   background: #0d0d0e;
@@ -368,7 +373,7 @@ footer a:hover {
 .behance-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition:
     transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 360ms ease;
@@ -940,8 +945,11 @@ footer a:hover {
     margin-top: 0;
   }
   .behance-heading {
-    grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  .behance-intro {
+    grid-template-columns: 1fr;
+    justify-items: start;
   }
   .behance-card {
     grid-column: span 6;

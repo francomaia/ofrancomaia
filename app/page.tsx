@@ -281,7 +281,7 @@ export default function Home() {
                     alt={`Página inicial do projeto ${project.name}`}
                     width={1200}
                     height={760}
-                    loading="lazy"
+                    loading={index < 3 ? 'eager' : 'lazy'}
                     className="project-image"
                   />
                   <span className="project-index">
