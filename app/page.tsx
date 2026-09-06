@@ -1,4 +1,12 @@
 import { ArrowUpRight, Sparkles } from 'lucide-react';
+import {
+  siAdobeaftereffects,
+  siAdobeillustrator,
+  siAdobeindesign,
+  siAdobephotoshop,
+  siAdobepremierepro,
+  siCoreldraw,
+} from 'simple-icons';
 import { BrandMark } from './brand-mark';
 import { EditorialHero } from './editorial-hero';
 
@@ -115,13 +123,13 @@ const careerChapters = [
 ];
 
 const toolkit = [
-  'Photoshop',
-  'Illustrator',
-  'InDesign',
-  'CorelDRAW',
-  'Premiere',
-  'After Effects',
-  'CapCut Pro',
+  { name: 'Photoshop', icon: siAdobephotoshop },
+  { name: 'Illustrator', icon: siAdobeillustrator },
+  { name: 'InDesign', icon: siAdobeindesign },
+  { name: 'CorelDRAW', icon: siCoreldraw },
+  { name: 'Premiere Pro', icon: siAdobepremierepro },
+  { name: 'After Effects', icon: siAdobeaftereffects },
+  { name: 'CapCut Pro', image: '/assets/tools/capcut.svg' },
 ];
 
 export default function Home() {
@@ -243,7 +251,7 @@ export default function Home() {
                     <ArrowUpRight aria-hidden="true" className="size-5" />
                   </span>
                 </div>
-                <div className="mt-4 flex items-start justify-between gap-4 border-t border-white/20 pt-4">
+                <div className="project-meta mt-4 flex items-start justify-between gap-4 border-t border-white/20 pt-4">
                   <h3 className="text-xl font-bold uppercase tracking-[-0.04em] sm:text-2xl">
                     {project.name}
                   </h3>
@@ -374,11 +382,23 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <div className="tool-strip mt-20" aria-label="Ferramentas de criação">
+          <ul className="tool-strip mt-20" aria-label="Ferramentas de criação">
             {toolkit.map((tool) => (
-              <span key={tool}>{tool}</span>
+              <li key={tool.name} className="tool-item">
+                <span className="tool-logo" aria-hidden="true">
+                  {'icon' in tool ? (
+                    <svg viewBox="0 0 24 24" role="img">
+                      <path fill="currentColor" d={tool.icon.path} />
+                    </svg>
+                  ) : (
+                    // oxlint-disable-next-line next/no-img-element -- local brand mark is a compact SVG asset
+                    <img src={tool.image} alt="" width={48} height={48} />
+                  )}
+                </span>
+                <span>{tool.name}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
