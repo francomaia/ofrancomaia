@@ -10,7 +10,16 @@ import {
 import { BrandMark } from './brand-mark';
 import { EditorialHero } from './editorial-hero';
 
-const selectedProjects = [
+type SelectedProject = {
+  name: string;
+  sector: string;
+  image: string;
+  href?: string;
+  status?: string;
+  note?: string;
+};
+
+const selectedProjects: SelectedProject[] = [
   {
     name: 'Exas Company',
     sector: 'Assessoria de Marketing',
@@ -21,7 +30,8 @@ const selectedProjects = [
     name: 'Agronova Transportes',
     sector: 'Logística e Transporte',
     image: '/assets/cases/agronova.avif',
-    href: 'https://agronova.exascompany.com.br/',
+    status: 'Site temporariamente offline',
+    note: 'Conceito não utilizado pelo cliente — um projeto criado com muita empolgação e um resultado do qual gosto muito.',
   },
   {
     name: 'Realiza Multimarcas',
@@ -46,6 +56,36 @@ const selectedProjects = [
     sector: 'Odontologia',
     image: '/assets/cases/oral-implant.avif',
     href: 'https://clinicaoralimplant.com.br/',
+  },
+  {
+    name: 'Laposé Jalecos',
+    sector: 'E-commerce de Moda Profissional',
+    image: '/assets/cases/lapose-jalecos.webp',
+    href: 'https://laposejalecos.com.br/',
+  },
+  {
+    name: 'Dobroou',
+    sector: 'Site de Aplicativo',
+    image: '/assets/cases/dobroou.png',
+    href: 'https://dobroou.app/',
+  },
+  {
+    name: 'Freitas Lima & Almeida',
+    sector: 'Advocacia',
+    image: '/assets/cases/freitas-lima-almeida.avif',
+    href: 'https://freitaslimaealmeidaadvs.com.br/',
+  },
+  {
+    name: 'Finneze Alumínio',
+    sector: 'Esquadrias e Fachadas',
+    image: '/assets/cases/finneze-aluminio.jpg',
+    href: 'https://finnezealuminio.com.br/',
+  },
+  {
+    name: 'Pet Campos',
+    sector: 'Hospital Veterinário',
+    image: '/assets/cases/pet-campos.webp',
+    href: 'https://petcampos.com.br/',
   },
 ];
 
@@ -254,10 +294,15 @@ export default function Home() {
               <a
                 key={project.name}
                 href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                className={`project-item project-item-${(index % 4) + 1} group`}
-                aria-label={`Abrir o site de ${project.name}`}
+                target={project.href ? '_blank' : undefined}
+                rel={project.href ? 'noreferrer' : undefined}
+                className={`project-item project-item-${(index % 4) + 1} group ${project.href ? '' : 'cursor-default'}`}
+                aria-label={
+                  project.href
+                    ? `Abrir o site de ${project.name}`
+                    : `${project.name}: ${project.status}`
+                }
+                aria-disabled={project.href ? undefined : true}
               >
                 <div className="project-image-wrap">
                   {/* oxlint-disable-next-line next/no-img-element -- local portfolio capture is pre-optimized AVIF */}
@@ -272,6 +317,11 @@ export default function Home() {
                   <span className="project-arrow">
                     <ArrowUpRight aria-hidden="true" className="size-5" />
                   </span>
+                  {project.status ? (
+                    <span className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/70 px-3 py-2 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-white backdrop-blur-md sm:bottom-5 sm:left-5 sm:text-[0.68rem]">
+                      {project.status}
+                    </span>
+                  ) : null}
                 </div>
                 <div className="project-meta mt-4 flex items-start justify-between gap-4 border-t border-white/20 pt-4">
                   <h3 className="text-xl font-bold uppercase tracking-[-0.04em] sm:text-2xl">
@@ -281,6 +331,11 @@ export default function Home() {
                     {project.sector}
                   </span>
                 </div>
+                {project.note ? (
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55">
+                    {project.note}
+                  </p>
+                ) : null}
               </a>
             ))}
           </div>
