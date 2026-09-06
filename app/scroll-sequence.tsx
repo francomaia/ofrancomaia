@@ -45,9 +45,8 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
     };
   }, []);
 
-  const framePosition = progress * Math.max(frames.length - 1, 1);
+  const framePosition = frames.length > 1 ? progress * (frames.length - 1) : 0;
   const activeIndex = Math.min(Math.max(frames.length - 1, 0), Math.round(framePosition));
-  const turn = -14 + progress * 28;
 
   return (
     <section ref={sectionRef} id="inicio" className="hero-scroll relative min-h-[220vh]" aria-label="Apresentação">
@@ -70,28 +69,29 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
           </h1>
 
           <div
-            className="pointer-events-none absolute bottom-[9%] left-1/2 z-20 h-[64vh] w-[min(48vw,34rem)] -translate-x-1/2 [perspective:1200px] sm:h-[76vh] sm:w-[min(42vw,38rem)] lg:bottom-[-3%] lg:h-[88vh]"
-            style={{ transform: `translate3d(calc(-50% + ${(progress - 0.5) * 22}px), ${(0.5 - progress) * 18}px, 0)` }}
+            className="pointer-events-none absolute left-1/2 top-[-7rem] z-0 h-screen w-screen overflow-hidden sm:top-[-8rem]"
+            style={{ transform: `translate3d(calc(-50% + ${(progress - 0.5) * 8}px), 0, 0)` }}
           >
-            <div className="absolute bottom-[2%] left-1/2 h-16 w-[62%] -translate-x-1/2 rounded-full bg-cyan-300/25 blur-3xl" />
             {frames.length ? (
-              frames.map((frame, index) => {
-                const distance = Math.abs(framePosition - index);
-                const opacity = Math.max(0, 1 - distance * 1.7);
-                return (
-                  // oxlint-disable-next-line next/no-img-element -- transparent cutouts are pre-optimized AVIF assets
-                  <img
-                    key={frame.src}
-                    src={frame.src}
-                    alt={frame.alt}
-                    width={768}
-                    height={1152}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_30px_58px_rgb(0_0_0/78%)] motion-reduce:!transform-none"
-                    style={{ opacity, transform: `rotateY(${turn}deg) scale(${0.96 + progress * 0.04})` }}
-                  />
-                );
-              })
+              <div className="absolute -inset-[4%]">
+                {frames.map((frame, index) => {
+                  const distance = Math.abs(framePosition - index);
+                  const opacity = Math.max(0, 1 - distance * 1.7);
+                  return (
+                    // oxlint-disable-next-line next/no-img-element -- generated hero scenes are pre-optimized AVIF assets
+                    <img
+                      key={frame.src}
+                      src={frame.src}
+                      alt={frame.alt}
+                      width={1600}
+                      height={900}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      className="hero-wallpaper-frame absolute inset-0 h-full w-full object-cover object-[62%_center] motion-reduce:!transform-none sm:object-center"
+                      style={{ opacity, transform: `scale(${1.04 + progress * 0.04}) translate3d(${progress * 1.2}%, ${progress * -0.8}%, 0)` }}
+                    />
+                  );
+                })}
+              </div>
             ) : (
               <div className="absolute inset-x-[12%] bottom-0 top-[7%] rounded-[48%_48%_18%_18%/28%_28%_10%_10%] border border-dashed border-cyan-200/18 bg-cyan-300/[0.025]">
                 <div className="absolute inset-0 grid place-items-center text-center">
@@ -102,6 +102,7 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
                 </div>
               </div>
             )}
+            <div className="hero-wallpaper-overlay absolute inset-0" />
           </div>
 
           <div className="absolute bottom-[1%] left-0 z-40 flex max-w-sm flex-col gap-6 sm:bottom-[4%]">

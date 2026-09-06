@@ -6,12 +6,8 @@ import { ScrollSequence, type SequenceFrame } from './scroll-sequence';
 
 const sequenceFrames: SequenceFrame[] = [
   {
-    src: '/assets/character/franco-cartoon-01.avif',
-    alt: 'Personagem 3D de Franco Maia em pose frontal',
-  },
-  {
-    src: '/assets/character/franco-cartoon-02.avif',
-    alt: 'Personagem 3D de Franco Maia com a mão estendida',
+    src: '/assets/character/franco-magic-wallpaper.avif',
+    alt: 'Franco Maia usando um notebook sobre uma nuvem em um céu mágico',
   },
 ];
 
