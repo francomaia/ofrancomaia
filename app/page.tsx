@@ -84,7 +84,7 @@ const selectedProjects: SelectedProject[] = [
   {
     name: 'Pet Campos',
     sector: 'Hospital Veterinário',
-    image: '/assets/cases/pet-campos-screen.jpg',
+    image: '/assets/cases/pet-campos-interface.jpg',
     href: 'https://petcampos.com.br/',
   },
 ];
@@ -268,7 +268,7 @@ export default function Home() {
 
       <section
         id="trabalhos"
-        className="editorial-section relative py-24 sm:py-36"
+        className="projects-showcase editorial-section relative overflow-hidden py-24 sm:py-36"
       >
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
@@ -295,55 +295,62 @@ export default function Home() {
               problemas diferentes.
             </p>
           </div>
-          <div className="project-grid mt-16 sm:mt-24">
-            {selectedProjects.map((project, index) => (
-              <a
-                key={project.name}
-                href={project.href}
-                target={project.href ? '_blank' : undefined}
-                rel={project.href ? 'noreferrer' : undefined}
-                className={`project-item project-item-${(index % 4) + 1} group ${project.href ? '' : 'cursor-default'}`}
-                aria-label={
-                  project.href
-                    ? `Abrir o site de ${project.name}`
-                    : `${project.name}: ${project.status}`
-                }
-                aria-disabled={project.href ? undefined : true}
-              >
-                <div className="project-image-wrap">
-                  {/* oxlint-disable-next-line next/no-img-element -- local portfolio capture is pre-optimized AVIF */}
-                  <img
-                    src={project.image}
-                    alt={`Página inicial do projeto ${project.name}`}
-                    width={1200}
-                    height={760}
-                    loading={index < 3 ? 'eager' : 'lazy'}
-                    className="project-image"
-                  />
-                  <span className="project-arrow">
-                    <ArrowUpRight aria-hidden="true" className="size-5" />
-                  </span>
-                  {project.status ? (
-                    <span className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/70 px-3 py-2 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-white backdrop-blur-md sm:bottom-5 sm:left-5 sm:text-[0.68rem]">
-                      {project.status}
-                    </span>
-                  ) : null}
+        </div>
+        <div className="project-marquee-stage relative z-10 mt-14 sm:mt-20">
+          <div className="project-marquee-window">
+            <div className="project-marquee-track">
+              {[0, 1].map((pass) => (
+                <div
+                  key={pass}
+                  className="project-marquee-group"
+                  aria-hidden={pass === 1 ? true : undefined}
+                >
+                  {selectedProjects.map((project, index) => (
+                    <a
+                      key={`${pass}-${project.name}`}
+                      href={project.href}
+                      target={project.href ? '_blank' : undefined}
+                      rel={project.href ? 'noreferrer' : undefined}
+                      tabIndex={pass === 1 ? -1 : undefined}
+                      className={`project-item group ${project.href ? '' : 'cursor-default'}`}
+                      aria-label={
+                        project.href
+                          ? `Abrir o site de ${project.name}`
+                          : `${project.name}: ${project.status}`
+                      }
+                      aria-disabled={project.href ? undefined : true}
+                    >
+                      <div className="project-image-wrap">
+                        {/* oxlint-disable-next-line next/no-img-element -- local portfolio captures are optimized */}
+                        <img
+                          src={project.image}
+                          alt={`Página inicial do projeto ${project.name}`}
+                          width={1200}
+                          height={760}
+                          loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
+                          className="project-image"
+                        />
+                        <span className="project-arrow">
+                          <ArrowUpRight aria-hidden="true" className="size-5" />
+                        </span>
+                        {project.status ? (
+                          <span className="project-status">
+                            {project.status}
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="project-meta">
+                        <h3>{project.name}</h3>
+                        <span>{project.sector}</span>
+                      </div>
+                      {project.note ? (
+                        <p className="project-note">{project.note}</p>
+                      ) : null}
+                    </a>
+                  ))}
                 </div>
-                <div className="project-meta mt-4 flex items-start justify-between gap-4 border-t border-white/20 pt-4">
-                  <h3 className="text-xl font-bold uppercase tracking-[-0.04em] sm:text-2xl">
-                    {project.name}
-                  </h3>
-                  <span className="text-right font-mono text-[0.65rem] uppercase tracking-[0.12em] text-white/40">
-                    {project.sector}
-                  </span>
-                </div>
-                {project.note ? (
-                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55">
-                    {project.note}
-                  </p>
-                ) : null}
-              </a>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
