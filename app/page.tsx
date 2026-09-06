@@ -102,19 +102,16 @@ const brandingProjects = [
 
 const services = [
   {
-    number: '01',
     title: 'Sites & Landing Pages',
     copy: 'Estratégia, arquitetura, interface e responsividade para transformar uma marca em uma experiência digital clara e convincente.',
     skills: ['Web design', 'UI / UX', 'Responsividade', 'Conversão'],
   },
   {
-    number: '02',
     title: 'Branding & Identidade',
     copy: 'Conceito, direção de arte e sistemas visuais que fazem a marca ser reconhecida antes mesmo de alguém ler o nome.',
     skills: ['Branding', 'Direção de arte', 'Identidade', 'Campanhas'],
   },
   {
-    number: '03',
     title: 'Motion & Conteúdo',
     copy: 'Vídeos, animações e peças digitais que estendem a personalidade da marca e colocam a comunicação em movimento.',
     skills: ['Social media', 'Edição', 'Motion', 'Imagem'],
@@ -123,27 +120,27 @@ const services = [
 
 const careerChapters = [
   {
-    phase: '01 / Origem',
+    phase: 'Origem',
     title: 'O design veio primeiro.',
     copy: 'Comecei a criar aos 13 anos, movido por imagem, composição e curiosidade.',
   },
   {
-    phase: '02 / Produção',
+    phase: 'Produção',
     title: 'Aprendi fazendo existir.',
     copy: 'Comunicação visual, gráfica, impressos, adesivos, fachadas e acabamento trouxeram precisão.',
   },
   {
-    phase: '03 / Comunicação',
+    phase: 'Comunicação',
     title: 'Imagem, texto e contexto.',
     copy: 'Passei por conteúdo, vídeo, editorial, campanhas, mercado imobiliário e comunicação pública.',
   },
   {
-    phase: '04 / Agências',
+    phase: 'Agências',
     title: 'Marcas em ritmo real.',
     copy: 'Conectei briefing, social, branding, motion e entregas para negócios de diferentes segmentos.',
   },
   {
-    phase: '05 / Agora',
+    phase: 'Agora',
     title: 'Há cerca de um ano e meio na EXAS.',
     copy: 'Hoje uno negócio, marca e experiência digital, com a criação de sites no centro do meu trabalho.',
   },
@@ -240,8 +237,12 @@ export default function Home() {
         />
         <div className="site-shell relative z-10">
           <div className="section-heading">
-            <span className="micro-label">01 / Projetos selecionados</span>
-            <h2 className="display-title">TRABALHOS</h2>
+            <span className="micro-label">Projetos selecionados</span>
+            <h2 className="display-title">
+              TRABA
+              <br className="sm:hidden" />
+              LHOS
+            </h2>
             <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
               sites reais.
               <br />
@@ -295,7 +296,7 @@ export default function Home() {
         <div className="site-shell relative z-10">
           <div className="behance-heading">
             <div>
-              <span className="micro-label">02 / Identidades visuais</span>
+              <span className="micro-label">Identidades visuais</span>
               <h2 className="display-title mt-5">BRANDING.</h2>
             </div>
             <div className="behance-intro">
@@ -387,7 +388,7 @@ export default function Home() {
             />
           </div>
           <div className="pb-6 lg:pb-16">
-            <span className="micro-label">03 / Quem cria</span>
+            <span className="micro-label">Quem cria</span>
             <h2 className="mt-7 text-[clamp(3rem,6.7vw,7rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]">
               Especialista em sites.
               <br />
@@ -415,7 +416,7 @@ export default function Home() {
       >
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         <div className="site-shell relative z-10">
-          <span className="micro-label">04 / Trajetória</span>
+          <span className="micro-label">Trajetória</span>
           <h2 className="display-title mt-5">NO SCRIPT.</h2>
           <p className="mt-8 max-w-xl text-lg leading-8 text-white/60">
             Não foi uma linha reta. Cada fase acrescentou produção, repertório,
@@ -445,7 +446,7 @@ export default function Home() {
         />
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         <div className="site-shell relative z-10">
-          <span className="micro-label">05 / O que eu faço</span>
+          <span className="micro-label">O que eu faço</span>
           <h2 id="servicos-titulo" className="display-title mt-5">
             WEB FIRST.
           </h2>
@@ -454,8 +455,7 @@ export default function Home() {
           </p>
           <div className="service-list mt-16 sm:mt-24">
             {services.map((service) => (
-              <article key={service.number} className="service-row group">
-                <span className="service-number">{service.number}</span>
+              <article key={service.title} className="service-row group">
                 <div>
                   <h3>{service.title}</h3>
                   <p>{service.copy}</p>
@@ -509,7 +509,7 @@ export default function Home() {
           className="cta-orb absolute right-[8%] top-[13%] w-[clamp(8rem,15vw,15rem)]"
         />
         <div className="site-shell relative z-10 flex min-h-[70vh] flex-col justify-between">
-          <span className="micro-label">06 / Seu próximo projeto</span>
+          <span className="micro-label">Seu próximo projeto</span>
           <div>
             <h2 className="display-title max-w-[9ch]">VAMOS CRIAR.</h2>
             <div className="mt-10 flex flex-col items-start justify-between gap-8 border-t border-white/20 pt-8 sm:flex-row sm:items-end">
