@@ -41,7 +41,7 @@ export function EditorialHero() {
       className="editorial-hero relative min-h-[180vh]"
       aria-label="Apresentação de Franco Maia"
     >
-      <div className="sticky top-0 min-h-screen overflow-hidden bg-[#050505]">
+      <div className="sticky top-0 min-h-[100svh] overflow-hidden bg-[#050505]">
         <div className="hero-spotlight absolute inset-0" aria-hidden="true" />
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
 
@@ -71,12 +71,12 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
         <img
-          src="/assets/character/franco-cobalt-cutout.png"
-          alt="Franco Maia com roupa azul apresentando uma ideia"
+          src="/assets/character/franco-cyan-cutout-v2.png"
+          alt="Franco Maia com roupa ciano apresentando uma ideia"
           width={800}
           height={1200}
           loading="eager"
-          className="hero-character absolute bottom-[-16%] left-1/2 z-20 w-[clamp(25rem,48vw,46rem)] max-w-none"
+          className="hero-character absolute left-1/2 z-20 max-w-none"
           style={{
             opacity: 1 - exit * 0.92,
             filter: `drop-shadow(0 2rem 4rem rgb(0 0 0 / 75%)) blur(${exit * 7}px)`,
@@ -86,7 +86,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/chrome-flower.png"
+          src="/assets/motifs/chrome-flower-cyan-v2.png"
           alt=""
           width={460}
           height={420}
@@ -99,7 +99,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb.png"
+          src="/assets/motifs/cursor-orb-cyan-v2.png"
           alt=""
           width={420}
           height={420}
@@ -110,7 +110,7 @@ export function EditorialHero() {
           }}
         />
 
-        <div className="site-shell relative z-40 flex min-h-screen flex-col justify-between pb-8 pt-28 sm:pb-10 sm:pt-32">
+        <div className="site-shell relative z-40 flex min-h-[100svh] flex-col justify-between pb-8 pt-28 sm:pb-10 sm:pt-32">
           <div className="flex items-start justify-between gap-6">
             <p className="micro-label max-w-[15rem]">
               Designer gráfico · Web creator · Diretor de arte
@@ -141,7 +141,7 @@ export function EditorialHero() {
           <span>Scroll</span>
           <span className="relative h-24 w-px overflow-hidden bg-white/15">
             <span
-              className="absolute inset-x-0 top-0 bg-violet-400"
+              className="absolute inset-x-0 top-0 bg-cyan-300"
               style={{ height: `${Math.max(8, progress * 100)}%` }}
             />
           </span>

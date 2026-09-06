@@ -109,7 +109,7 @@ const careerChapters = [
   },
   {
     phase: '05 / Agora',
-    title: 'Dois anos na EXAS.',
+    title: 'Há cerca de um ano e meio na EXAS.',
     copy: 'Hoje uno negócio, marca e experiência digital, com a criação de sites no centro do meu trabalho.',
   },
 ];
@@ -179,7 +179,7 @@ export default function Home() {
                   key={`${group}-${item}`}
                   className="flex items-center gap-8 px-8"
                 >
-                  {item} <Sparkles className="size-4 text-violet-400" />
+                  {item} <Sparkles className="size-4 text-cyan-300" />
                 </span>
               ))}
             </div>
@@ -194,7 +194,7 @@ export default function Home() {
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb.png"
+          src="/assets/motifs/cursor-orb-cyan-v2.png"
           alt=""
           width={420}
           height={420}
@@ -271,7 +271,7 @@ export default function Home() {
         </div>
         {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/chrome-flower.png"
+          src="/assets/motifs/chrome-flower-cyan-v2.png"
           alt=""
           width={460}
           height={420}
@@ -283,12 +283,12 @@ export default function Home() {
           <div className="about-character-stage relative min-h-[38rem]">
             {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
             <img
-              src="/assets/character/franco-cream-cutout.png"
+              src="/assets/character/franco-cream-cyan-cutout-v2.png"
               alt="Franco Maia com roupa clara e caderno de criação"
               width={800}
               height={1200}
               loading="lazy"
-              className="reveal-character absolute bottom-[-8%] left-1/2 w-[clamp(29rem,52vw,49rem)] max-w-none -translate-x-1/2"
+              className="reveal-character absolute left-1/2 max-w-none"
             />
           </div>
           <div className="pb-6 lg:pb-16">
@@ -296,7 +296,7 @@ export default function Home() {
             <h2 className="mt-7 text-[clamp(3rem,6.7vw,7rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]">
               Especialista em sites.
               <br />
-              <span className="text-violet-400">Designer por inteiro.</span>
+              <span className="text-cyan-300">Designer por inteiro.</span>
             </h2>
             <div className="mt-10 grid gap-7 border-t border-white/20 pt-7 sm:grid-cols-2">
               <p className="text-lg leading-8 text-white/70">
@@ -329,7 +329,7 @@ export default function Home() {
           <div className="career-list mt-16 sm:mt-24">
             {careerChapters.map((chapter) => (
               <article key={chapter.phase} className="career-row">
-                <span className="font-mono text-xs uppercase tracking-[0.14em] text-violet-300">
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
                   {chapter.phase}
                 </span>
                 <h3>{chapter.title}</h3>
@@ -354,7 +354,7 @@ export default function Home() {
           <h2 id="servicos-titulo" className="display-title mt-5">
             WEB FIRST.
           </h2>
-          <p className="scribble-note mt-5 rotate-[-3deg] text-violet-300">
+          <p className="scribble-note mt-5 rotate-[-3deg] text-cyan-200">
             marca em tudo.
           </p>
           <div className="service-list mt-16 sm:mt-24">
@@ -393,7 +393,7 @@ export default function Home() {
         />
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb.png"
+          src="/assets/motifs/cursor-orb-cyan-v2.png"
           alt=""
           width={420}
           height={420}

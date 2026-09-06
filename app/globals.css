@@ -40,11 +40,11 @@
   --secondary-foreground: #f8f7f4;
   --muted: #111111;
   --muted-foreground: #9a9a9a;
-  --accent: #8b5cf6;
+  --accent: #22d3ee;
   --accent-foreground: #ffffff;
   --border: rgb(255 255 255 / 16%);
-  --ring: #a78bfa;
-  --violet: #9b74ff;
+  --ring: #67e8f9;
+  --cyan: #67e8f9;
 }
 
 * {
@@ -55,6 +55,10 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+}
+
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 body {
@@ -68,7 +72,7 @@ body {
 }
 
 ::selection {
-  background: var(--violet);
+  background: var(--cyan);
   color: white;
 }
 
@@ -79,7 +83,7 @@ button {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--violet);
+  outline: 2px solid var(--cyan);
   outline-offset: 4px;
 }
 
@@ -178,7 +182,7 @@ footer a:hover {
     ),
     radial-gradient(
       ellipse at 54% 54%,
-      rgb(139 92 246 / 20%),
+      rgb(34 211 238 / 20%),
       transparent 32rem
     ),
     linear-gradient(90deg, #030303, #0b0b0d 50%, #030303);
@@ -204,6 +208,8 @@ footer a:hover {
 }
 
 .hero-character {
+  bottom: -2%;
+  width: clamp(24rem, min(48vw, 54svh), 40rem);
   will-change: transform, filter, opacity;
 }
 
@@ -218,7 +224,7 @@ footer a:hover {
 }
 
 .scribble-note {
-  color: var(--violet);
+  color: var(--cyan);
   font-size: clamp(1.15rem, 2vw, 1.8rem);
   font-style: italic;
   font-weight: 800;
@@ -316,7 +322,7 @@ footer a:hover {
 .section-ghost-title {
   font-size: clamp(5rem, 15.5vw, 15rem);
   font-weight: 950;
-  line-height: 0.75;
+  line-height: 0.8;
   letter-spacing: -0.09em;
   text-transform: uppercase;
 }
@@ -341,7 +347,7 @@ footer a:hover {
 
 .project-item-2,
 .project-item-4 {
-  translate: 0 4rem;
+  margin-top: 4rem;
 }
 
 .project-image-wrap {
@@ -404,7 +410,7 @@ footer a:hover {
 }
 
 .orbit-motif {
-  filter: drop-shadow(0 2rem 3rem rgb(87 42 180 / 40%));
+  filter: drop-shadow(0 2rem 3rem rgb(8 145 178 / 40%));
   animation: orbit-drift 8s ease-in-out infinite;
 }
 
@@ -417,7 +423,7 @@ footer a:hover {
     ),
     radial-gradient(
       ellipse at 32% 62%,
-      rgb(139 92 246 / 12%),
+      rgb(34 211 238 / 12%),
       transparent 34rem
     );
 }
@@ -427,11 +433,15 @@ footer a:hover {
 }
 
 .flower-motif {
-  filter: drop-shadow(0 2rem 4rem rgb(114 62 205 / 35%));
+  filter: drop-shadow(0 2rem 4rem rgb(8 145 178 / 35%));
   animation: flower-float 7s ease-in-out infinite;
 }
 
 .reveal-character {
+  bottom: 0;
+  width: auto;
+  height: min(44rem, 75svh);
+  transform: translateX(-50%);
   filter: drop-shadow(0 2.5rem 3.5rem rgb(0 0 0 / 62%));
   animation: character-reveal linear both;
   animation-timeline: view();
@@ -490,7 +500,7 @@ footer a:hover {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: #8b5cf6;
+  background: #0891b2;
   content: '';
   transform: translateX(-102%);
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -585,7 +595,7 @@ footer a:hover {
   background:
     radial-gradient(
       circle at 50% 55%,
-      rgb(139 92 246 / 20%),
+      rgb(34 211 238 / 20%),
       transparent 28rem
     ),
     #050505;
@@ -595,14 +605,14 @@ footer a:hover {
   width: 34rem;
   height: 34rem;
   border-radius: 999px;
-  background: rgb(139 92 246 / 24%);
+  background: rgb(34 211 238 / 24%);
   filter: blur(100px);
   transform: translate(-50%, -50%);
   animation: glow-breathe 6s ease-in-out infinite;
 }
 
 .cta-orb {
-  filter: drop-shadow(0 2rem 4rem rgb(93 49 196 / 44%));
+  filter: drop-shadow(0 2rem 4rem rgb(8 145 178 / 44%));
   animation: cta-orb 8s ease-in-out infinite;
 }
 
@@ -612,11 +622,11 @@ footer a:hover {
 }
 
 .editorial-button-light::before {
-  background: var(--violet);
+  background: var(--cyan);
 }
 
 .editorial-button-light:hover {
-  border-color: var(--violet);
+  border-color: var(--cyan);
   color: white;
 }
 
@@ -631,7 +641,7 @@ footer a:hover {
     filter: drop-shadow(0 1.5rem 2.4rem rgb(0 0 0 / 65%)) saturate(0.9);
   }
   to {
-    filter: drop-shadow(0 2rem 3rem rgb(116 71 205 / 52%)) saturate(1.22);
+    filter: drop-shadow(0 2rem 3rem rgb(8 145 178 / 52%)) saturate(1.22);
   }
 }
 
@@ -731,8 +741,8 @@ footer a:hover {
     font-size: clamp(6.2rem, 24vw, 13rem);
   }
   .hero-character {
-    bottom: -8%;
-    width: clamp(28rem, 80vw, 42rem);
+    bottom: 0;
+    width: clamp(23rem, min(76vw, 50svh), 34rem);
   }
   .hero-name-back {
     top: 25%;
@@ -742,7 +752,7 @@ footer a:hover {
   }
   .project-item-2,
   .project-item-4 {
-    translate: 0 0;
+    margin-top: 0;
   }
   .career-row {
     grid-template-columns: 0.45fr 1fr;
@@ -777,8 +787,8 @@ footer a:hover {
     bottom: 23%;
   }
   .hero-character {
-    bottom: 1%;
-    width: 31rem;
+    bottom: 4%;
+    width: min(27rem, 50svh);
   }
   .float-button-flower {
     top: 18%;
@@ -801,10 +811,10 @@ footer a:hover {
     gap-block: 4rem;
   }
   .about-character-stage {
-    min-height: 31rem;
+    min-height: 34rem;
   }
   .reveal-character {
-    width: 36rem;
+    height: 32rem;
   }
   .section-ghost-title {
     font-size: 5rem;
