@@ -87,7 +87,7 @@ export function ScrollSequence({ frames }: ScrollSequenceProps) {
                     width={768}
                     height={1152}
                     loading={index === 0 ? 'eager' : 'lazy'}
-                    className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_30px_58px_rgb(0_0_0/78%)] motion-reduce:!opacity-0 motion-reduce:!transform-none motion-reduce:first:!opacity-100"
+                    className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-[0_30px_58px_rgb(0_0_0/78%)] motion-reduce:!transform-none"
                     style={{ opacity, transform: `rotateY(${turn}deg) scale(${0.96 + progress * 0.04})` }}
                   />
                 );
