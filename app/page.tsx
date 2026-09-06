@@ -73,6 +73,45 @@ const selectedProjects = [
   },
 ];
 
+const brandingProjects = [
+  {
+    name: 'GR Treinador',
+    type: 'Branding',
+    image: '/assets/behance/gr-treinador.png',
+    href: 'https://www.behance.net/gallery/243778083/GR-Treinador-(Gabriel-Rezende)-BRAND',
+  },
+  {
+    name: 'Wave Publicidade',
+    type: 'Identidade visual',
+    image: '/assets/behance/wave-publicidade.png',
+    href: 'https://www.behance.net/gallery/212088005/IDENTIDADE-VISUAL-WAVE-PUBLICIDADE',
+  },
+  {
+    name: 'Westbull Churrascaria',
+    type: 'Identidade visual',
+    image: '/assets/behance/westbull.png',
+    href: 'https://www.behance.net/gallery/220994247/WESTBULL-CHURRASCARIA-IDENTIDADE',
+  },
+  {
+    name: 'West Burguer',
+    type: 'Identidade visual',
+    image: '/assets/behance/west-burguer.png',
+    href: 'https://www.behance.net/gallery/217884215/WEST-BURGUER-ID',
+  },
+  {
+    name: 'Jânio Eduardo',
+    type: 'Posicionamento de imagem',
+    image: '/assets/behance/janio-eduardo.jpg',
+    href: 'https://www.behance.net/gallery/192031601/JANIO-EDUARDO-POSICIONAMENTO-DE-IMAGEM',
+  },
+  {
+    name: 'Via Animale',
+    type: 'Identidade visual',
+    image: '/assets/behance/via-animale.png',
+    href: 'https://www.behance.net/gallery/213802223/VIA-ANIMALE-IDENTIDADE',
+  },
+];
+
 const services = [
   {
     number: '01',
@@ -149,6 +188,7 @@ export default function Home() {
             className="hidden items-center gap-8 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/55 md:flex"
           >
             <a href="#trabalhos">Trabalhos</a>
+            <a href="#branding">Branding</a>
             <a href="#sobre">Sobre</a>
             <a href="#trajetoria">Trajetória</a>
           </nav>
@@ -266,6 +306,75 @@ export default function Home() {
       </section>
 
       <section
+        id="branding"
+        className="behance-section relative overflow-hidden border-y border-white/15 py-24 sm:py-36"
+      >
+        <div className="panel-spotlight panel-spotlight-right absolute inset-0" aria-hidden="true" />
+        <div className="noise-layer absolute inset-0" aria-hidden="true" />
+        <div className="site-shell relative z-10">
+          <div className="behance-heading">
+            <div>
+              <span className="micro-label">02 / Identidades visuais</span>
+              <h2 className="display-title mt-5">BRANDING.</h2>
+            </div>
+            <div className="behance-intro">
+              <p>
+                Marcas construídas do conceito à aplicação, com direção visual,
+                personalidade e consistência.
+              </p>
+              <a
+                href="https://www.behance.net/francomaia"
+                target="_blank"
+                rel="noreferrer"
+                className="editorial-button group"
+              >
+                Ver perfil no Behance
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="size-5 transition-transform duration-300 group-hover:rotate-45"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div className="behance-grid mt-16 sm:mt-24">
+            {brandingProjects.map((project, index) => (
+              <a
+                key={project.name}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="behance-card group"
+                aria-label={`Ver ${project.name} no Behance`}
+              >
+                <div className="behance-image-wrap">
+                  {/* oxlint-disable-next-line next/no-img-element -- Behance project covers are stored locally */}
+                  <img
+                    src={project.image}
+                    alt={`Projeto de ${project.type.toLowerCase()} ${project.name}`}
+                    width={1400}
+                    height={1050}
+                    loading="lazy"
+                    className="behance-image"
+                  />
+                  <span className="behance-index">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="behance-arrow">
+                    <ArrowUpRight aria-hidden="true" className="size-5" />
+                  </span>
+                </div>
+                <div className="behance-meta">
+                  <h3>{project.name}</h3>
+                  <span>{project.type}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
         id="sobre"
         className="editorial-panel relative min-h-screen overflow-hidden border-y border-white/15 py-24 sm:py-36"
       >
@@ -300,7 +409,7 @@ export default function Home() {
             />
           </div>
           <div className="pb-6 lg:pb-16">
-            <span className="micro-label">02 / Quem cria</span>
+            <span className="micro-label">03 / Quem cria</span>
             <h2 className="mt-7 text-[clamp(3rem,6.7vw,7rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]">
               Especialista em sites.
               <br />
@@ -328,7 +437,7 @@ export default function Home() {
       >
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         <div className="site-shell relative z-10">
-          <span className="micro-label">03 / Trajetória</span>
+          <span className="micro-label">04 / Trajetória</span>
           <h2 className="display-title mt-5">NO SCRIPT.</h2>
           <p className="mt-8 max-w-xl text-lg leading-8 text-white/60">
             Não foi uma linha reta. Cada fase acrescentou produção, repertório,
@@ -358,7 +467,7 @@ export default function Home() {
         />
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         <div className="site-shell relative z-10">
-          <span className="micro-label">04 / O que eu faço</span>
+          <span className="micro-label">05 / O que eu faço</span>
           <h2 id="servicos-titulo" className="display-title mt-5">
             WEB FIRST.
           </h2>
@@ -422,7 +531,7 @@ export default function Home() {
           className="cta-orb absolute right-[8%] top-[13%] w-[clamp(8rem,15vw,15rem)]"
         />
         <div className="site-shell relative z-10 flex min-h-[70vh] flex-col justify-between">
-          <span className="micro-label">05 / Seu próximo projeto</span>
+          <span className="micro-label">06 / Seu próximo projeto</span>
           <div>
             <h2 className="display-title max-w-[9ch]">VAMOS CRIAR.</h2>
             <div className="mt-10 flex flex-col items-start justify-between gap-8 border-t border-white/20 pt-8 sm:flex-row sm:items-end">
