@@ -133,6 +133,12 @@ const brandingProjects = [
     href: 'https://www.behance.net/gallery/192031601/JANIO-EDUARDO-POSICIONAMENTO-DE-IMAGEM',
   },
   {
+    name: 'Matheus Enrico Advocacia',
+    type: 'Identidade visual',
+    image: '/assets/behance/matheus-enrico.jpg',
+    href: 'https://www.behance.net/gallery/192037115/MATHEUS-ENRICO-ADVOCACIA-IDENTIDADE',
+  },
+  {
     name: 'Via Animale',
     type: 'Identidade visual',
     image: '/assets/behance/via-animale.png',
