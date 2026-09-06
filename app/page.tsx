@@ -241,11 +241,7 @@ export default function Home() {
         <div className="site-shell relative z-10">
           <div className="section-heading">
             <span className="micro-label">01 / Projetos selecionados</span>
-            <h2 className="display-title">
-              TRABA
-              <br className="sm:hidden" />
-              LHOS
-            </h2>
+            <h2 className="display-title">TRABALHOS</h2>
             <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
               sites reais.
               <br />
@@ -272,9 +268,6 @@ export default function Home() {
                     loading={index < 3 ? 'eager' : 'lazy'}
                     className="project-image"
                   />
-                  <span className="project-index">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   <span className="project-arrow">
                     <ArrowUpRight aria-hidden="true" className="size-5" />
                   </span>
@@ -345,9 +338,6 @@ export default function Home() {
                     loading="lazy"
                     className="behance-image"
                   />
-                  <span className="behance-index">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   <span className="behance-arrow">
                     <ArrowUpRight aria-hidden="true" className="size-5" />
                   </span>

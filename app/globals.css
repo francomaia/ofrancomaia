@@ -278,12 +278,15 @@ footer a:hover {
 
 .float-button {
   filter: drop-shadow(0 1.5rem 2.4rem rgb(0 0 0 / 65%));
-  animation: object-glint 4.5s ease-in-out infinite alternate;
+  animation:
+    object-glint 4.5s ease-in-out infinite alternate,
+    hero-object-float 5.5s ease-in-out infinite;
   will-change: transform, filter;
 }
 
 .float-button-orb {
   animation-delay: -2.2s;
+  animation-duration: 4.5s, 6.4s;
 }
 
 .motion-marquee {
@@ -376,21 +379,12 @@ footer a:hover {
   filter: saturate(1.12);
 }
 
-.behance-index,
 .behance-arrow {
   position: absolute;
   display: grid;
   place-items: center;
   background: rgb(5 5 5 / 78%);
   backdrop-filter: blur(10px);
-}
-
-.behance-index {
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.4rem 0.55rem;
-  font-family: monospace;
-  font-size: 0.68rem;
 }
 
 .behance-arrow {
@@ -516,17 +510,6 @@ footer a:hover {
 .project-item:hover .project-image {
   transform: scale(1);
   filter: grayscale(0) contrast(1) brightness(1);
-}
-
-.project-index {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  border: 1px solid rgb(255 255 255 / 30%);
-  background: rgb(0 0 0 / 66%);
-  padding: 0.35rem 0.5rem;
-  font-family: monospace;
-  font-size: 0.68rem;
 }
 
 .project-arrow {
@@ -746,19 +729,16 @@ footer a:hover {
 
 .tool-logo {
   display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 4rem;
+  height: 4rem;
   place-items: center;
-  border: 1px solid rgb(255 255 255 / 16%);
-  border-radius: 0.75rem;
-  background: rgb(255 255 255 / 5%);
   color: white;
 }
 
 .tool-logo svg,
 .tool-logo img {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 3rem;
+  height: 3rem;
   object-fit: contain;
 }
 
@@ -823,6 +803,16 @@ footer a:hover {
   }
   to {
     filter: drop-shadow(0 2rem 3rem rgb(8 145 178 / 52%)) saturate(1.22);
+  }
+}
+
+@keyframes hero-object-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.8rem;
   }
 }
 
@@ -1006,6 +996,12 @@ footer a:hover {
     font-size: clamp(3.6rem, 20vw, 6.5rem);
     overflow-wrap: anywhere;
   }
+  .section-heading .display-title,
+  .behance-heading .display-title {
+    font-size: clamp(2.65rem, 13vw, 5.5rem);
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
   .project-grid {
     gap-block: 4rem;
   }
@@ -1069,8 +1065,8 @@ footer a:hover {
     letter-spacing: 0.06em;
   }
   .tool-logo {
-    width: 2.9rem;
-    height: 2.9rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
   .editorial-button {
     max-width: 100%;

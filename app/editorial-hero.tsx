@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
+import { ArrowDownRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export function EditorialHero() {
@@ -137,16 +137,6 @@ export function EditorialHero() {
           </div>
         </div>
 
-        <div className="absolute right-5 top-1/2 z-50 hidden -translate-y-1/2 flex-col items-center gap-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-white/35 sm:flex">
-          <span>Scroll</span>
-          <span className="relative h-24 w-px overflow-hidden bg-white/15">
-            <span
-              className="absolute inset-x-0 top-0 bg-cyan-300"
-              style={{ height: `${Math.max(8, progress * 100)}%` }}
-            />
-          </span>
-          <ArrowUpRight aria-hidden="true" className="size-3" />
-        </div>
       </div>
     </section>
   );
