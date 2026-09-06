@@ -64,7 +64,11 @@ body {
   overflow-x: hidden;
   background:
     radial-gradient(circle at 78% 7%, rgb(70 242 255 / 10%), transparent 24rem),
-    radial-gradient(circle at 12% 42%, rgb(235 125 255 / 5%), transparent 21rem),
+    radial-gradient(
+      circle at 12% 42%,
+      rgb(235 125 255 / 5%),
+      transparent 21rem
+    ),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
@@ -76,11 +80,13 @@ body {
   color: #001417;
 }
 
-a, button {
+a,
+button {
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus-visible, button:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 4px;
 }
@@ -126,28 +132,90 @@ a:focus-visible, button:focus-visible {
 .glass-panel {
   background: linear-gradient(145deg, rgb(11 26 30 / 84%), rgb(4 9 11 / 58%));
   border: 1px solid rgb(123 231 241 / 18%);
-  box-shadow: inset 0 1px rgb(255 255 255 / 4%), 0 24px 80px rgb(0 0 0 / 40%);
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 4%),
+    0 24px 80px rgb(0 0 0 / 40%);
   backdrop-filter: blur(18px);
 }
 
 .cyan-shadow {
-  box-shadow: 0 0 24px rgb(70 242 255 / 24%), 0 18px 60px rgb(0 0 0 / 40%);
+  box-shadow:
+    0 0 24px rgb(70 242 255 / 24%),
+    0 18px 60px rgb(0 0 0 / 40%);
 }
 
 .hero-wallpaper-frame {
-  animation: wallpaper-glow 6s ease-in-out infinite;
-  filter: saturate(1.03) brightness(0.86);
   transform-origin: 62% 48%;
+  transition:
+    opacity 180ms linear,
+    filter 180ms linear;
+  will-change: transform, opacity, filter;
 }
 
 .hero-wallpaper-stage {
   animation: wallpaper-drift 7s ease-in-out infinite;
 }
 
+.scene-caption {
+  animation: scene-caption-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 80%);
+}
+
+.motion-orb {
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.18;
+  animation: blur-drift 11s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.motion-orb-cyan {
+  background: rgb(70 242 255 / 80%);
+}
+
+.motion-orb-violet {
+  background: rgb(235 125 255 / 62%);
+  animation-delay: -4.5s;
+}
+
+.character-panel,
+.character-float {
+  box-shadow:
+    0 28px 90px rgb(0 0 0 / 45%),
+    0 0 70px rgb(70 242 255 / 8%);
+  animation: character-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 34%;
+}
+
+.character-panel img,
+.character-float img {
+  animation: character-breathe 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+.cta-character {
+  opacity: 0.3;
+  mask-image: linear-gradient(to bottom, black 8%, black 68%, transparent 98%);
+  animation: cta-character-drift 6.5s ease-in-out infinite;
+}
+
 .hero-wallpaper-overlay {
   background:
-    linear-gradient(90deg, rgb(3 6 7 / 78%) 0%, rgb(3 6 7 / 30%) 42%, rgb(3 6 7 / 5%) 72%),
-    linear-gradient(180deg, rgb(3 6 7 / 34%) 0%, transparent 28%, rgb(3 6 7 / 66%) 100%);
+    linear-gradient(
+      90deg,
+      rgb(3 6 7 / 78%) 0%,
+      rgb(3 6 7 / 30%) 42%,
+      rgb(3 6 7 / 5%) 72%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(3 6 7 / 34%) 0%,
+      transparent 28%,
+      rgb(3 6 7 / 66%) 100%
+    );
 }
 
 .magic-particles span {
@@ -156,17 +224,47 @@ a:focus-visible, button:focus-visible {
   height: 0.32rem;
   border-radius: 999px;
   background: #d9fdff;
-  box-shadow: 0 0 10px #46f2ff, 0 0 24px rgb(70 242 255 / 75%);
+  box-shadow:
+    0 0 10px #46f2ff,
+    0 0 24px rgb(70 242 255 / 75%);
   animation: magic-rise 4.2s ease-in-out infinite;
 }
 
-.magic-particles span:nth-child(1) { left: 52%; top: 24%; animation-delay: -0.8s; }
-.magic-particles span:nth-child(2) { left: 68%; top: 18%; animation-delay: -2.1s; }
-.magic-particles span:nth-child(3) { left: 82%; top: 31%; animation-delay: -3.2s; }
-.magic-particles span:nth-child(4) { left: 57%; top: 62%; animation-delay: -1.4s; }
-.magic-particles span:nth-child(5) { left: 76%; top: 71%; animation-delay: -2.8s; }
-.magic-particles span:nth-child(6) { left: 91%; top: 56%; animation-delay: -0.3s; }
-.magic-particles span:nth-child(7) { left: 44%; top: 46%; animation-delay: -3.7s; }
+.magic-particles span:nth-child(1) {
+  left: 52%;
+  top: 24%;
+  animation-delay: -0.8s;
+}
+.magic-particles span:nth-child(2) {
+  left: 68%;
+  top: 18%;
+  animation-delay: -2.1s;
+}
+.magic-particles span:nth-child(3) {
+  left: 82%;
+  top: 31%;
+  animation-delay: -3.2s;
+}
+.magic-particles span:nth-child(4) {
+  left: 57%;
+  top: 62%;
+  animation-delay: -1.4s;
+}
+.magic-particles span:nth-child(5) {
+  left: 76%;
+  top: 71%;
+  animation-delay: -2.8s;
+}
+.magic-particles span:nth-child(6) {
+  left: 91%;
+  top: 56%;
+  animation-delay: -0.3s;
+}
+.magic-particles span:nth-child(7) {
+  left: 44%;
+  top: 46%;
+  animation-delay: -3.7s;
+}
 
 .story-card {
   background: linear-gradient(145deg, rgb(8 18 22 / 92%), rgb(4 9 11 / 64%));
@@ -174,13 +272,18 @@ a:focus-visible, button:focus-visible {
   animation: card-reveal linear both;
   animation-timeline: view();
   animation-range: entry 8% cover 30%;
-  transition: transform 420ms ease, border-color 420ms ease, box-shadow 420ms ease;
+  transition:
+    transform 420ms ease,
+    border-color 420ms ease,
+    box-shadow 420ms ease;
 }
 
 .story-card:hover {
   border-color: rgb(70 242 255 / 34%);
   transform: translateY(-6px);
-  box-shadow: 0 24px 70px rgb(0 0 0 / 30%), 0 0 42px rgb(70 242 255 / 7%);
+  box-shadow:
+    0 24px 70px rgb(0 0 0 / 30%),
+    0 0 42px rgb(70 242 255 / 7%);
 }
 
 .story-card-featured {
@@ -190,7 +293,10 @@ a:focus-visible, button:focus-visible {
 }
 
 .story-orbit {
-  transition: scale 550ms ease, rotate 650ms ease, border-color 550ms ease;
+  transition:
+    scale 550ms ease,
+    rotate 650ms ease,
+    border-color 550ms ease;
 }
 
 .story-card:hover .story-orbit {
@@ -201,13 +307,15 @@ a:focus-visible, button:focus-visible {
 
 .service-card {
   min-height: 22rem;
-  background:
-    linear-gradient(145deg, rgb(9 19 23 / 94%), rgb(3 8 10 / 82%));
+  background: linear-gradient(145deg, rgb(9 19 23 / 94%), rgb(3 8 10 / 82%));
   box-shadow: inset 0 1px rgb(255 255 255 / 4%);
   animation: card-reveal linear both;
   animation-timeline: view();
   animation-range: entry 8% cover 30%;
-  transition: transform 420ms ease, border-color 420ms ease, background-color 420ms ease;
+  transition:
+    transform 420ms ease,
+    border-color 420ms ease,
+    background-color 420ms ease;
 }
 
 .service-card:hover {
@@ -217,7 +325,9 @@ a:focus-visible, button:focus-visible {
 
 .service-glow {
   opacity: 0.5;
-  transition: opacity 500ms ease, scale 600ms ease;
+  transition:
+    opacity 500ms ease,
+    scale 600ms ease;
 }
 
 .service-card:hover .service-glow {
@@ -231,13 +341,21 @@ a:focus-visible, button:focus-visible {
   background: #071012;
   border: 1px solid rgb(134 234 243 / 16%);
   box-shadow: 0 18px 60px rgb(0 0 0 / 32%);
-  transition: transform 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
+  transition:
+    transform 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+  animation: case-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 24%;
 }
 
 .case-card:hover {
   border-color: rgb(70 242 255 / 45%);
   transform: translateY(-4px);
-  box-shadow: 0 22px 80px rgb(0 0 0 / 42%), 0 0 48px rgb(70 242 255 / 8%);
+  box-shadow:
+    0 22px 80px rgb(0 0 0 / 42%),
+    0 0 48px rgb(70 242 255 / 8%);
 }
 
 .marquee-track {
@@ -247,30 +365,141 @@ a:focus-visible, button:focus-visible {
 }
 
 @keyframes marquee {
-  to { transform: translateX(-50%); }
-}
-
-@keyframes wallpaper-glow {
-  0%, 100% { filter: saturate(1.02) brightness(0.84); }
-  50% { filter: saturate(1.12) brightness(0.94); }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes wallpaper-drift {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -1.2%; }
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+  50% {
+    translate: 0 -1.1%;
+    scale: 1.008;
+  }
 }
 
 @keyframes magic-rise {
-  0%, 100% { opacity: 0.16; translate: 0 0; scale: 0.6; }
-  50% { opacity: 0.95; translate: 0 -1.4rem; scale: 1.35; }
+  0%,
+  100% {
+    opacity: 0.16;
+    translate: 0 0;
+    scale: 0.6;
+  }
+  50% {
+    opacity: 0.95;
+    translate: 0 -1.4rem;
+    scale: 1.35;
+  }
 }
 
 @keyframes card-reveal {
-  from { opacity: 0.2; translate: 0 2.5rem; scale: 0.97; }
-  to { opacity: 1; translate: 0 0; scale: 1; }
+  from {
+    opacity: 0.12;
+    translate: 0 3rem;
+    scale: 0.96;
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes case-reveal {
+  from {
+    opacity: 0.14;
+    translate: 0 3.5rem;
+    scale: 0.965;
+    filter: blur(13px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes character-reveal {
+  from {
+    opacity: 0.08;
+    translate: 0 4.5rem;
+    scale: 0.92;
+    filter: blur(20px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes character-breathe {
+  0%,
+  100% {
+    transform: scale(1.015) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.045) translate3d(0, -0.75rem, 0);
+  }
+}
+
+@keyframes cta-character-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0.5rem, 0) rotate(-1deg);
+    filter: blur(0.8px);
+  }
+  50% {
+    transform: translate3d(0, -0.8rem, 0) rotate(1deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes blur-drift {
+  0% {
+    transform: translate3d(-5%, 2%, 0) scale(0.9);
+    opacity: 0.1;
+  }
+  55% {
+    transform: translate3d(9%, -7%, 0) scale(1.15);
+    opacity: 0.24;
+  }
+  100% {
+    transform: translate3d(-1%, 8%, 0) scale(1.02);
+    opacity: 0.16;
+  }
+}
+
+@keyframes scene-caption-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
 }
 
 @media (max-width: 640px) {
-  .site-shell { width: min(100% - 1.25rem, 90rem); }
-  .grid-lines { background-size: 42px 42px; }
+  .site-shell {
+    width: min(100% - 1.25rem, 90rem);
+  }
+  .grid-lines {
+    background-size: 42px 42px;
+  }
+  .motion-orb {
+    filter: blur(70px);
+    opacity: 0.12;
+  }
 }

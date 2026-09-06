@@ -3,15 +3,18 @@ type BrandMarkProps = {
   labelled?: boolean;
 };
 
-export function BrandMark({ className = 'size-10', labelled = false }: BrandMarkProps) {
+export function BrandMark({
+  className = 'h-8 w-auto',
+  labelled = false,
+}: BrandMarkProps) {
   return (
-    // oxlint-disable-next-line next/no-img-element -- generated brand asset is a compact local PNG
+    // oxlint-disable-next-line next/no-img-element -- generated wordmark is a compact local PNG with transparency
     <img
-      src="/assets/brand/fm-mark.png"
+      src="/assets/brand/franco-wordmark-white.png"
       className={className}
-      width={512}
-      height={512}
-      alt={labelled ? 'Monograma FM' : ''}
+      width={720}
+      height={240}
+      alt={labelled ? 'Franco' : ''}
       aria-hidden={labelled ? undefined : 'true'}
     />
   );
