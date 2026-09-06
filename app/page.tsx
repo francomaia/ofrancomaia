@@ -194,13 +194,13 @@ export default function Home() {
         <div className="noise-layer absolute inset-0" aria-hidden="true" />
         {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb-cyan-v2.png"
+          src="/assets/motifs/cursor-orb-cyan-v3.png"
           alt=""
           width={420}
           height={420}
           loading="lazy"
           aria-hidden="true"
-          className="orbit-motif absolute -right-20 top-[28rem] w-52 opacity-65"
+          className="orbit-motif absolute right-6 top-[28rem] w-40 opacity-65"
         />
         <div className="site-shell relative z-10">
           <div className="section-heading">
@@ -271,7 +271,7 @@ export default function Home() {
         </div>
         {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/chrome-flower-cyan-v2.png"
+          src="/assets/motifs/chrome-flower-cyan-v3.png"
           alt=""
           width={460}
           height={420}
@@ -283,7 +283,7 @@ export default function Home() {
           <div className="about-character-stage relative min-h-[38rem]">
             {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
             <img
-              src="/assets/character/franco-cream-cyan-cutout-v2.png"
+              src="/assets/character/franco-cream-cyan-cutout-v3.png"
               alt="Franco Maia com roupa clara e caderno de criação"
               width={800}
               height={1200}
@@ -393,7 +393,7 @@ export default function Home() {
         />
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb-cyan-v2.png"
+          src="/assets/motifs/cursor-orb-cyan-v3.png"
           alt=""
           width={420}
           height={420}

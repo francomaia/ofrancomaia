@@ -71,7 +71,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
         <img
-          src="/assets/character/franco-cyan-cutout-v2.png"
+          src="/assets/character/franco-cyan-cutout-v3.png"
           alt="Franco Maia com roupa ciano apresentando uma ideia"
           width={800}
           height={1200}
@@ -80,18 +80,18 @@ export function EditorialHero() {
           style={{
             opacity: 1 - exit * 0.92,
             filter: `drop-shadow(0 2rem 4rem rgb(0 0 0 / 75%)) blur(${exit * 7}px)`,
-            transform: `translate3d(-50%, ${progress * 7}vh, 0) scale(${1 + progress * 0.14}) rotate(${progress * 1.5}deg)`,
+            transform: `translate3d(-50%, ${progress * -2}vh, 0) scale(${1 - progress * 0.04}) rotate(${progress * 1.5}deg)`,
           }}
         />
 
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/chrome-flower-cyan-v2.png"
+          src="/assets/motifs/chrome-flower-cyan-v3.png"
           alt=""
           width={460}
           height={420}
           aria-hidden="true"
-          className="float-button float-button-flower absolute right-[3%] top-[14%] z-40 w-[clamp(7rem,13vw,13rem)]"
+          className="float-button float-button-flower absolute right-[4%] top-[15%] z-40 w-[clamp(6.5rem,11vw,10rem)]"
           style={{
             transform: `translate3d(0, ${progress * -9}vh, 0) rotate(${progress * 85}deg)`,
           }}
@@ -99,7 +99,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
         <img
-          src="/assets/motifs/cursor-orb-cyan-v2.png"
+          src="/assets/motifs/cursor-orb-cyan-v3.png"
           alt=""
           width={420}
           height={420}
