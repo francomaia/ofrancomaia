@@ -424,10 +424,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <BrandMark
-            className="mt-16 h-24 w-auto max-w-full sm:h-32"
-            labelled
-          />
+          <BrandMark className="footer-brand mt-16" labelled />
         </div>
       </section>
 

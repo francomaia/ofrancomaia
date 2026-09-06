@@ -617,6 +617,14 @@ footer a:hover {
   animation: cta-orb 8s ease-in-out infinite;
 }
 
+.footer-brand {
+  display: block;
+  width: min(100%, 38rem);
+  height: auto;
+  aspect-ratio: 640 / 286;
+  object-fit: contain;
+}
+
 .editorial-button-light {
   background: white;
   color: black;
