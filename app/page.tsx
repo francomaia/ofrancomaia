@@ -24,12 +24,6 @@ const selectedProjects = [
     href: 'https://agronova.exascompany.com.br/',
   },
   {
-    name: 'Bottega Implementos',
-    sector: 'Implementos Agrícolas',
-    image: '/assets/cases/bottega.avif',
-    href: 'https://bottegaimplementos.com.br/',
-  },
-  {
     name: 'Realiza Multimarcas',
     sector: 'Revenda de Veículos',
     image: '/assets/cases/realiza.avif',
@@ -53,24 +47,6 @@ const selectedProjects = [
     image: '/assets/cases/oral-implant.avif',
     href: 'https://clinicaoralimplant.com.br/',
   },
-  {
-    name: 'Senna Autopeças',
-    sector: 'Distribuição Automotiva',
-    image: '/assets/cases/senna.avif',
-    href: 'https://xn--sennaautopeas-sgb.exascompany.com.br/',
-  },
-  {
-    name: 'Autopeças Piloto',
-    sector: 'Peças Automotivas',
-    image: '/assets/cases/piloto.avif',
-    href: 'https://autopecaspiloto.lovable.app/',
-  },
-  {
-    name: 'Summer Fit',
-    sector: 'Fitness e Bem-Estar',
-    image: '/assets/cases/summer-fit.avif',
-    href: 'https://summerfitacademia.com.br/',
-  },
 ];
 
 const brandingProjects = [
@@ -79,6 +55,12 @@ const brandingProjects = [
     type: 'Branding',
     image: '/assets/behance/gr-treinador.png',
     href: 'https://www.behance.net/gallery/243778083/GR-Treinador-(Gabriel-Rezende)-BRAND',
+  },
+  {
+    name: 'Banda Rota Zero 60',
+    type: 'Logotipo',
+    image: '/assets/behance/rota-zero-60.png',
+    href: 'https://www.behance.net/gallery/223102331/BANDA-ROTA-ZERO-60-LOGOTIPO',
   },
   {
     name: 'Wave Publicidade',
@@ -91,6 +73,12 @@ const brandingProjects = [
     type: 'Identidade visual',
     image: '/assets/behance/westbull.png',
     href: 'https://www.behance.net/gallery/220994247/WESTBULL-CHURRASCARIA-IDENTIDADE',
+  },
+  {
+    name: 'Ottoneli Beauty',
+    type: 'Identidade visual',
+    image: '/assets/behance/ottoneli-beauty.png',
+    href: 'https://www.behance.net/gallery/222989543/CARTAO-DE-VISITA-OTTONELI-BEAUTY',
   },
   {
     name: 'West Burguer',
