@@ -352,14 +352,6 @@ footer a:hover {
 .behance-card {
   min-width: 0;
   grid-column: span 4;
-  animation: view-reveal linear both;
-  animation-timeline: view();
-  animation-range: entry 4% cover 28%;
-}
-
-.behance-card:nth-child(2),
-.behance-card:nth-child(5) {
-  transform: translateY(3rem);
 }
 
 .behance-image-wrap {
@@ -953,10 +945,6 @@ footer a:hover {
   }
   .behance-card {
     grid-column: span 6;
-  }
-  .behance-card:nth-child(2),
-  .behance-card:nth-child(5) {
-    transform: none;
   }
   .career-row {
     grid-template-columns: 0.45fr 1fr;
