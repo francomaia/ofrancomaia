@@ -619,7 +619,9 @@ footer a:hover {
 
 .footer-brand {
   display: block;
-  width: min(100%, 38rem);
+  width: 10rem;
+  max-width: 42vw;
+  margin-inline: auto;
   height: auto;
   aspect-ratio: 640 / 286;
   object-fit: contain;
