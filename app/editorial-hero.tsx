@@ -113,7 +113,7 @@ export function EditorialHero() {
         <div className="site-shell relative z-40 flex min-h-[100svh] flex-col justify-between pb-8 pt-28 sm:pb-10 sm:pt-32">
           <div className="flex items-start justify-between gap-6">
             <p className="micro-label max-w-[15rem]">
-              Designer gráfico · Web creator · Diretor de arte
+              Designer gráfico · Web creator · Branding
             </p>
             <p className="scribble-note hidden rotate-[-5deg] text-right sm:block">
               ideias viram

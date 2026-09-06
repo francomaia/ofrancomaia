@@ -60,31 +60,31 @@ const selectedProjects: SelectedProject[] = [
   {
     name: 'Laposé Jalecos',
     sector: 'E-commerce de Moda Profissional',
-    image: '/assets/cases/lapose-jalecos.webp',
+    image: '/assets/cases/lapose-screen.jpg',
     href: 'https://laposejalecos.com.br/',
   },
   {
     name: 'Dobroou',
     sector: 'Site de Aplicativo',
-    image: '/assets/cases/dobroou.png',
+    image: '/assets/cases/dobroou-screen.jpg',
     href: 'https://dobroou.app/',
   },
   {
     name: 'Freitas Lima & Almeida',
     sector: 'Advocacia',
-    image: '/assets/cases/freitas-lima-almeida.avif',
+    image: '/assets/cases/freitas-screen.jpg',
     href: 'https://freitaslimaealmeidaadvs.com.br/',
   },
   {
     name: 'Finneze Alumínio',
     sector: 'Esquadrias e Fachadas',
-    image: '/assets/cases/finneze-aluminio.jpg',
+    image: '/assets/cases/finneze-screen.jpg',
     href: 'https://finnezealuminio.com.br/',
   },
   {
     name: 'Pet Campos',
     sector: 'Hospital Veterinário',
-    image: '/assets/cases/pet-campos.webp',
+    image: '/assets/cases/pet-campos-screen.jpg',
     href: 'https://petcampos.com.br/',
   },
 ];
@@ -105,7 +105,7 @@ const brandingProjects = [
   {
     name: 'Wave Publicidade',
     type: 'Identidade visual',
-    image: '/assets/behance/wave-publicidade.png',
+    image: '/assets/behance/wave-publicidade-feature.jpg',
     href: 'https://www.behance.net/gallery/212088005/IDENTIDADE-VISUAL-WAVE-PUBLICIDADE',
   },
   {
