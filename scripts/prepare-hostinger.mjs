@@ -59,8 +59,13 @@ writeFileSync(
  * projeto: se um arquivo voltar a ser usado, o próximo build o traz de volta.
  */
 function pruneUnusedAssets() {
-  const assetsDir = join(standalone, 'public', 'assets');
-  if (!existsSync(assetsDir)) return { removidos: 0, bytes: 0 };
+  // Duas cópias saem do build: `public/` e `dist/client/`. Podar só a primeira
+  // não economiza nada, porque é da segunda que o servidor entrega os arquivos.
+  const alvos = [
+    join(standalone, 'public'),
+    join(standalone, 'dist', 'client'),
+  ].filter((base) => existsSync(join(base, 'assets')));
+  if (alvos.length === 0) return { removidos: 0, bytes: 0 };
 
   // Procura no CÓDIGO-FONTE, não no build: o bundle do servidor carrega um
   // manifesto com todos os arquivos de `public/`, então buscar lá acharia até
@@ -84,18 +89,15 @@ function pruneUnusedAssets() {
 
   let removidos = 0;
   let bytes = 0;
-  const walk = (dir) => {
+  const walk = (dir, base) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name);
       if (entry.isDirectory()) {
-        walk(full);
+        walk(full, base);
         continue;
       }
       // O caminho como aparece no código-fonte, ex.: /assets/cases/exas.avif
-      const publicPath = full
-        .slice(join(standalone, 'public').length)
-        .split(sep)
-        .join('/');
+      const publicPath = full.slice(base.length).split(sep).join('/');
       if (!sources.includes(publicPath)) {
         bytes += statSync(full).size;
         rmSync(full);
@@ -103,7 +105,9 @@ function pruneUnusedAssets() {
       }
     }
   };
-  walk(assetsDir);
+  for (const base of alvos) {
+    walk(join(base, 'assets'), base);
+  }
   return { removidos, bytes };
 }
 
