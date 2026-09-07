@@ -479,27 +479,6 @@ footer a:hover {
   animation-range: entry 0% cover 32%;
 }
 
-.carousel-stage::before,
-.carousel-stage::after {
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  width: clamp(2rem, 8vw, 9rem);
-  pointer-events: none;
-  content: '';
-}
-
-.carousel-stage::before {
-  left: 0;
-  background: linear-gradient(90deg, #050505, transparent);
-}
-
-.carousel-stage::after {
-  right: 0;
-  background: linear-gradient(-90deg, #050505, transparent);
-}
-
 .carousel-window {
   overflow-x: auto;
   scrollbar-width: none;
@@ -1238,11 +1217,6 @@ footer a:hover {
     animation: none;
   }
 
-  .carousel-stage::before,
-  .carousel-stage::after {
-    display: none;
-  }
-
   .carousel-window {
     overflow-x: auto;
     mask-image: none;
@@ -1793,15 +1767,6 @@ footer a:hover {
 .carousel-stage-branding .carousel-group > * {
   flex: 0 0 clamp(17rem, 26vw, 24rem);
   min-width: 0;
-}
-
-.carousel-stage-branding .carousel-stage::before,
-.carousel-stage-branding::before {
-  background: linear-gradient(90deg, #070708, transparent);
-}
-
-.carousel-stage-branding::after {
-  background: linear-gradient(-90deg, #070708, transparent);
 }
 
 /* O colapso de entrada é o do palco de projetos; aqui atrapalharia a leitura
