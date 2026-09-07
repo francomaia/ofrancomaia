@@ -2,7 +2,6 @@ import { ArrowUpRight, Sparkles } from 'lucide-react';
 import {
   siAdobeaftereffects,
   siAdobeillustrator,
-  siAdobeindesign,
   siAdobephotoshop,
   siAdobepremierepro,
   siCoreldraw,
@@ -30,7 +29,6 @@ type Tool =
 const toolkit: Tool[] = [
   { name: 'Photoshop', icon: siAdobephotoshop },
   { name: 'Illustrator', icon: siAdobeillustrator },
-  { name: 'InDesign', icon: siAdobeindesign },
   { name: 'CorelDRAW', icon: siCoreldraw },
   { name: 'Premiere Pro', icon: siAdobepremierepro },
   { name: 'After Effects', icon: siAdobeaftereffects },
