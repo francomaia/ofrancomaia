@@ -53,9 +53,15 @@
 }
 
 html {
+  /* Fallback para quando o JS não roda; com o Lenis ativo, a regra abaixo
+     devolve o controle para ele. */
   scroll-behavior: smooth;
   background: var(--background);
   overflow-x: clip;
+}
+
+html.lenis-active {
+  scroll-behavior: auto;
 }
 
 [id] {
@@ -226,6 +232,19 @@ footer a:hover {
   text-transform: uppercase;
 }
 
+/* Rótulo da hero: uma linha só em qualquer largura, por isso o corpo é fluido
+   e o espacejamento mais curto que o do `.micro-label` padrão. */
+.hero-eyebrow {
+  color: rgb(255 255 255 / 58%);
+  font-family: var(--font-archivo), Arial, Helvetica, sans-serif;
+  font-size: clamp(0.53rem, 2.1vw, 0.72rem);
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .scribble-note {
   color: var(--cyan);
   font-size: clamp(1.15rem, 2vw, 1.8rem);
@@ -315,8 +334,7 @@ footer a:hover {
 
 .behance-section {
   background:
-    linear-gradient(135deg, rgb(8 145 178 / 8%), transparent 42%),
-    #070708;
+    linear-gradient(135deg, rgb(8 145 178 / 8%), transparent 42%), #070708;
 }
 
 .behance-heading {
@@ -346,15 +364,8 @@ footer a:hover {
   line-height: 1.75;
 }
 
-.behance-grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 3.5rem 1.5rem;
-}
-
 .behance-card {
   min-width: 0;
-  grid-column: span 4;
 }
 
 .behance-image-wrap {
@@ -460,7 +471,7 @@ footer a:hover {
   white-space: nowrap;
 }
 
-.project-marquee-stage {
+.carousel-stage {
   perspective: 100rem;
   transform-origin: center top;
   animation: project-stage-collapse linear both;
@@ -468,8 +479,8 @@ footer a:hover {
   animation-range: entry 0% cover 32%;
 }
 
-.project-marquee-stage::before,
-.project-marquee-stage::after {
+.carousel-stage::before,
+.carousel-stage::after {
   position: absolute;
   z-index: 3;
   top: 0;
@@ -479,18 +490,20 @@ footer a:hover {
   content: '';
 }
 
-.project-marquee-stage::before {
+.carousel-stage::before {
   left: 0;
   background: linear-gradient(90deg, #050505, transparent);
 }
 
-.project-marquee-stage::after {
+.carousel-stage::after {
   right: 0;
   background: linear-gradient(-90deg, #050505, transparent);
 }
 
-.project-marquee-window {
-  overflow: hidden;
+.carousel-window {
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: auto;
   padding-block: 1.25rem 2rem;
   mask-image: linear-gradient(
     90deg,
@@ -501,21 +514,61 @@ footer a:hover {
   );
 }
 
-.project-marquee-track {
+.carousel-track {
   display: flex;
   width: max-content;
   gap: 1.25rem;
-  will-change: transform;
-  animation: project-marquee 44s linear infinite;
 }
 
-.project-marquee-group {
+.carousel-window::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-controls {
+  position: relative;
+  z-index: 4;
   display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  padding: 0 6vw 1rem;
+}
+
+.carousel-controls button {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgb(103 232 249 / 40%);
+  border-radius: 50%;
+  background: rgb(10 30 32 / 90%);
+  color: #a5f3fc;
+  cursor: pointer;
+  transition:
+    background 180ms,
+    color 180ms,
+    box-shadow 180ms;
+}
+
+.carousel-controls button:hover,
+.carousel-controls button:focus-visible {
+  background: #a5f3fc;
+  color: #050505;
+  box-shadow: 0 0 24px rgb(34 211 238 / 30%);
+}
+
+.carousel-controls svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.carousel-group {
+  display: flex;
+  flex-shrink: 0;
   gap: 1.25rem;
 }
 
-.project-marquee-stage:hover .project-marquee-track,
-.project-marquee-stage:focus-within .project-marquee-track {
+.carousel-stage:hover .carousel-track,
+.carousel-stage:focus-within .carousel-track {
   animation-play-state: paused;
 }
 
@@ -887,12 +940,6 @@ footer a:hover {
   }
 }
 
-@keyframes project-marquee {
-  to {
-    transform: translateX(calc(-50% - 0.625rem));
-  }
-}
-
 @keyframes project-stage-collapse {
   from {
     opacity: 0.35;
@@ -1036,9 +1083,6 @@ footer a:hover {
     grid-template-columns: 1fr;
     justify-items: start;
   }
-  .behance-card {
-    grid-column: span 6;
-  }
   .career-row {
     grid-template-columns: 0.45fr 1fr;
   }
@@ -1104,7 +1148,7 @@ footer a:hover {
     white-space: nowrap;
     overflow-wrap: normal;
   }
-  .project-marquee-track {
+  .carousel-track {
     animation-duration: 36s;
   }
   .project-item {
@@ -1118,12 +1162,6 @@ footer a:hover {
     max-width: none;
     text-align: left;
   }
-  .behance-grid {
-    gap-block: 3rem;
-  }
-  .behance-card {
-    grid-column: span 12;
-  }
   .behance-meta {
     grid-template-columns: 1fr;
     gap: 0.55rem;
@@ -1132,7 +1170,7 @@ footer a:hover {
     text-align: left;
   }
   .about-character-stage {
-    min-height: 34rem;
+    min-height: 31rem;
   }
   .reveal-character {
     bottom: 1rem;
@@ -1196,30 +1234,796 @@ footer a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-marquee-stage {
+  .carousel-stage {
     animation: none;
   }
 
-  .project-marquee-stage::before,
-  .project-marquee-stage::after {
+  .carousel-stage::before,
+  .carousel-stage::after {
     display: none;
   }
 
-  .project-marquee-window {
+  .carousel-window {
     overflow-x: auto;
     mask-image: none;
-    scroll-snap-type: x proximity;
   }
 
-  .project-marquee-track {
+  .carousel-track {
     animation: none;
   }
+}
 
-  .project-marquee-group[aria-hidden="true"] {
+/* ==========================================================================
+   Hero: parallax controlado por custom properties (--p, --exit)
+   Escritas pelo rAF do EditorialHero: nenhuma re-renderização de React por
+   frame de scroll, e com prefers-reduced-motion tudo fica em zero.
+   ========================================================================== */
+
+.hero-name-back {
+  opacity: calc(1 - var(--exit, 0) * 0.72);
+  filter: blur(calc(var(--exit, 0) * 14px));
+  transform: translate3d(calc(var(--p, 0) * -8vw), calc(var(--p, 0) * -5vh), 0)
+    scale(calc(1 + var(--p, 0) * 0.09));
+}
+
+.hero-name-front {
+  opacity: calc(0.82 - var(--exit, 0) * 0.62);
+  filter: blur(calc(var(--exit, 0) * 10px));
+  transform: translate3d(calc(var(--p, 0) * 9vw), calc(var(--p, 0) * 5vh), 0)
+    scale(calc(1 + var(--p, 0) * 0.06));
+}
+
+.hero-character {
+  opacity: calc(1 - var(--exit, 0) * 0.92);
+  filter: drop-shadow(0 2rem 4rem rgb(0 0 0 / 75%))
+    blur(calc(var(--exit, 0) * 7px));
+  transform: translate3d(-50%, calc(var(--p, 0) * -2vh), 0)
+    scale(calc(1 - var(--p, 0) * 0.04)) rotate(calc(var(--p, 0) * 1.5deg));
+}
+
+.float-button-flower {
+  transform: translate3d(0, calc(var(--p, 0) * -9vh), 0)
+    rotate(calc(var(--p, 0) * 85deg));
+}
+
+.float-button-orb {
+  transform: translate3d(0, calc(var(--p, 0) * 12vh), 0)
+    rotate(calc(var(--p, 0) * -55deg));
+}
+
+/* ==========================================================================
+   Header: barra de progresso, seção ativa e menu mobile
+   ========================================================================== */
+
+.site-header.is-scrolled {
+  background: linear-gradient(
+    to bottom,
+    rgb(5 5 5 / 96%),
+    rgb(5 5 5 / 78%),
+    rgb(5 5 5 / 30%)
+  );
+  backdrop-filter: blur(14px);
+}
+
+.scroll-progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), #0891b2);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  color: rgb(255 255 255 / 55%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) {
+  .site-nav {
+    display: flex;
+  }
+}
+
+.site-nav a {
+  position: relative;
+  padding-block: 0.35rem;
+  transition: color 240ms ease;
+}
+
+.site-nav a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--cyan);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav a:hover::after,
+.site-nav a[aria-current]::after {
+  transform: scaleX(1);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current] {
+  color: white;
+}
+
+.nav-toggle {
+  display: grid;
+  width: 2.9rem;
+  height: 2.9rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 25%);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition:
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.nav-toggle:hover {
+  background: white;
+  color: black;
+}
+
+.nav-toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+@media (min-width: 900px) {
+  .nav-toggle {
     display: none;
   }
+}
 
-  .project-item {
-    scroll-snap-align: start;
+@media (max-width: 480px) {
+  .header-contact {
+    display: none;
+  }
+}
+
+.nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgb(5 5 5 / 97%);
+  backdrop-filter: blur(18px);
+  animation: drawer-in 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    translate: 0 -1.5rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.nav-drawer-inner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+  padding-block: 6rem 3rem;
+}
+
+.nav-drawer-close {
+  position: absolute;
+  top: 1.55rem;
+  right: max(1.25rem, calc((100vw - 94rem) / 2 + 1.25rem));
+  display: grid;
+  width: 2.9rem;
+  height: 2.9rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 25%);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-drawer-close:hover {
+  background: white;
+  color: black;
+}
+
+.nav-drawer-close svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.nav-drawer-links {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(255 255 255 / 15%);
+}
+
+.nav-drawer-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+  padding: 1.05rem 0;
+  font-size: clamp(1.9rem, 9vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  transition:
+    color 220ms ease,
+    padding-left 260ms ease;
+}
+
+.nav-drawer-links a span {
+  color: rgb(255 255 255 / 32%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.nav-drawer-links a:hover,
+.nav-drawer-links a[aria-current] {
+  padding-left: 0.75rem;
+  color: var(--cyan);
+}
+
+.nav-drawer-foot {
+  display: flex;
+  gap: 1.75rem;
+  color: rgb(255 255 255 / 50%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.nav-drawer-foot a:hover {
+  color: white;
+}
+
+/* ==========================================================================
+   Trajetória: a lista virou <ol>, então limpa os marcadores
+   ========================================================================== */
+
+.career-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ==========================================================================
+   Contato: layout e formulário
+   ========================================================================== */
+
+.contact-layout {
+  display: grid;
+  gap: 3rem;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  padding-top: 3rem;
+}
+
+@media (min-width: 1000px) {
+  .contact-layout {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4.5rem;
+  }
+}
+
+.contact-aside {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.contact-facts {
+  display: grid;
+  gap: 1.35rem;
+  margin: 0;
+}
+
+.contact-facts div {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  padding-top: 0.85rem;
+}
+
+.contact-facts dt {
+  color: rgb(255 255 255 / 45%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-facts dd {
+  margin: 0;
+  color: rgb(255 255 255 / 78%);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.contact-facts a {
+  border-bottom: 1px solid rgb(103 232 249 / 45%);
+  color: var(--cyan);
+  transition: border-color 200ms ease;
+}
+
+.contact-form {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact-field {
+  display: grid;
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.contact-field-wide {
+  grid-column: 1 / -1;
+}
+
+.contact-field label {
+  color: rgb(255 255 255 / 52%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 0;
+  background: rgb(255 255 255 / 3%);
+  padding: 0.9rem 1rem;
+  color: white;
+  font-family: inherit;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  transition:
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.contact-field textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+}
+
+.contact-field select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #67e8f9 50%),
+    linear-gradient(135deg, #67e8f9 50%, transparent 50%);
+  background-repeat: no-repeat;
+  background-position:
+    calc(100% - 1.2rem) 1.35rem,
+    calc(100% - 0.85rem) 1.35rem;
+  background-size:
+    0.35rem 0.35rem,
+    0.35rem 0.35rem;
+  cursor: pointer;
+}
+
+.contact-field select option {
+  background: #0b0b0b;
+  color: white;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgb(255 255 255 / 30%);
+}
+
+.contact-field input:focus-visible,
+.contact-field select:focus-visible,
+.contact-field textarea:focus-visible {
+  border-color: var(--cyan);
+  background: rgb(103 232 249 / 6%);
+  outline: 1px solid var(--cyan);
+  outline-offset: 0;
+}
+
+.contact-field [aria-invalid='true'] {
+  border-color: #f87171;
+}
+
+.contact-error {
+  color: #fca5a5;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.contact-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contact-counter {
+  color: rgb(255 255 255 / 32%);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+}
+
+.contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  padding-top: 1.5rem;
+}
+
+.contact-actions button[disabled] {
+  cursor: progress;
+  opacity: 0.65;
+}
+
+.contact-hint {
+  color: rgb(255 255 255 / 45%);
+  font-size: 0.85rem;
+}
+
+.contact-hint a {
+  border-bottom: 1px solid rgb(103 232 249 / 45%);
+  color: var(--cyan);
+}
+
+.contact-status {
+  border-left: 2px solid #f87171;
+  padding-left: 0.9rem;
+  color: #fca5a5;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-status:empty {
+  display: none;
+}
+
+.contact-success {
+  align-items: flex-start;
+  gap: 1.15rem;
+  border: 1px solid rgb(103 232 249 / 35%);
+  background: rgb(103 232 249 / 6%);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.contact-success-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--cyan);
+  color: #050505;
+}
+
+.contact-success h3 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.contact-success p {
+  max-width: 34rem;
+  color: rgb(255 255 255 / 68%);
+  line-height: 1.65;
+}
+
+.contact-success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.contact-reset {
+  border-bottom: 1px solid rgb(255 255 255 / 25%);
+  background: none;
+  color: rgb(255 255 255 / 60%);
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+.contact-reset:hover {
+  color: white;
+}
+
+/* ==========================================================================
+   Branding no marquee: os cards saem da grade e viram itens de largura fixa
+   ========================================================================== */
+
+.carousel-stage-branding .carousel-group > * {
+  flex: 0 0 clamp(17rem, 26vw, 24rem);
+  min-width: 0;
+}
+
+.carousel-stage-branding .carousel-stage::before,
+.carousel-stage-branding::before {
+  background: linear-gradient(90deg, #070708, transparent);
+}
+
+.carousel-stage-branding::after {
+  background: linear-gradient(-90deg, #070708, transparent);
+}
+
+/* O colapso de entrada é o do palco de projetos; aqui atrapalharia a leitura
+   logo abaixo do título, então o card só faz o fade padrão. */
+.carousel-stage-branding {
+  animation: none;
+}
+
+/* ==========================================================================
+   Topo do menu mobile: marca à esquerda, fechar à direita
+   ========================================================================== */
+
+.nav-drawer-inner {
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
+  padding-block: 1.35rem 2.5rem;
+}
+
+.nav-drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-drawer-close {
+  position: static;
+  display: grid;
+  width: 2.9rem;
+  height: 2.9rem;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 25%);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-drawer-links {
+  align-content: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Redes sociais: só o ícone
+   ========================================================================== */
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-socials a,
+.nav-drawer-foot a {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 999px;
+  color: rgb(255 255 255 / 62%);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.footer-socials a:hover,
+.nav-drawer-foot a:hover {
+  border-color: var(--cyan);
+  background: var(--cyan);
+  color: #050505;
+  transform: translateY(-2px);
+}
+
+.footer-socials svg,
+.nav-drawer-foot svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.nav-drawer-foot a {
+  width: 3rem;
+  height: 3rem;
+}
+
+.nav-drawer-foot svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/* ==========================================================================
+   Voltar ao topo: pastilha de vidro fosco no canto
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.25rem);
+  bottom: clamp(1rem, 3vw, 2.25rem);
+  z-index: 120;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 8%);
+  box-shadow:
+    0 1rem 2.5rem rgb(0 0 0 / 45%),
+    inset 0 1px 0 rgb(255 255 255 / 18%);
+  color: rgb(255 255 255 / 85%);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  transform: translateY(0.75rem) scale(0.9);
+  transition:
+    opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  border-color: rgb(103 232 249 / 65%);
+  background: rgb(103 232 249 / 22%);
+  color: white;
+}
+
+.back-to-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ==========================================================================
+   Hero no mobile: mais respiro entre o personagem, o texto e o botão
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .editorial-hero .site-shell {
+    padding-top: 6.5rem;
+    padding-bottom: 1.75rem;
+  }
+
+  /* O texto fica por cima do personagem: sem um véu, as pernas e o tênis
+     competem com a leitura. */
+  .hero-foot {
+    position: relative;
+    gap: 1.15rem;
+  }
+
+  .hero-foot::before {
+    position: absolute;
+    z-index: -1;
+    inset: -2.5rem -1.25rem -1.5rem;
+    background: linear-gradient(
+      to top,
+      #050505 32%,
+      rgb(5 5 5 / 82%) 62%,
+      transparent
+    );
+    content: '';
+  }
+
+  .hero-foot p {
+    max-width: 20rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .hero-foot .editorial-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Sobe o personagem e o "MAIA" para liberar a faixa de texto. */
+  .hero-character {
+    bottom: 13%;
+    height: min(58svh, 31rem);
+  }
+
+  /* O "FRANCO" desce até encostar na cabeça do personagem: no desktop a figura
+     já passa por cima do nome, e o mobile precisa da mesma sobreposição. */
+  .hero-name-back {
+    top: 26%;
+  }
+
+  .hero-name-front {
+    bottom: 31%;
+  }
+
+  .float-button-flower {
+    top: 14%;
+    right: 0.5rem;
+    width: clamp(4.5rem, 20vw, 6.5rem);
+  }
+
+  .float-button-orb {
+    top: 40%;
+    left: 0.5rem;
+    width: clamp(4.5rem, 18vw, 6rem);
+  }
+
+  /* Cauda do contato: a assinatura tinha 80px de margem logo antes dos 96px de
+     padding da seção. */
+  .footer-brand {
+    margin-top: 3rem;
+  }
+
+  .contact-layout {
+    padding-top: 2rem;
   }
 }

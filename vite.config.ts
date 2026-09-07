@@ -1,7 +1,16 @@
-import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
-import { defineConfig } from 'vite';
+import { defineConfig, type PluginOption } from 'vite';
+
+/**
+ * Alvo de deploy.
+ *
+ * `node` é o padrão e gera o servidor standalone em `dist/standalone`, que é o
+ * que a Hostinger executa. `DEPLOY_TARGET=cloudflare` volta a produzir o Worker
+ * da Cloudflare, com os bindings locais do wrangler.
+ */
+const target =
+  process.env.DEPLOY_TARGET === 'cloudflare' ? 'cloudflare' : 'node';
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
@@ -9,7 +18,7 @@ const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
 const d1 = null;
 const r2 = null;
 
-// macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
+// macOS Seatbelt bloqueia FSEvents, então previews no Codex precisam de polling.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
 
 const localBindingConfig = {
@@ -34,28 +43,38 @@ const localBindingConfig = {
     : [],
 };
 
-export default defineConfig(async () => {
-  // Keep Wrangler and Miniflare state project-local. These are non-secret tool
-  // settings; application environment belongs in ignored `.env*` files.
-  process.env.WRANGLER_WRITE_LOGS ??= 'false';
-  process.env.WRANGLER_LOG_PATH ??= '.wrangler/logs';
-  process.env.MINIFLARE_REGISTRY_PATH ??= '.wrangler/registry';
+export default defineConfig(async ({ command }) => {
+  const plugins: PluginOption[] = [vinext()];
 
-  // Wrangler snapshots its log path while the Cloudflare plugin is imported.
-  const { cloudflare } = await import('@cloudflare/vite-plugin');
+  // Plugin de preview do site-creator: serve para desenvolver, mas injeta um
+  // fluxo de login de teste que não tem função no servidor de produção.
+  if (command === 'serve') {
+    const { sites } = await import('@openai/sites-vite-plugin');
+    plugins.push(sites());
+  }
+
+  if (target === 'cloudflare') {
+    // Mantém o estado do Wrangler e do Miniflare dentro do projeto. São ajustes
+    // de ferramenta, não segredos; ambiente de aplicação vive em `.env*`.
+    process.env.WRANGLER_WRITE_LOGS ??= 'false';
+    process.env.WRANGLER_LOG_PATH ??= '.wrangler/logs';
+    process.env.MINIFLARE_REGISTRY_PATH ??= '.wrangler/registry';
+
+    // O Wrangler fotografa o caminho de log quando o plugin é importado.
+    const { cloudflare } = await import('@cloudflare/vite-plugin');
+    plugins.push(
+      cloudflare({
+        viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
+        config: localBindingConfig,
+      }),
+    );
+  }
 
   return {
     css: { postcss: { plugins: [tailwindcss()] } },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
-    plugins: [
-      vinext(),
-      sites(),
-      cloudflare({
-        viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
-        config: localBindingConfig,
-      }),
-    ],
+    plugins,
   };
 });

@@ -7,192 +7,27 @@ import {
   siAdobepremierepro,
   siCoreldraw,
 } from 'simple-icons';
+import {
+  brandingProjects,
+  careerChapters,
+  selectedProjects,
+  services,
+  site,
+  socials,
+} from '@/lib/site';
+import { BackToTop } from './back-to-top';
 import { BrandMark } from './brand-mark';
+import { ContactForm } from './contact-form';
 import { EditorialHero } from './editorial-hero';
+import { MarqueeCarousel } from './marquee-carousel';
+import { SiteHeader } from './site-header';
+import { SocialIcon } from './social-icon';
 
-type SelectedProject = {
-  name: string;
-  sector: string;
-  image: string;
-  href?: string;
-  status?: string;
-  note?: string;
-};
+type Tool =
+  | { name: string; icon: { path: string }; image?: never }
+  | { name: string; image: string; icon?: never };
 
-const selectedProjects: SelectedProject[] = [
-  {
-    name: 'Exas Company',
-    sector: 'Assessoria de Marketing',
-    image: '/assets/cases/exas.avif',
-    href: 'https://exascompany.com.br/',
-  },
-  {
-    name: 'Agronova Transportes',
-    sector: 'Logística e Transporte',
-    image: '/assets/cases/agronova.avif',
-    status: 'Site temporariamente offline',
-    note: 'Conceito não utilizado pelo cliente — um projeto criado com muita empolgação e um resultado do qual gosto muito.',
-  },
-  {
-    name: 'Realiza Multimarcas',
-    sector: 'Revenda de Veículos',
-    image: '/assets/cases/realiza.avif',
-    href: 'https://seminovosrealizajti.com.br/',
-  },
-  {
-    name: 'Immune',
-    sector: 'Certificação Digital',
-    image: '/assets/cases/immune.avif',
-    href: 'https://certificadoimmune.com.br/',
-  },
-  {
-    name: 'Tradição Indústria',
-    sector: 'Peças Agrícolas',
-    image: '/assets/cases/tradicao.avif',
-    href: 'https://tradicaoind.exascompany.com.br/',
-  },
-  {
-    name: 'Oral Implant',
-    sector: 'Odontologia',
-    image: '/assets/cases/oral-implant.avif',
-    href: 'https://clinicaoralimplant.com.br/',
-  },
-  {
-    name: 'Laposé Jalecos',
-    sector: 'E-commerce de Moda Profissional',
-    image: '/assets/cases/lapose-screen.jpg',
-    href: 'https://laposejalecos.com.br/',
-  },
-  {
-    name: 'Dobroou',
-    sector: 'Site de Aplicativo',
-    image: '/assets/cases/dobroou-screen.jpg',
-    href: 'https://dobroou.app/',
-  },
-  {
-    name: 'Freitas Lima & Almeida',
-    sector: 'Advocacia',
-    image: '/assets/cases/freitas-screen.jpg',
-    href: 'https://freitaslimaealmeidaadvs.com.br/',
-  },
-  {
-    name: 'Finneze Alumínio',
-    sector: 'Esquadrias e Fachadas',
-    image: '/assets/cases/finneze-screen.jpg',
-    href: 'https://finnezealuminio.com.br/',
-  },
-  {
-    name: 'Pet Campos',
-    sector: 'Hospital Veterinário',
-    image: '/assets/cases/pet-campos-interface.jpg',
-    href: 'https://petcampos.com.br/',
-  },
-];
-
-const brandingProjects = [
-  {
-    name: 'GR Treinador',
-    type: 'Branding',
-    image: '/assets/behance/gr-treinador.png',
-    href: 'https://www.behance.net/gallery/243778083/GR-Treinador-(Gabriel-Rezende)-BRAND',
-  },
-  {
-    name: 'Banda Rota Zero 60',
-    type: 'Logotipo',
-    image: '/assets/behance/rota-zero-60.png',
-    href: 'https://www.behance.net/gallery/223102331/BANDA-ROTA-ZERO-60-LOGOTIPO',
-  },
-  {
-    name: 'Wave Publicidade',
-    type: 'Identidade visual',
-    image: '/assets/behance/wave-publicidade-feature.jpg',
-    href: 'https://www.behance.net/gallery/212088005/IDENTIDADE-VISUAL-WAVE-PUBLICIDADE',
-  },
-  {
-    name: 'Westbull Churrascaria',
-    type: 'Identidade visual',
-    image: '/assets/behance/westbull.png',
-    href: 'https://www.behance.net/gallery/220994247/WESTBULL-CHURRASCARIA-IDENTIDADE',
-  },
-  {
-    name: 'Ottoneli Beauty',
-    type: 'Identidade visual',
-    image: '/assets/behance/ottoneli-beauty.png',
-    href: 'https://www.behance.net/gallery/222989543/CARTAO-DE-VISITA-OTTONELI-BEAUTY',
-  },
-  {
-    name: 'West Burguer',
-    type: 'Identidade visual',
-    image: '/assets/behance/west-burguer.png',
-    href: 'https://www.behance.net/gallery/217884215/WEST-BURGUER-ID',
-  },
-  {
-    name: 'Jânio Eduardo',
-    type: 'Posicionamento de imagem',
-    image: '/assets/behance/janio-eduardo.jpg',
-    href: 'https://www.behance.net/gallery/192031601/JANIO-EDUARDO-POSICIONAMENTO-DE-IMAGEM',
-  },
-  {
-    name: 'Matheus Enrico Advocacia',
-    type: 'Identidade visual',
-    image: '/assets/behance/matheus-enrico.jpg',
-    href: 'https://www.behance.net/gallery/192037115/MATHEUS-ENRICO-ADVOCACIA-IDENTIDADE',
-  },
-  {
-    name: 'Via Animale',
-    type: 'Identidade visual',
-    image: '/assets/behance/via-animale.png',
-    href: 'https://www.behance.net/gallery/213802223/VIA-ANIMALE-IDENTIDADE',
-  },
-];
-
-const services = [
-  {
-    title: 'Sites & Landing Pages',
-    copy: 'Estratégia, arquitetura, interface e responsividade para transformar uma marca em uma experiência digital clara e convincente.',
-    skills: ['Web design', 'UI / UX', 'Responsividade', 'Conversão'],
-  },
-  {
-    title: 'Branding & Identidade',
-    copy: 'Conceito, direção de arte e sistemas visuais que fazem a marca ser reconhecida antes mesmo de alguém ler o nome.',
-    skills: ['Branding', 'Direção de arte', 'Identidade', 'Campanhas'],
-  },
-  {
-    title: 'Motion & Conteúdo',
-    copy: 'Vídeos, animações e peças digitais que estendem a personalidade da marca e colocam a comunicação em movimento.',
-    skills: ['Social media', 'Edição', 'Motion', 'Imagem'],
-  },
-];
-
-const careerChapters = [
-  {
-    phase: 'Origem',
-    title: 'O design veio primeiro.',
-    copy: 'Comecei a criar aos 13 anos, movido por imagem, composição e curiosidade.',
-  },
-  {
-    phase: 'Produção',
-    title: 'Aprendi fazendo existir.',
-    copy: 'Comunicação visual, gráfica, impressos, adesivos, fachadas e acabamento trouxeram precisão.',
-  },
-  {
-    phase: 'Comunicação',
-    title: 'Imagem, texto e contexto.',
-    copy: 'Passei por conteúdo, vídeo, editorial, campanhas, mercado imobiliário e comunicação pública.',
-  },
-  {
-    phase: 'Agências',
-    title: 'Marcas em ritmo real.',
-    copy: 'Conectei briefing, social, branding, motion e entregas para negócios de diferentes segmentos.',
-  },
-  {
-    phase: 'Agora',
-    title: 'Há cerca de um ano e meio na EXAS.',
-    copy: 'Hoje uno negócio, marca e experiência digital, com a criação de sites no centro do meu trabalho.',
-  },
-];
-
-const toolkit = [
+const toolkit: Tool[] = [
   { name: 'Photoshop', icon: siAdobephotoshop },
   { name: 'Illustrator', icon: siAdobeillustrator },
   { name: 'InDesign', icon: siAdobeindesign },
@@ -202,107 +37,90 @@ const toolkit = [
   { name: 'CapCut Pro', image: '/assets/tools/capcut.svg' },
 ];
 
+const marqueeItems = [
+  'WEB DESIGN',
+  'BRANDING',
+  'UI / UX',
+  'MOTION',
+  'DIREÇÃO CRIATIVA',
+];
+
 export default function Home() {
   return (
-    <main id="conteudo" className="overflow-clip bg-background text-foreground">
+    <>
       <a href="#conteudo" className="skip-link">
         Ir para o conteúdo
       </a>
 
-      <header className="site-header fixed inset-x-0 top-0 z-[100]">
-        <div className="site-shell flex h-20 items-center justify-between border-b border-white/15">
-          <a href="#inicio" aria-label="Franco Maia — início">
-            <BrandMark className="h-11 w-auto" />
-          </a>
-          <nav
-            aria-label="Navegação principal"
-            className="hidden items-center gap-8 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-white/55 md:flex"
-          >
-            <a href="#trabalhos">Trabalhos</a>
-            <a href="#branding">Branding</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#trajetoria">Trajetória</a>
-          </nav>
-          <a
-            href="https://www.instagram.com/ofrancomaia"
-            target="_blank"
-            rel="noreferrer"
-            className="header-contact group"
-          >
-            Contato{' '}
-            <ArrowUpRight
-              aria-hidden="true"
-              className="size-4 transition-transform duration-300 group-hover:rotate-45"
-            />
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <EditorialHero />
-
-      <div
-        className="motion-marquee border-y border-white/15 py-4"
-        aria-hidden="true"
+      <main
+        id="conteudo"
+        className="overflow-clip bg-background text-foreground"
       >
-        <div className="marquee-track">
-          {Array.from({ length: 2 }).map((_, group) => (
-            <div key={group} className="flex shrink-0 items-center">
-              {[
-                'WEB DESIGN',
-                'BRANDING',
-                'UI / UX',
-                'MOTION',
-                'DIREÇÃO CRIATIVA',
-              ].map((item) => (
-                <span
-                  key={`${group}-${item}`}
-                  className="flex items-center gap-8 px-8"
-                >
-                  {item} <Sparkles className="size-4 text-cyan-300" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+        <EditorialHero />
 
-      <section
-        id="trabalhos"
-        className="projects-showcase editorial-section relative overflow-hidden py-24 sm:py-36"
-      >
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
-        <img
-          src="/assets/motifs/cursor-orb-cyan-v3.png"
-          alt=""
-          width={420}
-          height={420}
-          loading="lazy"
+        <div
+          className="motion-marquee border-y border-white/15 py-4"
           aria-hidden="true"
-          className="orbit-motif absolute right-6 top-[28rem] w-40 opacity-65"
-        />
-        <div className="site-shell relative z-10">
-          <div className="section-heading">
-            <span className="micro-label">Projetos selecionados</span>
-            <h2 className="display-title">
-              TRABA
-              <br className="sm:hidden" />
-              LHOS
-            </h2>
-            <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
-              sites reais.
-              <br />
-              problemas diferentes.
-            </p>
+        >
+          <div className="marquee-track">
+            {Array.from({ length: 2 }).map((_, group) => (
+              <div key={group} className="flex shrink-0 items-center">
+                {marqueeItems.map((item) => (
+                  <span
+                    key={`${group}-${item}`}
+                    className="flex items-center gap-8 px-8"
+                  >
+                    {item} <Sparkles className="size-4 text-cyan-300" />
+                  </span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
-        <div className="project-marquee-stage relative z-10 mt-14 sm:mt-20">
-          <div className="project-marquee-window">
-            <div className="project-marquee-track">
+
+        <section
+          id="trabalhos"
+          className="projects-showcase editorial-section relative overflow-hidden py-16 sm:py-36"
+          aria-labelledby="trabalhos-titulo"
+        >
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
+          <img
+            src="/assets/motifs/cursor-orb-cyan-v3.png"
+            alt=""
+            width={420}
+            height={420}
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+            className="orbit-motif absolute right-6 top-[28rem] w-40 opacity-65"
+          />
+          <div className="site-shell relative z-10">
+            <div className="section-heading">
+              <span className="micro-label">Projetos selecionados</span>
+              <h2 id="trabalhos-titulo" className="display-title">
+                TRABA
+                <br className="sm:hidden" />
+                LHOS
+              </h2>
+              <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
+                sites reais.
+                <br />
+                problemas diferentes.
+              </p>
+            </div>
+          </div>
+          <MarqueeCarousel
+            label="Projetos selecionados"
+            className="mt-14 sm:mt-20"
+          >
+            <div className="carousel-track">
               {[0, 1].map((pass) => (
                 <div
                   key={pass}
-                  className="project-marquee-group"
+                  className="carousel-group"
                   aria-hidden={pass === 1 ? true : undefined}
                 >
                   {selectedProjects.map((project, index) => (
@@ -315,19 +133,20 @@ export default function Home() {
                       className={`project-item group ${project.href ? '' : 'cursor-default'}`}
                       aria-label={
                         project.href
-                          ? `Abrir o site de ${project.name}`
+                          ? `Abrir o site de ${project.name}, ${project.sector}`
                           : `${project.name}: ${project.status}`
                       }
                       aria-disabled={project.href ? undefined : true}
                     >
                       <div className="project-image-wrap">
-                        {/* oxlint-disable-next-line next/no-img-element -- local portfolio captures are optimized */}
+                        {/* oxlint-disable-next-line next/no-img-element -- capturas locais já otimizadas */}
                         <img
                           src={project.image}
                           alt={`Página inicial do projeto ${project.name}`}
                           width={1200}
                           height={760}
                           loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
+                          decoding="async"
                           className="project-image"
                         />
                         <span className="project-arrow">
@@ -351,271 +170,335 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </MarqueeCarousel>
+        </section>
 
-      <section
-        id="branding"
-        className="behance-section relative overflow-hidden border-y border-white/15 py-24 sm:py-36"
-      >
-        <div className="panel-spotlight panel-spotlight-right absolute inset-0" aria-hidden="true" />
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        <div className="site-shell relative z-10">
-          <div className="behance-heading">
-            <div>
-              <span className="micro-label">Identidades visuais</span>
-              <h2 className="display-title mt-5">BRANDING.</h2>
-            </div>
-            <div className="behance-intro">
-              <p>
-                Marcas construídas do conceito à aplicação, com direção visual,
-                personalidade e consistência.
-              </p>
-              <a
-                href="https://www.behance.net/francomaia"
-                target="_blank"
-                rel="noreferrer"
-                className="editorial-button group"
-              >
-                Ver perfil no Behance
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-5 transition-transform duration-300 group-hover:rotate-45"
-                />
-              </a>
-            </div>
-          </div>
-
-          <div className="behance-grid mt-16 sm:mt-24">
-            {brandingProjects.map((project, index) => (
-              <a
-                key={project.name}
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                className="behance-card group"
-                aria-label={`Ver ${project.name} no Behance`}
-              >
-                <div className="behance-image-wrap">
-                  {/* oxlint-disable-next-line next/no-img-element -- Behance project covers are stored locally */}
-                  <img
-                    src={project.image}
-                    alt={`Projeto de ${project.type.toLowerCase()} ${project.name}`}
-                    width={1400}
-                    height={1050}
-                    loading="lazy"
-                    className="behance-image"
-                  />
-                  <span className="behance-arrow">
-                    <ArrowUpRight aria-hidden="true" className="size-5" />
-                  </span>
-                </div>
-                <div className="behance-meta">
-                  <h3>{project.name}</h3>
-                  <span>{project.type}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="sobre"
-        className="editorial-panel relative min-h-screen overflow-hidden border-y border-white/15 py-24 sm:py-36"
-      >
-        <div className="panel-spotlight absolute inset-0" aria-hidden="true" />
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        <div
-          className="section-ghost-title absolute inset-x-0 top-8 text-center"
-          aria-hidden="true"
+        <section
+          id="branding"
+          className="behance-section relative overflow-hidden border-y border-white/15 py-16 sm:py-36"
+          aria-labelledby="branding-titulo"
         >
-          SOBRE MIM
-        </div>
-        {/* oxlint-disable-next-line next/no-img-element -- generated motif is a local transparent PNG */}
-        <img
-          src="/assets/motifs/chrome-flower-cyan-v3.png"
-          alt=""
-          width={460}
-          height={420}
-          loading="lazy"
-          aria-hidden="true"
-          className="flower-motif absolute right-[6%] top-[18%] z-30 w-[clamp(7rem,12vw,12rem)]"
-        />
-        <div className="site-shell relative z-20 grid min-h-[42rem] items-end gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="about-character-stage relative min-h-[38rem]">
-            {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
-            <img
-              src="/assets/character/franco-cream-cyan-cutout-v3.png"
-              alt="Franco Maia com roupa clara e caderno de criação"
-              width={800}
-              height={1200}
-              loading="lazy"
-              className="reveal-character absolute left-1/2 max-w-none"
-            />
-          </div>
-          <div className="pb-6 lg:pb-16">
-            <span className="micro-label">Quem cria</span>
-            <h2 className="mt-7 text-[clamp(3rem,6.7vw,7rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]">
-              Especialista em sites.
-              <br />
-              <span className="text-cyan-300">Designer por inteiro.</span>
-            </h2>
-            <div className="mt-10 grid gap-7 border-t border-white/20 pt-7 sm:grid-cols-2">
-              <p className="text-lg leading-8 text-white/70">
-                Sou Franco Maia, designer gráfico e estudante de Artes Visuais.
-                Minha trajetória atravessa produção gráfica, conteúdo, vídeo,
-                branding e comunicação.
-              </p>
-              <p className="text-lg leading-8 text-white/70">
-                Hoje aplico esse repertório para criar sites com mais intenção —
-                experiências que equilibram estratégia, identidade e uma
-                presença visual própria.
-              </p>
+          <div
+            className="panel-spotlight panel-spotlight-right absolute inset-0"
+            aria-hidden="true"
+          />
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          <div className="site-shell relative z-10">
+            <div className="behance-heading">
+              <div>
+                <span className="micro-label">Identidades visuais</span>
+                <h2 id="branding-titulo" className="display-title mt-5">
+                  BRANDING.
+                </h2>
+              </div>
+              <div className="behance-intro">
+                <p>
+                  Marcas construídas do conceito à aplicação, com direção
+                  visual, personalidade e consistência.
+                </p>
+                <a
+                  href={site.behance}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="editorial-button group"
+                >
+                  Ver perfil no Behance
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="size-5 transition-transform duration-300 group-hover:rotate-45"
+                  />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section
-        id="trajetoria"
-        className="editorial-section relative py-24 sm:py-36"
-      >
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        <div className="site-shell relative z-10">
-          <span className="micro-label">Trajetória</span>
-          <h2 className="display-title mt-5">NO SCRIPT.</h2>
-          <p className="mt-8 max-w-xl text-lg leading-8 text-white/60">
-            Não foi uma linha reta. Cada fase acrescentou produção, repertório,
-            visão de marca e tecnologia ao que faço hoje.
-          </p>
-          <div className="career-list mt-16 sm:mt-24">
-            {careerChapters.map((chapter) => (
-              <article key={chapter.phase} className="career-row">
-                <span className="font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
-                  {chapter.phase}
-                </span>
-                <h3>{chapter.title}</h3>
-                <p>{chapter.copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="editorial-panel relative overflow-hidden border-y border-white/15 py-24 sm:py-36"
-        aria-labelledby="servicos-titulo"
-      >
-        <div
-          className="panel-spotlight panel-spotlight-right absolute inset-0"
-          aria-hidden="true"
-        />
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        <div className="site-shell relative z-10">
-          <span className="micro-label">O que eu faço</span>
-          <h2 id="servicos-titulo" className="display-title mt-5">
-            WEB FIRST.
-          </h2>
-          <p className="scribble-note mt-5 rotate-[-3deg] text-cyan-200">
-            marca em tudo.
-          </p>
-          <div className="service-list mt-16 sm:mt-24">
-            {services.map((service) => (
-              <article key={service.title} className="service-row group">
-                <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.copy}</p>
-                </div>
-                <div className="service-skills">
-                  {service.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
+          <MarqueeCarousel
+            label="Identidades visuais"
+            className="carousel-stage-branding mt-16 sm:mt-24"
+          >
+            <div className="carousel-track">
+              {[0, 1].map((pass) => (
+                <div
+                  key={pass}
+                  className="carousel-group"
+                  aria-hidden={pass === 1 ? true : undefined}
+                >
+                  {brandingProjects.map((project, index) => (
+                    <a
+                      key={`${pass}-${project.name}`}
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={pass === 1 ? -1 : undefined}
+                      className="behance-card group"
+                      aria-label={`Ver ${project.name} no Behance`}
+                    >
+                      <div className="behance-image-wrap">
+                        {/* oxlint-disable-next-line next/no-img-element -- capas do Behance ficam armazenadas localmente */}
+                        <img
+                          src={project.image}
+                          alt={`Projeto de ${project.type.toLowerCase()} ${project.name}`}
+                          width={1400}
+                          height={1050}
+                          loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
+                          decoding="async"
+                          className="behance-image"
+                        />
+                        <span className="behance-arrow">
+                          <ArrowUpRight aria-hidden="true" className="size-5" />
+                        </span>
+                      </div>
+                      <div className="behance-meta">
+                        <h3>{project.name}</h3>
+                        <span>{project.type}</span>
+                      </div>
+                    </a>
                   ))}
                 </div>
-                <ArrowUpRight aria-hidden="true" className="service-icon" />
-              </article>
-            ))}
-          </div>
-          <ul className="tool-strip mt-20" aria-label="Ferramentas de criação">
-            {toolkit.map((tool) => (
-              <li key={tool.name} className="tool-item">
-                <span className="tool-logo" aria-hidden="true">
-                  {'icon' in tool ? (
-                    <svg viewBox="0 0 24 24" role="img">
-                      <path fill="currentColor" d={tool.icon.path} />
-                    </svg>
-                  ) : (
-                    // oxlint-disable-next-line next/no-img-element -- local brand mark is a compact SVG asset
-                    <img src={tool.image} alt="" width={48} height={48} />
-                  )}
-                </span>
-                <span>{tool.name}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+              ))}
+            </div>
+          </MarqueeCarousel>
+        </section>
 
-      <section
-        id="contato"
-        className="cta-section relative min-h-screen overflow-hidden py-24 sm:py-36"
-      >
-        <div className="noise-layer absolute inset-0" aria-hidden="true" />
-        <div
-          className="cta-glow absolute left-1/2 top-1/2"
-          aria-hidden="true"
-        />
-        {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
-        <img
-          src="/assets/motifs/cursor-orb-cyan-v3.png"
-          alt=""
-          width={420}
-          height={420}
-          loading="lazy"
-          aria-hidden="true"
-          className="cta-orb absolute right-[8%] top-[13%] w-[clamp(8rem,15vw,15rem)]"
-        />
-        <div className="site-shell relative z-10 flex min-h-[70vh] flex-col justify-between">
-          <span className="micro-label">Seu próximo projeto</span>
-          <div>
-            <h2 className="display-title max-w-[9ch]">VAMOS CRIAR.</h2>
-            <div className="mt-10 flex flex-col items-start justify-between gap-8 border-t border-white/20 pt-8 sm:flex-row sm:items-end">
-              <p className="max-w-xl text-xl leading-8 text-white/65">
-                Se a ideia precisa parecer viva, ter personalidade e funcionar
-                de verdade, a conversa começa aqui.
-              </p>
-              <a
-                href="https://www.instagram.com/ofrancomaia"
-                target="_blank"
-                rel="noreferrer"
-                className="editorial-button editorial-button-light group"
+        <section
+          id="sobre"
+          className="editorial-panel relative min-h-screen overflow-hidden border-y border-white/15 py-16 sm:py-36"
+          aria-labelledby="sobre-titulo"
+        >
+          <div
+            className="panel-spotlight absolute inset-0"
+            aria-hidden="true"
+          />
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          <div
+            className="section-ghost-title absolute inset-x-0 top-8 text-center"
+            aria-hidden="true"
+          >
+            SOBRE MIM
+          </div>
+          {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
+          <img
+            src="/assets/motifs/chrome-flower-cyan-v3.png"
+            alt=""
+            width={460}
+            height={420}
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+            className="flower-motif absolute right-[6%] top-[18%] z-30 w-[clamp(7rem,12vw,12rem)]"
+          />
+          <div className="site-shell relative z-20 grid min-h-[42rem] items-end gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="about-character-stage relative min-h-[38rem]">
+              {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
+              <img
+                src="/assets/character/franco-cream-cyan-cutout-v3.png"
+                alt="Franco Maia com roupa clara e caderno de criação"
+                width={800}
+                height={1200}
+                loading="lazy"
+                decoding="async"
+                className="reveal-character absolute left-1/2 max-w-none"
+              />
+            </div>
+            <div className="pb-6 lg:pb-16">
+              <span className="micro-label">Quem cria</span>
+              <h2
+                id="sobre-titulo"
+                className="mt-7 text-[clamp(3rem,6.7vw,7rem)] font-black uppercase leading-[0.82] tracking-[-0.075em]"
               >
-                Falar no Instagram{' '}
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-5 transition-transform duration-300 group-hover:rotate-45"
-                />
-              </a>
+                Especialista em sites.
+                <br />
+                <span className="text-cyan-300">Designer por inteiro.</span>
+              </h2>
+              <div className="mt-10 grid gap-7 border-t border-white/20 pt-7 sm:grid-cols-2">
+                <p className="text-lg leading-8 text-white/70">
+                  Sou Franco Maia, designer gráfico e estudante de Artes
+                  Visuais. Minha trajetória atravessa produção gráfica,
+                  conteúdo, vídeo, branding e comunicação.
+                </p>
+                <p className="text-lg leading-8 text-white/70">
+                  Hoje aplico esse repertório para criar sites com mais
+                  intenção: experiências que equilibram estratégia, identidade e
+                  uma presença visual própria.
+                </p>
+              </div>
             </div>
           </div>
-          <BrandMark className="footer-brand mt-16" labelled />
-        </div>
-      </section>
+        </section>
+
+        <section
+          id="trajetoria"
+          className="editorial-section relative py-16 sm:py-36"
+          aria-labelledby="trajetoria-titulo"
+        >
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          <div className="site-shell relative z-10">
+            <span className="micro-label">Trajetória</span>
+            <h2 id="trajetoria-titulo" className="display-title mt-5">
+              NO SCRIPT.
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-8 text-white/60">
+              Não foi uma linha reta. Cada fase acrescentou produção,
+              repertório, visão de marca e tecnologia ao que faço hoje.
+            </p>
+            <ol className="career-list mt-16 sm:mt-24">
+              {careerChapters.map((chapter) => (
+                <li key={chapter.phase} className="career-row">
+                  <span className="font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
+                    {chapter.phase}
+                  </span>
+                  <h3>{chapter.title}</h3>
+                  <p>{chapter.copy}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section
+          id="servicos"
+          className="editorial-panel relative overflow-hidden border-y border-white/15 py-16 sm:py-36"
+          aria-labelledby="servicos-titulo"
+        >
+          <div
+            className="panel-spotlight panel-spotlight-right absolute inset-0"
+            aria-hidden="true"
+          />
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          <div className="site-shell relative z-10">
+            <span className="micro-label">O que eu faço</span>
+            <h2 id="servicos-titulo" className="display-title mt-5">
+              WEB FIRST.
+            </h2>
+            <p className="scribble-note mt-5 rotate-[-3deg] text-cyan-200">
+              marca em tudo.
+            </p>
+            <div className="service-list mt-16 sm:mt-24">
+              {services.map((service) => (
+                <article key={service.title} className="service-row group">
+                  <div>
+                    <h3>{service.title}</h3>
+                    <p>{service.copy}</p>
+                  </div>
+                  <div className="service-skills">
+                    {service.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                  <ArrowUpRight aria-hidden="true" className="service-icon" />
+                </article>
+              ))}
+            </div>
+            <ul
+              className="tool-strip mt-20"
+              aria-label="Ferramentas de criação"
+            >
+              {toolkit.map((tool) => (
+                <li key={tool.name} className="tool-item">
+                  <span className="tool-logo" aria-hidden="true">
+                    {tool.icon ? (
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor" d={tool.icon.path} />
+                      </svg>
+                    ) : (
+                      // oxlint-disable-next-line next/no-img-element -- marca local em SVG compacto
+                      <img
+                        src={tool.image}
+                        alt=""
+                        width={48}
+                        height={48}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                  </span>
+                  <span>{tool.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section
+          id="contato"
+          className="cta-section relative overflow-hidden py-16 sm:py-36"
+          aria-labelledby="contato-titulo"
+        >
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          <div
+            className="cta-glow absolute left-1/2 top-1/2"
+            aria-hidden="true"
+          />
+          {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
+          <img
+            src="/assets/motifs/cursor-orb-cyan-v3.png"
+            alt=""
+            width={420}
+            height={420}
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+            className="cta-orb absolute right-[8%] top-[13%] w-[clamp(8rem,15vw,15rem)]"
+          />
+          <div className="site-shell relative z-10">
+            <span className="micro-label">Seu próximo projeto</span>
+            <h2 id="contato-titulo" className="display-title mt-5 max-w-[9ch]">
+              VAMOS CRIAR.
+            </h2>
+
+            <div className="contact-layout mt-12 sm:mt-16">
+              <div className="contact-aside">
+                <p className="text-xl leading-8 text-white/70">
+                  Se a ideia precisa parecer viva, ter personalidade e funcionar
+                  de verdade, a conversa começa aqui.
+                </p>
+                <dl className="contact-facts">
+                  <div>
+                    <dt>Resposta</dt>
+                    <dd>Costumo responder em até 1 dia útil.</dd>
+                  </div>
+                  <div>
+                    <dt>Atendimento</dt>
+                    <dd>Remoto, para todo o Brasil.</dd>
+                  </div>
+                  <div>
+                    <dt>Direto</dt>
+                    <dd>
+                      <a href={`mailto:${site.email}`}>{site.email}</a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <ContactForm />
+            </div>
+
+            <BrandMark className="footer-brand mt-20" labelled />
+          </div>
+        </section>
+      </main>
 
       <footer className="site-shell flex flex-col gap-5 border-t border-white/15 py-8 text-sm text-white/40 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Franco Maia</p>
-        <div className="flex items-center gap-6 font-mono text-xs uppercase tracking-[0.12em]">
-          <a href="#inicio">Voltar ao topo</a>
-          <a
-            href="https://www.instagram.com/ofrancomaia"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
+        <p>
+          © {new Date().getFullYear()} {site.name}
+        </p>
+        <div className="footer-socials">
+          {socials.map((social) => (
+            <a
+              key={social.href}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              title={social.label}
+            >
+              <SocialIcon label={social.label} />
+            </a>
+          ))}
         </div>
       </footer>
-    </main>
+
+      <BackToTop />
+    </>
   );
 }

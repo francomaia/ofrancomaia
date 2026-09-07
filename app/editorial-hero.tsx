@@ -1,21 +1,38 @@
 'use client';
 
 import { ArrowDownRight } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { site } from '@/lib/site';
 
+/**
+ * Hero com parallax preso ao scroll.
+ *
+ * O progresso é escrito em custom properties CSS pelo próprio rAF, sem estado
+ * React: antes cada frame de scroll disparava um `setState` e re-renderizava a
+ * árvore inteira. Toda a transformação mora no CSS a partir de `--p` (progresso
+ * bruto) e `--exit` (progresso da saída), com a mesma matemática de antes.
+ */
 export function EditorialHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     let frame = 0;
+    let last = -1;
     const update = () => {
       const rect = section.getBoundingClientRect();
       const distance = Math.max(1, rect.height - window.innerHeight);
-      setProgress(Math.min(1, Math.max(0, -rect.top / distance)));
+      const progress = Math.min(1, Math.max(0, -rect.top / distance));
+      // Evita escritas redundantes no style quando o scroll não moveu nada.
+      if (Math.abs(progress - last) < 0.0005) return;
+      last = progress;
+      section.style.setProperty('--p', progress.toFixed(4));
+      section.style.setProperty(
+        '--exit',
+        Math.max(0, (progress - 0.58) / 0.42).toFixed(4),
+      );
     };
     const onScroll = () => {
       cancelAnimationFrame(frame);
@@ -32,14 +49,13 @@ export function EditorialHero() {
     };
   }, []);
 
-  const exit = Math.max(0, (progress - 0.58) / 0.42);
-
   return (
     <section
       ref={sectionRef}
       id="inicio"
       className="editorial-hero relative min-h-[180vh]"
-      aria-label="Apresentação de Franco Maia"
+      style={{ '--p': 0, '--exit': 0 } as React.CSSProperties}
+      aria-label={`Apresentação de ${site.name}`}
     >
       <div className="sticky top-0 min-h-[100svh] overflow-hidden bg-[#050505]">
         <div className="hero-spotlight absolute inset-0" aria-hidden="true" />
@@ -47,11 +63,6 @@ export function EditorialHero() {
 
         <div
           className="hero-name hero-name-back absolute inset-x-0 top-[19%] z-10 text-center"
-          style={{
-            opacity: 1 - exit * 0.72,
-            filter: `blur(${exit * 14}px)`,
-            transform: `translate3d(${-progress * 8}vw, ${-progress * 5}vh, 0) scale(${1 + progress * 0.09})`,
-          }}
           aria-hidden="true"
         >
           FRANCO
@@ -59,60 +70,48 @@ export function EditorialHero() {
 
         <div
           className="hero-name hero-name-front absolute inset-x-0 bottom-[12%] z-30 text-center"
-          style={{
-            opacity: 0.82 - exit * 0.62,
-            filter: `blur(${exit * 10}px)`,
-            transform: `translate3d(${progress * 9}vw, ${progress * 5}vh, 0) scale(${1 + progress * 0.06})`,
-          }}
           aria-hidden="true"
         >
           MAIA
         </div>
 
-        {/* oxlint-disable-next-line next/no-img-element -- generated character is a local transparent PNG */}
+        {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
         <img
           src="/assets/character/franco-cyan-cutout-v3.png"
           alt="Franco Maia com roupa ciano apresentando uma ideia"
           width={800}
           height={1200}
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="hero-character absolute left-1/2 z-20 max-w-none"
-          style={{
-            opacity: 1 - exit * 0.92,
-            filter: `drop-shadow(0 2rem 4rem rgb(0 0 0 / 75%)) blur(${exit * 7}px)`,
-            transform: `translate3d(-50%, ${progress * -2}vh, 0) scale(${1 - progress * 0.04}) rotate(${progress * 1.5}deg)`,
-          }}
         />
 
-        {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
+        {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
         <img
           src="/assets/motifs/chrome-flower-cyan-v3.png"
           alt=""
           width={460}
           height={420}
+          decoding="async"
           aria-hidden="true"
           className="float-button float-button-flower absolute right-[4%] top-[15%] z-40 w-[clamp(6.5rem,11vw,10rem)]"
-          style={{
-            transform: `translate3d(0, ${progress * -9}vh, 0) rotate(${progress * 85}deg)`,
-          }}
         />
 
-        {/* oxlint-disable-next-line next/no-img-element -- generated floating motif is a local transparent PNG */}
+        {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
         <img
           src="/assets/motifs/cursor-orb-cyan-v3.png"
           alt=""
           width={420}
           height={420}
+          decoding="async"
           aria-hidden="true"
           className="float-button float-button-orb absolute left-[4%] top-[42%] z-40 w-[clamp(6.5rem,10vw,10rem)]"
-          style={{
-            transform: `translate3d(0, ${progress * 12}vh, 0) rotate(${-progress * 55}deg)`,
-          }}
         />
 
         <div className="site-shell relative z-40 flex min-h-[100svh] flex-col justify-between pb-8 pt-28 sm:pb-10 sm:pt-32">
-          <div className="flex items-start justify-between gap-6">
-            <p className="micro-label max-w-[15rem]">
+          <div className="hero-head flex items-start justify-between gap-6">
+            <p className="hero-eyebrow">
               Designer gráfico · Web creator · Branding
             </p>
             <p className="scribble-note hidden rotate-[-5deg] text-right sm:block">
@@ -122,10 +121,13 @@ export function EditorialHero() {
             </p>
           </div>
 
-          <div className="grid items-end gap-6 sm:grid-cols-[1fr_auto]">
+          <h1 className="sr-only">
+            {site.name}, {site.role}
+          </h1>
+
+          <div className="hero-foot grid items-end gap-6 sm:grid-cols-[1fr_auto]">
             <p className="max-w-[23rem] text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
-              Sites, marcas e experiências digitais construídas com direção,
-              personalidade e movimento.
+              {site.tagline}
             </p>
             <a href="#trabalhos" className="editorial-button group w-fit">
               Explorar trabalhos{' '}
@@ -136,7 +138,6 @@ export function EditorialHero() {
             </a>
           </div>
         </div>
-
       </div>
     </section>
   );
