@@ -1,0 +1,1 @@
+var e=null;function t(t){e=t}function n(){if(e){e.scrollTo(0,{duration:1.4});return}window.scrollTo({top:0,behavior:`smooth`})}export{t as n,n as t};
