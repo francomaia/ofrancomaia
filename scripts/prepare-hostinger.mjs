@@ -46,6 +46,15 @@ writeFileSync(
       // A Hostinger usa este script para subir o app; `server.js` também serve
       // como "arquivo de inicialização" no painel.
       scripts: { start: 'node server.js' },
+      // O `node_modules` já vai commitado, mas a Hostinger roda `install` antes
+      // de subir e gerenciadores podam o que não está declarado. Declarar o
+      // essencial faz o install restaurar em vez de quebrar. São só os pacotes
+      // que `server.js` resolve em runtime; o resto vem por transitividade.
+      dependencies: Object.fromEntries(
+        ['vinext', 'react', 'react-dom']
+          .filter((name) => source.dependencies?.[name])
+          .map((name) => [name, source.dependencies[name]]),
+      ),
     },
     null,
     2,
