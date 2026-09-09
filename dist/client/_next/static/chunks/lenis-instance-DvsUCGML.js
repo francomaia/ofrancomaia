@@ -1,0 +1,1 @@
+var e=null;function t(t){e=t}function n(){if(e){e.scrollTo(0,{duration:1.4});return}window.scrollTo({top:0,behavior:`smooth`})}function r(t){if(e){e.scrollTo(t,{duration:1.1});return}window.scrollTo({top:t,behavior:`smooth`})}export{n,t as r,r as t};

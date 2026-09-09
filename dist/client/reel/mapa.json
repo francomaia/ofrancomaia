@@ -1,0 +1,30 @@
+{
+  "desktop": {
+    "altura": 8760,
+    "secoes": {
+      "inicio": 0,
+      "trabalhos": 977,
+      "branding": 2173,
+      "sobre": 3391,
+      "trajetoria": 4353,
+      "servicos": 5633,
+      "contato": 7194
+    },
+    "largura": 1440,
+    "viewport": 900
+  },
+  "mobile": {
+    "altura": 8783,
+    "secoes": {
+      "inicio": 0,
+      "trabalhos": 901,
+      "branding": 1734,
+      "sobre": 2669,
+      "trajetoria": 3929,
+      "servicos": 5386,
+      "contato": 6987
+    },
+    "largura": 390,
+    "viewport": 844
+  }
+}
