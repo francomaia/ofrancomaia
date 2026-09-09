@@ -22,6 +22,7 @@ export function EditorialHero() {
     let frame = 0;
     let last = -1;
     const update = () => {
+      frame = 0;
       const rect = section.getBoundingClientRect();
       const distance = Math.max(1, rect.height - window.innerHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / distance));
@@ -35,8 +36,7 @@ export function EditorialHero() {
       );
     };
     const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     update();

@@ -134,6 +134,11 @@ function structuredData() {
   };
 }
 
+const serializedStructuredData = JSON.stringify(structuredData()).replace(
+  /</g,
+  '\\u003c',
+);
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -144,7 +149,7 @@ export default function RootLayout({
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger -- JSON-LD gerado a partir de conteúdo próprio e serializado com JSON.stringify
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData()).replace(/</g, '\\u003c'),
+            __html: serializedStructuredData,
           }}
         />
       </head>

@@ -28,6 +28,7 @@ const RATE_LIMIT = { max: 5, windowMs: 10 * 60 * 1000 } as const;
 // Por isolate. Não é um limite global forte, mas corta repetição trivial sem
 // exigir infraestrutura extra. Para um limite real, migrar para KV/D1.
 const rateBuckets = new Map<string, RateEntry>();
+let nextPruneAt = 0;
 
 function rateLimit(key: string, now: number): boolean {
   const entry = rateBuckets.get(key);
@@ -41,7 +42,8 @@ function rateLimit(key: string, now: number): boolean {
 }
 
 function pruneBuckets(now: number) {
-  if (rateBuckets.size < 500) return;
+  if (rateBuckets.size < 500 || now < nextPruneAt) return;
+  nextPruneAt = now + 30_000;
   for (const [key, entry] of rateBuckets) {
     if (entry.resetAt <= now) rateBuckets.delete(key);
   }

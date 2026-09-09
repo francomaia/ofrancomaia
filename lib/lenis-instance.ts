@@ -20,3 +20,11 @@ export function scrollToTop() {
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+export function scrollToPosition(top: number) {
+  if (instance) {
+    instance.scrollTo(top, { duration: 1.1 });
+    return;
+  }
+  window.scrollTo({ top, behavior: 'smooth' });
+}

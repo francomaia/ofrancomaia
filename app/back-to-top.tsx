@@ -18,15 +18,17 @@ export function BackToTop() {
     if (!button) return;
 
     let frame = 0;
+    let lastVisible: boolean | undefined;
     const update = () => {
-      button.classList.toggle(
-        'is-visible',
-        window.scrollY > window.innerHeight,
-      );
+      frame = 0;
+      const visible = window.scrollY > window.innerHeight;
+      if (visible !== lastVisible) {
+        button.classList.toggle('is-visible', visible);
+        lastVisible = visible;
+      }
     };
     const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     update();

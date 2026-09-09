@@ -107,6 +107,9 @@ function pruneUnusedAssets() {
       }
       // O caminho como aparece no código-fonte, ex.: /assets/cases/exas.avif
       const publicPath = full.slice(base.length).split(sep).join('/');
+      // As capas responsivas têm URLs construídas a partir do nome do projeto;
+      // elas não aparecem como caminhos literais completos no código-fonte.
+      if (publicPath.startsWith('/assets/optimized/')) continue;
       if (!sources.includes(publicPath)) {
         bytes += statSync(full).size;
         rmSync(full);

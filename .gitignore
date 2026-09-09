@@ -38,6 +38,7 @@ next-env.d.ts
 /outputs/
 /tmp/
 /work/
+*.tsbuildinfo
 
 # perfis de navegador e artefatos de automação (contêm cookies e sessões)
 .tmp-*-chrome/

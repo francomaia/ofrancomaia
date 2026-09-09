@@ -35,6 +35,28 @@ const toolkit: Tool[] = [
   { name: 'CapCut Pro', image: '/assets/tools/capcut.svg' },
 ];
 
+function ToolGlyph({ tool }: { tool: Tool }) {
+  return (
+    <span className="tool-logo">
+      {tool.icon ? (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d={tool.icon.path} />
+        </svg>
+      ) : (
+        // oxlint-disable-next-line next/no-img-element -- marca local em SVG compacto
+        <img
+          src={tool.image}
+          alt=""
+          width={48}
+          height={48}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </span>
+  );
+}
+
 const marqueeItems = [
   'WEB DESIGN',
   'BRANDING',
@@ -42,6 +64,17 @@ const marqueeItems = [
   'MOTION',
   'DIREÇÃO CRIATIVA',
 ];
+
+function optimizedProjectImage(source: string) {
+  const parts = source.split('/');
+  const file = parts[parts.length - 1] || 'project';
+  const name = file.replace(/\.[^.]+$/, '');
+
+  return {
+    src: `/assets/optimized/${name}-1080.jpg`,
+    srcSet: `/assets/optimized/${name}-640.jpg 640w, /assets/optimized/${name}-1080.jpg 1080w`,
+  };
+}
 
 export default function Home() {
   return (
@@ -80,7 +113,7 @@ export default function Home() {
 
         <section
           id="trabalhos"
-          className="projects-showcase editorial-section relative overflow-hidden py-16 sm:py-36"
+          className="projects-showcase editorial-section relative overflow-x-clip py-16 sm:py-36"
           aria-labelledby="trabalhos-titulo"
         >
           <div className="noise-layer absolute inset-0" aria-hidden="true" />
@@ -115,7 +148,7 @@ export default function Home() {
             className="mt-14 sm:mt-20"
           >
             <div className="carousel-track">
-              {[0, 1].map((pass) => (
+              {[0].map((pass) => (
                 <div
                   key={pass}
                   className="carousel-group"
@@ -139,10 +172,11 @@ export default function Home() {
                       <div className="project-image-wrap">
                         {/* oxlint-disable-next-line next/no-img-element -- capturas locais já otimizadas */}
                         <img
-                          src={project.image}
+                          {...optimizedProjectImage(project.image)}
                           alt={`Página inicial do projeto ${project.name}`}
                           width={1200}
                           height={760}
+                          sizes="(max-width: 640px) 78vw, (max-width: 900px) 56vw, 29vw"
                           loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
                           decoding="async"
                           className="project-image"
@@ -173,7 +207,7 @@ export default function Home() {
 
         <section
           id="branding"
-          className="behance-section relative overflow-hidden border-y border-white/15 py-16 sm:py-36"
+          className="behance-section relative overflow-x-clip border-y border-white/15 py-16 sm:py-36"
           aria-labelledby="branding-titulo"
         >
           <div
@@ -215,7 +249,7 @@ export default function Home() {
             className="carousel-stage-branding mt-16 sm:mt-24"
           >
             <div className="carousel-track">
-              {[0, 1].map((pass) => (
+              {[0].map((pass) => (
                 <div
                   key={pass}
                   className="carousel-group"
@@ -234,10 +268,11 @@ export default function Home() {
                       <div className="behance-image-wrap">
                         {/* oxlint-disable-next-line next/no-img-element -- capas do Behance ficam armazenadas localmente */}
                         <img
-                          src={project.image}
+                          {...optimizedProjectImage(project.image)}
                           alt={`Projeto de ${project.type.toLowerCase()} ${project.name}`}
                           width={1400}
                           height={1050}
+                          sizes="(max-width: 640px) 78vw, (max-width: 900px) 56vw, 26vw"
                           loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
                           decoding="async"
                           className="behance-image"
@@ -387,33 +422,24 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <ul
-              className="tool-strip mt-20"
-              aria-label="Ferramentas de criação"
-            >
-              {toolkit.map((tool) => (
-                <li key={tool.name} className="tool-item">
-                  <span className="tool-logo" aria-hidden="true">
-                    {tool.icon ? (
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="currentColor" d={tool.icon.path} />
-                      </svg>
-                    ) : (
-                      // oxlint-disable-next-line next/no-img-element -- marca local em SVG compacto
-                      <img
-                        src={tool.image}
-                        alt=""
-                        width={48}
-                        height={48}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
+            <section className="tools-universe" aria-labelledby="tools-title">
+              <h3 id="tools-title" className="sr-only">
+                Ferramentas de criação
+              </h3>
+              <div className="tools-universe-glow" aria-hidden="true" />
+              <div className="tools-floating-row" aria-hidden="true">
+                {toolkit.map((tool) => (
+                  <span key={tool.name} className="tools-floating-item">
+                    <ToolGlyph tool={tool} />
                   </span>
-                  <span>{tool.name}</span>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+              <ul className="sr-only" aria-label="Ferramentas de criação">
+                {toolkit.map((tool) => (
+                  <li key={tool.name}>{tool.name}</li>
+                ))}
+              </ul>
+            </section>
           </div>
         </section>
 

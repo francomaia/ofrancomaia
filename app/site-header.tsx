@@ -30,13 +30,14 @@ export function SiteHeader() {
 
     let frame = 0;
     let current: string | null = null;
+    let wasScrolled: boolean | undefined;
+    let lastRatio = -1;
 
     const update = () => {
+      frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const ratio =
         max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-      bar.style.transform = `scaleX(${ratio})`;
-      header.classList.toggle('is-scrolled', window.scrollY > 24);
 
       // Sonda a 35% da altura da viewport: vale a última seção cujo topo já
       // passou por ela. Comparar `intersectionRatio` não serve, porque seções altas
@@ -50,6 +51,16 @@ export function SiteHeader() {
       if (ratio > 0.99 && sections.length > 0) {
         found = sections[sections.length - 1].id;
       }
+      // Todas as leituras de geometria acontecem antes das escritas no DOM.
+      if (ratio !== lastRatio) {
+        bar.style.transform = `scaleX(${ratio})`;
+        lastRatio = ratio;
+      }
+      const scrolled = window.scrollY > 24;
+      if (scrolled !== wasScrolled) {
+        header.classList.toggle('is-scrolled', scrolled);
+        wasScrolled = scrolled;
+      }
       if (found !== current) {
         current = found;
         setActive(found);
@@ -57,8 +68,7 @@ export function SiteHeader() {
     };
 
     const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     update();

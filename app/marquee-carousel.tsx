@@ -4,16 +4,9 @@
 // teclado não consegue focar nem percorrer a lista horizontal.
 // oxlint-disable jsx-a11y/no-noninteractive-tabindex
 
-import { ArrowLeft, ArrowRight, Pause, Play } from 'lucide-react';
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from 'react';
-
-const AUTO_SPEED = 0.045; // px por ms
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useCallback, useEffect, useRef, type ReactNode } from 'react';
+import { scrollToPosition } from '@/lib/lenis-instance';
 
 type MarqueeCarouselProps = {
   /** Nome acessível do carrossel. */
@@ -23,77 +16,126 @@ type MarqueeCarouselProps = {
 };
 
 /**
- * Marquee infinito reutilizável: serve tanto aos sites quanto às identidades
- * visuais. O conteúdo é responsabilidade de quem chama, que só precisa entregar
- * um `.carousel-track` com dois `.carousel-group` idênticos (o segundo é a
- * cópia que fecha o laço).
- *
- * O laço de animação lê `pausedRef` e `hovering` por ref em vez de estado, então
- * o hover, o foco e a aba oculta suspendem o movimento sem recriar o rAF nem
- * perder o impulso pendente dos botões de navegação.
+ * Carrossel horizontal conduzido pelo scroll vertical. O palco fica fixo por
+ * alguns instantes e transforma o avanço da página em deslocamento lateral.
+ * Os botões movem a própria página até o ponto equivalente, mantendo o carrossel
+ * e a rolagem sempre sincronizados.
  */
 export function MarqueeCarousel({
   label,
   children,
   className = '',
 }: MarqueeCarouselProps) {
+  const stage = useRef<HTMLElement>(null);
+  const sticky = useRef<HTMLDivElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
-  const pending = useRef(0);
-  const hovering = useRef(false);
-  const pausedRef = useRef(false);
-  const [paused, setPaused] = useState(false);
+  const metrics = useRef({ start: 0, range: 1, travel: 0 });
 
   useEffect(() => {
-    pausedRef.current = paused;
-  }, [paused]);
-
-  useEffect(() => {
+    const section = stage.current;
+    const pinned = sticky.current;
     const element = viewport.current;
-    if (!element) return;
+    if (!section || !pinned || !element) return;
 
     let frame = 0;
-    let previous = 0;
-    let position = element.scrollLeft;
+    let scrollDistance = '';
+    const group = element.querySelector<HTMLElement>('.carousel-group');
+    const cards = Array.from(
+      element.querySelectorAll<HTMLElement>('.carousel-group > *'),
+    );
+    let centers: number[] = [];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const tick = (now: number) => {
-      frame = requestAnimationFrame(tick);
-      const elapsed = Math.min(now - (previous || now), 40);
-      previous = now;
+    const measure = () => {
+      if (!group) return;
 
-      const group = element.querySelector<HTMLElement>('.carousel-group');
-      const track = element.querySelector<HTMLElement>('.carousel-track');
-      if (!group || !track) return;
+      const travel = Math.max(0, element.scrollWidth - element.clientWidth);
+      const top = window.scrollY + section.getBoundingClientRect().top;
+      const stickyTop = Number.parseFloat(getComputedStyle(pinned).top) || 0;
+      const start = top - stickyTop;
+      const range = Math.max(window.innerHeight * 0.9, travel * 0.85);
 
-      const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
-      const cycle = group.offsetWidth + gap;
-      if (cycle <= 0) return;
-
-      // Se o usuário arrastou a barra, adota a posição real como verdade.
-      if (Math.abs(element.scrollLeft - position) > 2) {
-        position = element.scrollLeft;
+      metrics.current = { start, range, travel };
+      const nextDistance = `${range + pinned.offsetHeight}px`;
+      if (nextDistance !== scrollDistance) {
+        scrollDistance = nextDistance;
+        section.style.height = nextDistance;
       }
-
-      if (Math.abs(pending.current) > 0.5) {
-        const step = pending.current * (1 - Math.exp(-elapsed / 100));
-        position += step;
-        pending.current -= step;
-      } else if (!pausedRef.current && !hovering.current && !document.hidden) {
-        position += elapsed * AUTO_SPEED;
-      }
-
-      position = ((position % cycle) + cycle) % cycle;
-      element.scrollLeft = position;
+      centers = cards.map((card) => card.offsetLeft + card.offsetWidth / 2);
     };
 
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    const render = () => {
+      frame = 0;
+      const { range, travel } = metrics.current;
+      // O topo real acompanha também mudanças de altura das seções anteriores.
+      const start =
+        window.scrollY +
+        section.getBoundingClientRect().top -
+        (Number.parseFloat(getComputedStyle(pinned).top) || 0);
+      metrics.current.start = start;
+      const progress = Math.min(
+        1,
+        Math.max(0, (window.scrollY - start) / range),
+      );
+      const nextPosition = progress * travel;
+      if (Math.abs(element.scrollLeft - nextPosition) > 0.5) {
+        element.scrollLeft = nextPosition;
+      }
+      const center = nextPosition + element.clientWidth / 2;
+      const stepWidth = cards[0]?.offsetWidth || 320;
+      cards.forEach((card, index) => {
+        const step = Math.max(
+          -2,
+          Math.min(2, (centers[index] - center) / stepWidth),
+        );
+        const transform = `translate3d(0, ${step * (reducedMotion.matches ? 10 : 32)}px, 0)`;
+        if (card.style.transform !== transform)
+          card.style.transform = transform;
+      });
+    };
+
+    const update = () => {
+      if (!frame) frame = requestAnimationFrame(render);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      measure();
+      update();
+    });
+    resizeObserver.observe(section);
+    resizeObserver.observe(element);
+    resizeObserver.observe(document.body);
+    if (group) resizeObserver.observe(group);
+    resizeObserver.observe(pinned);
+    measure();
+    render();
+    window.addEventListener('scroll', update, { passive: true });
+    const onResize = () => {
+      measure();
+      update();
+    };
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   const move = useCallback((direction: number) => {
     const element = viewport.current;
     if (!element) return;
     const card = element.querySelector<HTMLElement>('.carousel-group > *');
-    pending.current += direction * ((card?.offsetWidth ?? 320) + 20);
+    const { start, range, travel } = metrics.current;
+    if (travel <= 0) return;
+    const step = (card?.offsetWidth ?? 320) + 20;
+    const progress = Math.min(
+      1,
+      Math.max(0, element.scrollLeft / travel + (direction * step) / travel),
+    );
+    scrollToPosition(start + progress * range);
   }, []);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -109,51 +151,30 @@ export function MarqueeCarousel({
   return (
     // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- o container precisa suspender o auto-scroll no hover/foco e aceitar as setas do teclado
     <section
+      ref={stage}
       className={`carousel-stage relative z-10 ${className}`}
       aria-roledescription="carrossel"
       aria-label={label}
       onKeyDown={onKeyDown}
-      onPointerEnter={() => {
-        hovering.current = true;
-      }}
-      onPointerLeave={() => {
-        hovering.current = false;
-      }}
-      onFocusCapture={() => {
-        hovering.current = true;
-      }}
-      onBlurCapture={() => {
-        hovering.current = false;
-      }}
     >
-      <div className="carousel-controls">
-        <button type="button" onClick={() => move(-1)} aria-label="Anterior">
-          <ArrowLeft aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          onClick={() => setPaused((value) => !value)}
-          aria-pressed={paused}
-          aria-label={
-            paused
-              ? 'Retomar a rolagem automática'
-              : 'Pausar a rolagem automática'
-          }
-        >
-          {paused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-        </button>
-        <button type="button" onClick={() => move(1)} aria-label="Próximo">
-          <ArrowRight aria-hidden="true" />
-        </button>
-      </div>
+      <div ref={sticky} className="carousel-sticky">
+        <div className="carousel-controls">
+          <button type="button" onClick={() => move(-1)} aria-label="Anterior">
+            <ArrowLeft aria-hidden="true" />
+          </button>
+          <button type="button" onClick={() => move(1)} aria-label="Próximo">
+            <ArrowRight aria-hidden="true" />
+          </button>
+        </div>
 
-      <div
-        ref={viewport}
-        className="carousel-window"
-        tabIndex={0}
-        aria-label={`${label}. Use as setas para navegar`}
-      >
-        {children}
+        <div
+          ref={viewport}
+          className="carousel-window"
+          tabIndex={0}
+          aria-label={`${label}. Role a página ou use as setas para navegar`}
+        >
+          {children}
+        </div>
       </div>
     </section>
   );

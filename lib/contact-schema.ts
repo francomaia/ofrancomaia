@@ -70,12 +70,14 @@ export function validateContact(input: Partial<ContactPayload>): ContactErrors {
 export function normalizeContact(
   input: Partial<ContactPayload>,
 ): ContactPayload {
+  const text = (value: unknown) =>
+    typeof value === 'string' ? value.trim() : '';
   return {
-    name: (input.name ?? '').trim(),
-    email: (input.email ?? '').trim().toLowerCase(),
-    projectType: (input.projectType ?? '').trim(),
-    budget: (input.budget ?? '').trim(),
-    message: (input.message ?? '').trim(),
-    company: (input.company ?? '').trim(),
+    name: text(input.name),
+    email: text(input.email).toLowerCase(),
+    projectType: text(input.projectType),
+    budget: text(input.budget),
+    message: text(input.message),
+    company: text(input.company),
   };
 }

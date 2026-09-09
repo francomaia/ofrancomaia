@@ -217,8 +217,8 @@ export const careerChapters = [
   },
   {
     phase: 'Agora',
-    title: 'Há cerca de um ano e meio na EXAS.',
-    copy: 'Hoje uno negócio, marca e experiência digital, com a criação de sites no centro do meu trabalho.',
+    title: 'Sites no centro do meu trabalho.',
+    copy: 'Hoje uno negócio, marca e experiência digital para criar experiências com estratégia, identidade e presença visual própria.',
   },
 ];
 

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "skills": {
+    "remotion-remotion-docs": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:52.485Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-captions": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:13.996Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-markup": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:16.289Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-create": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:18.932Z",
+      "platform": "codex"
+    },
+    "remotion-mediabunny": {
+      "version": "1.0.1",
+      "installedAt": "2026-09-07T05:28:21.572Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-render": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:23.856Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-maps": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:26.587Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-studio": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:29.236Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-upgrade": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:32.361Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-interactivity": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:35.065Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-saas": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:37.758Z",
+      "platform": "codex"
+    },
+    "remotion-remotion-multimedia": {
+      "version": "4.0.521",
+      "installedAt": "2026-09-07T05:28:40.474Z",
+      "platform": "codex"
+    }
+  }
+}

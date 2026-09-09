@@ -472,18 +472,21 @@ footer a:hover {
 }
 
 .carousel-stage {
-  perspective: 100rem;
-  transform-origin: center top;
-  animation: project-stage-collapse linear both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 32%;
+  min-height: 0;
+}
+
+.carousel-sticky {
+  position: sticky;
+  top: clamp(5.5rem, 12vh, 8rem);
+  width: 100%;
 }
 
 .carousel-window {
   overflow-x: auto;
   scrollbar-width: none;
   scroll-behavior: auto;
-  padding-block: 1.25rem 2rem;
+  touch-action: pan-y;
+  padding-block: 5rem;
   mask-image: linear-gradient(
     90deg,
     transparent,
@@ -541,18 +544,15 @@ footer a:hover {
 }
 
 .carousel-group {
+  position: relative;
   display: flex;
   flex-shrink: 0;
   gap: 1.25rem;
 }
 
-.carousel-stage:hover .carousel-track,
-.carousel-stage:focus-within .carousel-track {
-  animation-play-state: paused;
-}
-
 .project-item {
-  flex: 0 0 clamp(18rem, 29vw, 27rem);
+  flex: 0 0 auto;
+  width: clamp(18rem, 29vw, 27rem);
   min-width: 0;
 }
 
@@ -819,34 +819,168 @@ footer a:hover {
   transform: rotate(45deg) scale(1.18);
 }
 
-.tool-strip {
+.tools-universe {
+  position: relative;
+  isolation: isolate;
+  margin-top: 2rem;
+  min-height: clamp(12rem, 18vw, 15rem);
   display: grid;
+  place-items: center;
+  overflow: visible;
+  background: transparent;
+}
+
+.tools-universe::after {
+  position: absolute;
+  z-index: 0;
+  inset: 8% 4%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(148 163 184 / 9%) 0%,
+    rgb(34 211 238 / 3%) 38%,
+    transparent 72%
+  );
+  filter: blur(2.5rem);
+  content: '';
+}
+
+.tools-universe-glow {
+  position: absolute;
+  z-index: 0;
+  width: min(55rem, 82vw);
+  aspect-ratio: 1.5;
+  border-radius: 50%;
+  background: rgb(203 213 225 / 8%);
+  filter: blur(90px);
+  animation: tools-glow 8s ease-in-out infinite alternate;
+}
+
+.tools-floating-row {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(88rem, calc(100% - 1rem));
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.8rem;
-  border-block: 1px solid rgb(255 255 255 / 17%);
-  padding-block: 1.5rem;
-  color: rgb(255 255 255 / 43%);
-  font-family: monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.tool-item {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
-  text-align: center;
-  transition:
-    color 220ms ease,
-    transform 220ms ease;
+  gap: clamp(0.25rem, 2vw, 2.5rem);
+  padding-block: clamp(2.75rem, 5vw, 4rem);
+  perspective: 60rem;
+  pointer-events: none;
 }
 
-.tool-item:hover {
-  color: white;
-  transform: translateY(-2px);
+.tools-floating-item {
+  --base-y: 0rem;
+  --tool-scale: 1;
+  display: grid;
+  place-items: center;
+  color: #c4c8ce;
+  animation: tools-item-float 3.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: calc(var(--tool-index, 0) * -0.58s);
+  will-change: transform;
+}
+
+.tools-floating-item .tool-logo {
+  width: clamp(2.8rem, 6.5vw, 6.5rem);
+  height: clamp(2.8rem, 6.5vw, 6.5rem);
+  filter: drop-shadow(0 1.25rem 1.5rem rgb(0 0 0 / 58%));
+  transition:
+    filter 300ms ease,
+    opacity 300ms ease;
+}
+
+.tools-floating-item:nth-child(1) {
+  --tool-index: 1;
+  --base-y: 1rem;
+  --tool-scale: 0.8;
+}
+.tools-floating-item:nth-child(2) {
+  --tool-index: 2;
+  --base-y: -1.75rem;
+  --tool-scale: 0.92;
+}
+.tools-floating-item:nth-child(3) {
+  --tool-index: 3;
+  --base-y: 0.5rem;
+  --tool-scale: 1.08;
+}
+.tools-floating-item:nth-child(4) {
+  --tool-index: 4;
+  --base-y: -0.7rem;
+  --tool-scale: 1.04;
+}
+.tools-floating-item:nth-child(5) {
+  --tool-index: 5;
+  --base-y: 1.6rem;
+  --tool-scale: 0.9;
+}
+.tools-floating-item:nth-child(6) {
+  --tool-index: 6;
+  --base-y: -1rem;
+  --tool-scale: 0.78;
+}
+
+.tools-floating-item:is(:nth-child(1), :nth-child(6)) .tool-logo {
+  opacity: 0.5;
+  filter: blur(1.8px) drop-shadow(0 1.25rem 1.5rem rgb(0 0 0 / 48%));
+}
+
+.tools-floating-item:is(:nth-child(2), :nth-child(5)) .tool-logo {
+  opacity: 0.78;
+  filter: blur(0.5px) drop-shadow(0 1.25rem 1.5rem rgb(0 0 0 / 54%));
+}
+
+.tools-floating-item .tool-logo > * {
+  width: 100%;
+  height: 100%;
+}
+.tools-floating-item .tool-logo img {
+  filter: grayscale(1) brightness(0.78);
+}
+@keyframes tools-item-float {
+  0%,
+  100% {
+    transform: translate3d(0, calc(var(--base-y) - 1.35rem), 0) rotate(-3deg)
+      scale(var(--tool-scale));
+  }
+  50% {
+    transform: translate3d(0, calc(var(--base-y) + 1.35rem), 1.5rem)
+      rotate(3deg) scale(calc(var(--tool-scale) * 1.04));
+  }
+}
+
+@keyframes tools-glow {
+  from {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0.8;
+    transform: scale(1.18);
+  }
+}
+
+@media (max-width: 640px) {
+  .tools-universe {
+    min-height: 11rem;
+    margin-inline: -0.75rem;
+  }
+
+  .tools-floating-row {
+    width: calc(100% - 2rem);
+    gap: 0.1rem;
+    padding-block: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tools-universe-glow {
+    animation: none;
+  }
+
+  .tools-floating-item {
+    animation-duration: 5.5s;
+  }
 }
 
 .tool-logo {
@@ -1053,7 +1187,7 @@ footer a:hover {
     top: 25%;
   }
   .project-item {
-    flex-basis: clamp(17rem, 56vw, 23rem);
+    width: clamp(17rem, 56vw, 23rem);
   }
   .behance-heading {
     gap: 2rem;
@@ -1131,7 +1265,7 @@ footer a:hover {
     animation-duration: 36s;
   }
   .project-item {
-    flex-basis: min(78vw, 20rem);
+    width: min(78vw, 20rem);
   }
   .project-meta {
     grid-template-columns: 1fr;
@@ -1214,12 +1348,13 @@ footer a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .carousel-stage {
-    animation: none;
+    min-height: auto;
   }
 
   .carousel-window {
     overflow-x: auto;
     mask-image: none;
+    touch-action: pan-x;
   }
 
   .carousel-track {
@@ -1765,14 +1900,21 @@ footer a:hover {
    ========================================================================== */
 
 .carousel-stage-branding .carousel-group > * {
-  flex: 0 0 clamp(17rem, 26vw, 24rem);
+  flex: 0 0 auto;
+  width: clamp(17rem, 26vw, 24rem);
   min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .carousel-stage-branding .carousel-group > * {
+    width: min(78vw, 20rem);
+  }
 }
 
 /* O colapso de entrada é o do palco de projetos; aqui atrapalharia a leitura
    logo abaixo do título, então o card só faz o fade padrão. */
 .carousel-stage-branding {
-  animation: none;
+  perspective: none;
 }
 
 /* ==========================================================================
