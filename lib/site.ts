@@ -37,6 +37,7 @@ export const navLinks = [
   { label: 'Sobre', href: '#sobre' },
   { label: 'Trajetória', href: '#trajetoria' },
   { label: 'Serviços', href: '#servicos' },
+  { label: 'Instagram', href: '#instagram' },
   { label: 'Contato', href: '#contato' },
 ] as const;
 

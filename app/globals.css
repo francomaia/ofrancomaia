@@ -2052,6 +2052,143 @@ footer a:hover {
   height: 1.65rem;
 }
 
+/* Posts reais do Instagram: capa editorial, sem dependência de embed externo. */
+.instagram-section {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 8%, rgb(34 211 238 / 10%), transparent 34rem),
+    #050505;
+}
+
+.instagram-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.instagram-heading .display-title {
+  font-size: clamp(3rem, 9.5vw, 9rem);
+  letter-spacing: -0.085em;
+  white-space: nowrap;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+}
+
+.instagram-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: #10191b;
+  isolation: isolate;
+}
+
+.instagram-card:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.instagram-card::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 28%),
+    transparent 32%,
+    transparent 54%,
+    rgb(0 0 0 / 70%)
+  );
+  content: '';
+  pointer-events: none;
+}
+
+.instagram-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.instagram-card:hover img,
+.instagram-card:focus-visible img {
+  transform: scale(1.045);
+}
+
+.instagram-card-top,
+.instagram-card-bottom {
+  position: absolute;
+  z-index: 2;
+  right: clamp(0.65rem, 1.7vw, 1.5rem);
+  left: clamp(0.65rem, 1.7vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.instagram-card-top {
+  top: clamp(0.65rem, 1.7vw, 1.5rem);
+}
+
+.instagram-card-top svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.instagram-card-bottom {
+  bottom: clamp(0.65rem, 1.7vw, 1.5rem);
+  justify-content: flex-start;
+  transition: color 200ms ease;
+}
+
+.instagram-card:hover .instagram-card-bottom,
+.instagram-card:focus-visible .instagram-card-bottom {
+  color: var(--cyan);
+}
+
+@media (max-width: 900px) {
+  .instagram-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .instagram-heading .display-title {
+    font-size: clamp(2.35rem, 9.2vw, 4rem);
+  }
+
+  .instagram-card-top,
+  .instagram-card-bottom {
+    font-size: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-card img,
+  .instagram-card-bottom {
+    transition: none;
+  }
+}
+
 /* ==========================================================================
    Hero no mobile: mais respiro entre o personagem, o texto e o botão
    ========================================================================== */

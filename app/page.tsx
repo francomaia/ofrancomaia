@@ -19,6 +19,7 @@ import { BackToTop } from './back-to-top';
 import { BrandMark } from './brand-mark';
 import { ContactForm } from './contact-form';
 import { EditorialHero } from './editorial-hero';
+import { InstagramFeed } from './instagram-feed';
 import { MarqueeCarousel } from './marquee-carousel';
 import { SiteHeader } from './site-header';
 import { SocialIcon } from './social-icon';
@@ -443,6 +444,8 @@ export default function Home() {
             </section>
           </div>
         </section>
+
+        <InstagramFeed />
 
         <section
           id="contato"

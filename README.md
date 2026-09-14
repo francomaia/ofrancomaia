@@ -13,13 +13,13 @@ O site sobe em http://localhost:3000.
 
 ## Onde mexer
 
-| O que | Arquivo |
-| --- | --- |
-| Projetos, branding, serviços, trajetória, links, textos fixos | `lib/site.ts` |
-| Regras de validação do formulário | `lib/contact-schema.ts` |
-| Recebimento e entrega dos leads | `app/api/contact/route.ts` |
-| Layout do e-mail que chega na caixa de entrada | `lib/contact-email.ts` |
-| Estilos | `app/globals.css` |
+| O que                                                         | Arquivo                    |
+| ------------------------------------------------------------- | -------------------------- |
+| Projetos, branding, serviços, trajetória, links, textos fixos | `lib/site.ts`              |
+| Regras de validação do formulário                             | `lib/contact-schema.ts`    |
+| Recebimento e entrega dos leads                               | `app/api/contact/route.ts` |
+| Layout do e-mail que chega na caixa de entrada                | `lib/contact-email.ts`     |
+| Estilos                                                       | `app/globals.css`          |
 
 `lib/site.ts` é a fonte única: a página, os metadados, o JSON-LD e o sitemap leem tudo de lá. Para adicionar um projeto, basta acrescentar um item ao array. Ele aparece no carrossel **e** nos dados estruturados.
 
@@ -27,15 +27,25 @@ O site sobe em http://localhost:3000.
 
 Copie `.env.example` para `.env.local` (ignorado pelo git) e preencha. Depois de editar o arquivo, **reinicie o dev server**, porque ele só lê as variáveis na inicialização.
 
-| Variável | Para quê |
-| --- | --- |
-| `RESEND_API_KEY` | Envia o formulário por e-mail via [Resend](https://resend.com). Caminho principal. |
-| `CONTACT_TO_EMAIL` | Destino dos leads. Sem isso, usa o e-mail de `lib/site.ts`. |
-| `CONTACT_FROM_EMAIL` | Remetente. `onboarding@resend.dev` serve para testar; em produção, use um endereço de domínio verificado no Resend. |
-| `CONTACT_WEBHOOK_URL` | Alternativa ao e-mail: encaminha o lead como JSON (Zapier, Make, n8n, Slack, Discord). |
-| `NEXT_PUBLIC_SITE_URL` | URL pública. Alimenta canonical, Open Graph, `sitemap.xml` e `robots.txt`. |
+| Variável                 | Para quê                                                                                                            |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `RESEND_API_KEY`         | Envia o formulário por e-mail via [Resend](https://resend.com). Caminho principal.                                  |
+| `CONTACT_TO_EMAIL`       | Destino dos leads. Sem isso, usa o e-mail de `lib/site.ts`.                                                         |
+| `CONTACT_FROM_EMAIL`     | Remetente. `onboarding@resend.dev` serve para testar; em produção, use um endereço de domínio verificado no Resend. |
+| `CONTACT_WEBHOOK_URL`    | Alternativa ao e-mail: encaminha o lead como JSON (Zapier, Make, n8n, Slack, Discord).                              |
+| `NEXT_PUBLIC_SITE_URL`   | URL pública. Alimenta canonical, Open Graph, `sitemap.xml` e `robots.txt`.                                          |
+| `INSTAGRAM_ACCESS_TOKEN` | Token da API do Instagram para atualizar os seis posts da seção. Sem ele, aparecem as seis capas locais.            |
 
 Em produção, cadastre as mesmas chaves no painel da Hostinger (Node.js -> variáveis de ambiente). O servidor lê direto do `process.env`, sem precisar de arquivo.
+
+### Instagram
+
+A seção mostra seis posts reais de `@ofrancomaia` mesmo sem credenciais. Para
+atualização automática, use um token de uma conta profissional no **Instagram
+API with Instagram Login**, com a permissão `instagram_business_basic`, e
+cadastre-o como `INSTAGRAM_ACCESS_TOKEN` na Hostinger. O token é usado apenas
+no servidor em `GET /api/instagram`; nunca vai para o navegador. A resposta é
+guardada por cinco minutos e volta às capas locais se a Meta estiver fora do ar.
 
 ### Como o formulário é entregue
 
@@ -109,6 +119,6 @@ presas ao scroll.
 A única concessão a `prefers-reduced-motion: reduce` é a que já existia desde o
 início: o carrossel de projetos perde a animação de entrada do palco. Vale
 lembrar que no Windows essa preferência vem do interruptor
-*Acessibilidade → Efeitos visuais → Efeitos de animação*, que muita gente
+_Acessibilidade → Efeitos visuais → Efeitos de animação_, que muita gente
 desliga por desempenho sem querer um site sem movimento, e por isso o site não
 a usa para desligar mais nada.
