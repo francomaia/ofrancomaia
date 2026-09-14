@@ -5,6 +5,7 @@ import {
   siAdobephotoshop,
   siAdobepremierepro,
   siCoreldraw,
+  siWhatsapp,
 } from 'simple-icons';
 import {
   brandingProjects,
@@ -523,6 +524,18 @@ export default function Home() {
       </footer>
 
       <BackToTop />
+      <a
+        className="whatsapp-float"
+        href="https://wa.me/5564996105683"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Conversar com Franco Maia pelo WhatsApp"
+        title="Conversar pelo WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d={siWhatsapp.path} />
+        </svg>
+      </a>
     </>
   );
 }

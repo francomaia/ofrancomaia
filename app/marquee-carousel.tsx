@@ -4,7 +4,6 @@
 // teclado não consegue focar nem percorrer a lista horizontal.
 // oxlint-disable jsx-a11y/no-noninteractive-tabindex
 
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useCallback, useEffect, useRef, type ReactNode } from 'react';
 import { scrollToPosition } from '@/lib/lenis-instance';
 
@@ -18,8 +17,8 @@ type MarqueeCarouselProps = {
 /**
  * Carrossel horizontal conduzido pelo scroll vertical. O palco fica fixo por
  * alguns instantes e transforma o avanço da página em deslocamento lateral.
- * Os botões movem a própria página até o ponto equivalente, mantendo o carrossel
- * e a rolagem sempre sincronizados.
+ * As setas do teclado movem a própria página até o ponto equivalente,
+ * mantendo o carrossel e a rolagem sempre sincronizados.
  */
 export function MarqueeCarousel({
   label,
@@ -158,15 +157,6 @@ export function MarqueeCarousel({
       onKeyDown={onKeyDown}
     >
       <div ref={sticky} className="carousel-sticky">
-        <div className="carousel-controls">
-          <button type="button" onClick={() => move(-1)} aria-label="Anterior">
-            <ArrowLeft aria-hidden="true" />
-          </button>
-          <button type="button" onClick={() => move(1)} aria-label="Próximo">
-            <ArrowRight aria-hidden="true" />
-          </button>
-        </div>
-
         <div
           ref={viewport}
           className="carousel-window"
