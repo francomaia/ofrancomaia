@@ -59,7 +59,30 @@ export function InstagramFeed() {
           </a>
         </div>
 
-        <div className="instagram-grid mt-12 sm:mt-20">
+        {/* oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- janela horizontal navegável pelo teclado */}
+        <div
+          className="instagram-carousel mt-12 sm:mt-20"
+          role="region"
+          aria-roledescription="carrossel"
+          aria-label="Posts do Instagram. Deslize para ver mais publicações"
+          tabIndex={0}
+          data-lenis-prevent
+          onKeyDown={(event) => {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+            event.preventDefault();
+            const card =
+              event.currentTarget.querySelector<HTMLElement>('.instagram-card');
+            event.currentTarget.scrollBy({
+              left:
+                (event.key === 'ArrowRight' ? 1 : -1) *
+                ((card?.offsetWidth ?? 240) + 16),
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                .matches
+                ? 'instant'
+                : 'smooth',
+            });
+          }}
+        >
           {posts.map((post) => (
             <a
               key={post.id}

@@ -2073,26 +2073,30 @@ footer a:hover {
   white-space: nowrap;
 }
 
-.instagram-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.5rem, 1.2vw, 1rem);
+.instagram-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.35rem 0.35rem 0.75rem;
+}
+
+.instagram-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .instagram-card {
   position: relative;
   display: block;
+  flex: 0 0 clamp(13rem, 22vw, 17rem);
+  scroll-snap-align: start;
   min-width: 0;
   overflow: hidden;
   aspect-ratio: 1;
   background: #10191b;
   isolation: isolate;
-}
-
-.instagram-card:first-child {
-  grid-column: span 2;
-  grid-row: span 2;
-  aspect-ratio: auto;
 }
 
 .instagram-card::after {
@@ -2165,10 +2169,6 @@ footer a:hover {
     align-items: flex-start;
     flex-direction: column;
   }
-
-  .instagram-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 640px) {
@@ -2178,7 +2178,7 @@ footer a:hover {
 
   .instagram-card-top,
   .instagram-card-bottom {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 }
 
