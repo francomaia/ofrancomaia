@@ -38,8 +38,12 @@
     "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
     "name": "rolldown-runtime"
   },
-  "_site-bm4uRWQu.js": {
-    "file": "_next/static/chunks/site-bm4uRWQu.js",
+  "_simple-icons-DGthlZvy.js": {
+    "file": "_next/static/chunks/simple-icons-DGthlZvy.js",
+    "name": "simple-icons"
+  },
+  "_site-BmOr1CPK.js": {
+    "file": "_next/static/chunks/site-BmOr1CPK.js",
     "name": "site"
   },
   "app/back-to-top.tsx": {
@@ -55,32 +59,45 @@
     ]
   },
   "app/contact-form.tsx": {
-    "file": "_next/static/chunks/contact-form-BlMtIxdx.js",
+    "file": "_next/static/chunks/contact-form-BtVM8MYD.js",
     "name": "contact-form",
     "src": "app/contact-form.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-bm4uRWQu.js",
+      "_site-BmOr1CPK.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_arrow-up-right-CvDGuvWp.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "app/editorial-hero.tsx": {
-    "file": "_next/static/chunks/editorial-hero-BNbIQfHo.js",
+    "file": "_next/static/chunks/editorial-hero-DhTtUrp7.js",
     "name": "editorial-hero",
     "src": "app/editorial-hero.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-bm4uRWQu.js",
+      "_site-BmOr1CPK.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_framework-D_rUT4EX.js"
     ]
   },
+  "app/instagram-feed.tsx": {
+    "file": "_next/static/chunks/instagram-feed-DEGj5p8i.js",
+    "name": "instagram-feed",
+    "src": "app/instagram-feed.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-C60lm6uB.js",
+      "_site-BmOr1CPK.js",
+      "_arrow-up-right-CvDGuvWp.js",
+      "_framework-D_rUT4EX.js",
+      "_simple-icons-DGthlZvy.js"
+    ]
+  },
   "app/marquee-carousel.tsx": {
-    "file": "_next/static/chunks/marquee-carousel-DKkZsLZM.js",
+    "file": "_next/static/chunks/marquee-carousel-DcIYVtrV.js",
     "name": "marquee-carousel",
     "src": "app/marquee-carousel.tsx",
     "isDynamicEntry": true,
@@ -91,20 +108,21 @@
     ]
   },
   "app/site-header.tsx": {
-    "file": "_next/static/chunks/site-header-m_SPoqmz.js",
+    "file": "_next/static/chunks/site-header-a4oB_XQV.js",
     "name": "site-header",
     "src": "app/site-header.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-bm4uRWQu.js",
+      "_site-BmOr1CPK.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_arrow-up-right-CvDGuvWp.js",
-      "_framework-D_rUT4EX.js"
+      "_framework-D_rUT4EX.js",
+      "_simple-icons-DGthlZvy.js"
     ]
   },
   "app/smooth-scroll.tsx": {
-    "file": "_next/static/chunks/smooth-scroll-D1eT9OHH.js",
+    "file": "_next/static/chunks/smooth-scroll-De9fsrNi.js",
     "name": "smooth-scroll",
     "src": "app/smooth-scroll.tsx",
     "isDynamicEntry": true,
@@ -118,7 +136,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
-    "file": "_next/static/chunks/app-route-prefetch-policy-BH87VGAL.js",
+    "file": "_next/static/chunks/app-route-prefetch-policy-CJni8RKD.js",
     "name": "app-route-prefetch-policy",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
     "isDynamicEntry": true,
@@ -127,7 +145,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-BpmMUmA4.js",
+    "file": "_next/static/chunks/layout-segment-context-Jx4MBGCF.js",
     "name": "layout-segment-context",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
@@ -138,7 +156,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/streamed-icons.js": {
-    "file": "_next/static/chunks/streamed-icons-OxY85Jz7.js",
+    "file": "_next/static/chunks/streamed-icons-20nPfslU.js",
     "name": "streamed-icons",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/streamed-icons.js",
     "isDynamicEntry": true,
@@ -148,7 +166,7 @@
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-BGTxIM4W.js",
+    "file": "_next/static/chunks/index-Dl0bamjz.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
@@ -167,7 +185,8 @@
       "app/editorial-hero.tsx",
       "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js",
       "app/smooth-scroll.tsx",
-      "app/site-header.tsx"
+      "app/site-header.tsx",
+      "app/instagram-feed.tsx"
     ]
   }
 }
