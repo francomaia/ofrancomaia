@@ -80,14 +80,13 @@
     ]
   },
   "app/marquee-carousel.tsx": {
-    "file": "_next/static/chunks/marquee-carousel-FKoJduN6.js",
+    "file": "_next/static/chunks/marquee-carousel-DKkZsLZM.js",
     "name": "marquee-carousel",
     "src": "app/marquee-carousel.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
       "_lenis-instance-DvsUCGML.js",
-      "_createLucideIcon-BrNKFXBt.js",
       "_framework-D_rUT4EX.js"
     ]
   },
@@ -119,7 +118,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
-    "file": "_next/static/chunks/app-route-prefetch-policy-DOCYi41Q.js",
+    "file": "_next/static/chunks/app-route-prefetch-policy-BH87VGAL.js",
     "name": "app-route-prefetch-policy",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
     "isDynamicEntry": true,
@@ -128,7 +127,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-CuFl3bvz.js",
+    "file": "_next/static/chunks/layout-segment-context-BpmMUmA4.js",
     "name": "layout-segment-context",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
@@ -149,7 +148,7 @@
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-CfoJxCJI.js",
+    "file": "_next/static/chunks/index-BGTxIM4W.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
