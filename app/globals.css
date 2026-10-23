@@ -2268,3 +2268,22 @@ footer a:hover {
     padding-top: 2rem;
   }
 }
+
+/* Personagem 3D flutuando no espaço. Usa translate/rotate individuais para
+   somar ao transform que a rolagem já controla, sem conflito. */
+@keyframes float-space {
+  0%, 100% { translate: 0 0; rotate: -1.2deg; }
+  25% { translate: 6px -10px; rotate: 0.6deg; }
+  50% { translate: 0 -18px; rotate: 1.6deg; }
+  75% { translate: -6px -8px; rotate: 0deg; }
+}
+.float-space {
+  animation: float-space 7s ease-in-out infinite;
+}
+.float-space-slow {
+  animation-duration: 9s;
+  animation-delay: -2s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-space { animation: none; }
+}

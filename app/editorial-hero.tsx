@@ -77,14 +77,14 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
         <img
-          src="/assets/character/franco-cyan-cutout-v3.png"
-          alt="Franco Maia com roupa ciano apresentando uma ideia"
-          width={800}
-          height={1200}
+          src="/assets/character/franco-3d-v4.webp"
+          alt="Franco Maia em 3D, sentado numa poltrona com o notebook"
+          width={1024}
+          height={1536}
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          className="hero-character absolute left-1/2 z-20 max-w-none"
+          className="hero-character float-space absolute left-1/2 z-20 max-w-none"
         />
 
         {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}

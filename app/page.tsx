@@ -326,13 +326,13 @@ export default function Home() {
             <div className="about-character-stage relative min-h-[38rem]">
               {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
               <img
-                src="/assets/character/franco-cream-cyan-cutout-v3.png"
-                alt="Franco Maia com roupa clara e caderno de criação"
-                width={800}
-                height={1200}
+                src="/assets/character/franco-3d-v4-cadeira.webp"
+                alt="Franco Maia em 3D, trabalhando no notebook numa cadeira de escritório"
+                width={1024}
+                height={1536}
                 loading="lazy"
                 decoding="async"
-                className="reveal-character absolute left-1/2 max-w-none"
+                className="reveal-character float-space float-space-slow absolute left-1/2 max-w-none"
               />
             </div>
             <div className="pb-6 lg:pb-16">
