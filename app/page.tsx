@@ -1,3 +1,4 @@
+import type React from 'react';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import {
   siAdobeaftereffects,
@@ -67,6 +68,37 @@ const marqueeItems = [
   'DIREÇÃO CRIATIVA',
 ];
 
+function slideCycle(slides: readonly string[] | undefined, index: number) {
+  const count = slides?.length ? slides.length + 1 : 0;
+  return {
+    className: count > 1 ? ` cycle cycle-${Math.min(count, 4)}` : '',
+    style: count > 1 ? ({ '--o': `${(index % 5) * 1.3}s` } as React.CSSProperties) : undefined,
+  };
+}
+
+function SlideImages({ slides, name }: { slides?: readonly string[]; name: string }) {
+  if (!slides?.length) return null;
+  return (
+    <>
+      {slides.slice(0, 3).map((src, i) => (
+        // oxlint-disable-next-line next/no-img-element -- imagens extras do projeto, já otimizadas
+        <img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden="true"
+          width={1080}
+          height={810}
+          loading="lazy"
+          decoding="async"
+          className="cycle-img"
+          style={{ '--i': i + 1 } as React.CSSProperties}
+        />
+      ))}
+    </>
+  );
+}
+
 function optimizedProjectImage(source: string) {
   const parts = source.split('/');
   const file = parts[parts.length - 1] || 'project';
@@ -114,100 +146,6 @@ export default function Home() {
         </div>
 
         <section
-          id="trabalhos"
-          className="projects-showcase editorial-section relative overflow-x-clip py-16 sm:py-36"
-          aria-labelledby="trabalhos-titulo"
-        >
-          <div className="noise-layer absolute inset-0" aria-hidden="true" />
-          {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
-          <img
-            src="/assets/motifs/cursor-orb-cyan-v3.png"
-            alt=""
-            width={420}
-            height={420}
-            loading="lazy"
-            decoding="async"
-            aria-hidden="true"
-            className="orbit-motif absolute right-6 top-[28rem] w-40 opacity-65"
-          />
-          <div className="site-shell relative z-10">
-            <div className="section-heading">
-              <span className="micro-label">Projetos selecionados</span>
-              <h2 id="trabalhos-titulo" className="display-title">
-                TRABA
-                <br className="sm:hidden" />
-                LHOS
-              </h2>
-              <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
-                sites reais.
-                <br />
-                problemas diferentes.
-              </p>
-            </div>
-          </div>
-          <MarqueeCarousel
-            label="Projetos selecionados"
-            className="mt-14 sm:mt-20"
-          >
-            <div className="carousel-track">
-              {[0].map((pass) => (
-                <div
-                  key={pass}
-                  className="carousel-group"
-                  aria-hidden={pass === 1 ? true : undefined}
-                >
-                  {selectedProjects.map((project, index) => (
-                    <a
-                      key={`${pass}-${project.name}`}
-                      href={project.href}
-                      target={project.href ? '_blank' : undefined}
-                      rel={project.href ? 'noreferrer' : undefined}
-                      tabIndex={pass === 1 ? -1 : undefined}
-                      className={`project-item group ${project.href ? '' : 'cursor-default'}`}
-                      aria-label={
-                        project.href
-                          ? `Abrir o site de ${project.name}, ${project.sector}`
-                          : `${project.name}: ${project.status}`
-                      }
-                      aria-disabled={project.href ? undefined : true}
-                    >
-                      <div className="project-image-wrap">
-                        {/* oxlint-disable-next-line next/no-img-element -- capturas locais já otimizadas */}
-                        <img
-                          {...optimizedProjectImage(project.image)}
-                          alt={`Página inicial do projeto ${project.name}`}
-                          width={1200}
-                          height={760}
-                          sizes="(max-width: 640px) 78vw, (max-width: 900px) 56vw, 29vw"
-                          loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
-                          decoding="async"
-                          className="project-image"
-                        />
-                        <span className="project-arrow">
-                          <ArrowUpRight aria-hidden="true" className="size-5" />
-                        </span>
-                        {project.status ? (
-                          <span className="project-status">
-                            {project.status}
-                          </span>
-                        ) : null}
-                      </div>
-                      <div className="project-meta">
-                        <h3>{project.name}</h3>
-                        <span>{project.sector}</span>
-                      </div>
-                      {project.note ? (
-                        <p className="project-note">{project.note}</p>
-                      ) : null}
-                    </a>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </MarqueeCarousel>
-        </section>
-
-        <section
           id="branding"
           className="behance-section relative overflow-x-clip border-y border-white/15 py-16 sm:py-36"
           aria-labelledby="branding-titulo"
@@ -249,6 +187,13 @@ export default function Home() {
           <MarqueeCarousel
             label="Identidades visuais"
             className="carousel-stage-branding mt-16 sm:mt-24"
+            chibi={[
+              { src: '/assets/character/chibi/chibi-5.webp', fala: 'Deixa eu adivinhar: você quer uma marca com história?' },
+              { src: '/assets/character/chibi/galinha.webp', fala: 'Calma! Sua marca não precisa sair correndo atrás de cliente.' },
+              { src: '/assets/character/chibi/estudando.webp', fala: 'Antes do logo, eu estudo o seu negócio. Sério.' },
+              { src: '/assets/character/chibi/chibi-4.webp', fala: 'Logo com cara de 2010? Bora reformar.' },
+              { src: '/assets/character/chibi/chibi-1.webp', fala: 'Curtiu? Bora criar a sua.' },
+            ]}
           >
             <div className="carousel-track">
               {[0].map((pass) => (
@@ -261,14 +206,34 @@ export default function Home() {
                     <a
                       key={`${pass}-${project.name}`}
                       href={project.href}
-                      target="_blank"
-                      rel="noreferrer"
+                      target={project.href.startsWith('/') ? undefined : '_blank'}
+                      rel={project.href.startsWith('/') ? undefined : 'noreferrer'}
                       tabIndex={pass === 1 ? -1 : undefined}
                       className="behance-card group"
-                      aria-label={`Ver ${project.name} no Behance`}
+                      aria-label={
+                        project.href.startsWith('/')
+                          ? `Ver o projeto ${project.name}`
+                          : `Ver ${project.name} no Behance`
+                      }
                     >
-                      <div className="behance-image-wrap">
-                        {/* oxlint-disable-next-line next/no-img-element -- capas do Behance ficam armazenadas localmente */}
+                      <div
+                        className={`behance-image-wrap${'video' in project && project.video ? '' : slideCycle('slides' in project ? project.slides : undefined, index).className}`}
+                        style={'video' in project && project.video ? undefined : slideCycle('slides' in project ? project.slides : undefined, index).style}
+                      >
+                        {'video' in project && project.video ? (
+                          <video
+                            src={project.video}
+                            poster={optimizedProjectImage(project.image).src}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                            aria-label={`Motion do projeto ${project.name}`}
+                            className="behance-image"
+                          />
+                        ) : (
+                        // oxlint-disable-next-line next/no-img-element -- capas do Behance ficam armazenadas localmente
                         <img
                           {...optimizedProjectImage(project.image)}
                           alt={`Projeto de ${project.type.toLowerCase()} ${project.name}`}
@@ -277,8 +242,13 @@ export default function Home() {
                           sizes="(max-width: 640px) 78vw, (max-width: 900px) 56vw, 26vw"
                           loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
                           decoding="async"
-                          className="behance-image"
+                          className="behance-image cycle-img"
+                          style={{ '--i': 0 } as React.CSSProperties}
                         />
+                        )}
+                        {'slides' in project ? (
+                          <SlideImages slides={project.slides} name={project.name} />
+                        ) : null}
                         <span className="behance-arrow">
                           <ArrowUpRight aria-hidden="true" className="size-5" />
                         </span>
@@ -287,6 +257,110 @@ export default function Home() {
                         <h3>{project.name}</h3>
                         <span>{project.type}</span>
                       </div>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </MarqueeCarousel>
+        </section>
+
+        <section
+          id="web"
+          className="projects-showcase editorial-section relative overflow-x-clip py-16 sm:py-36"
+          aria-labelledby="trabalhos-titulo"
+        >
+          <div className="noise-layer absolute inset-0" aria-hidden="true" />
+          {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
+          <img
+            src="/assets/motifs/cursor-orb-cyan-v3.png"
+            alt=""
+            width={420}
+            height={420}
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+            className="orbit-motif absolute right-6 top-[28rem] w-40 opacity-65"
+          />
+          <div className="site-shell relative z-10">
+            <div className="section-heading">
+              <span className="micro-label">Sites e landing pages</span>
+              <h2 id="trabalhos-titulo" className="display-title">
+                WEB
+              </h2>
+              <p className="scribble-note ml-auto max-w-[14rem] rotate-[-4deg] text-right">
+                sites reais.
+                <br />
+                problemas diferentes.
+              </p>
+            </div>
+          </div>
+          <MarqueeCarousel
+            label="Projetos selecionados"
+            className="mt-14 sm:mt-20"
+            chibi={[
+              { src: '/assets/character/chibi/chibi-3.webp', fala: 'Deixa eu adivinhar: você precisa de um site assim?' },
+              { src: '/assets/character/chibi/noite-pc.webp', fala: 'Precisa de um e-commerce funcional?! Então bora.' },
+              { src: '/assets/character/chibi/noite-notebook.webp', fala: 'Landing page que vende até de madrugada.' },
+              { src: '/assets/character/chibi/dormindo.webp', fala: 'Site lento dá sono no cliente. O seu não vai.' },
+              { src: '/assets/character/chibi/chibi-2.webp', fala: 'Curtiu algum? Me chama que a gente faz o seu.' },
+            ]}
+          >
+            <div className="carousel-track">
+              {[0].map((pass) => (
+                <div
+                  key={pass}
+                  className="carousel-group"
+                  aria-hidden={pass === 1 ? true : undefined}
+                >
+                  {selectedProjects.map((project, index) => (
+                    <a
+                      key={`${pass}-${project.name}`}
+                      href={project.href}
+                      target={project.href ? '_blank' : undefined}
+                      rel={project.href ? 'noreferrer' : undefined}
+                      tabIndex={pass === 1 ? -1 : undefined}
+                      className={`project-item group ${project.href ? '' : 'cursor-default'}`}
+                      aria-label={
+                        project.href
+                          ? `Abrir o site de ${project.name}, ${project.sector}`
+                          : `${project.name}: ${project.status}`
+                      }
+                      aria-disabled={project.href ? undefined : true}
+                    >
+                      <div
+                        className={`project-image-wrap${slideCycle(project.slides, index).className}`}
+                        style={slideCycle(project.slides, index).style}
+                      >
+                        {/* oxlint-disable-next-line next/no-img-element -- capturas locais já otimizadas */}
+                        <img
+                          {...optimizedProjectImage(project.image)}
+                          alt={`Página inicial do projeto ${project.name}`}
+                          width={1200}
+                          height={760}
+                          sizes="(max-width: 640px) 78vw, (max-width: 900px) 56vw, 29vw"
+                          loading={pass === 0 && index < 3 ? 'eager' : 'lazy'}
+                          decoding="async"
+                          className="project-image cycle-img"
+                          style={{ '--i': 0 } as React.CSSProperties}
+                        />
+                        <SlideImages slides={project.slides} name={project.name} />
+                        <span className="project-arrow">
+                          <ArrowUpRight aria-hidden="true" className="size-5" />
+                        </span>
+                        {project.status ? (
+                          <span className="project-status">
+                            {project.status}
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="project-meta">
+                        <h3>{project.name}</h3>
+                        <span>{project.sector}</span>
+                      </div>
+                      {project.note ? (
+                        <p className="project-note">{project.note}</p>
+                      ) : null}
                     </a>
                   ))}
                 </div>

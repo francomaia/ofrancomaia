@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EasyCRM · Branding e motion | Franco Maia</title>
+<meta name="description" content="Marca, identidade visual e motion de lançamento da plataforma EasyCRM.">
+<meta name="theme-color" content="#050505">
+<link rel="canonical" href="https://ofrancomaia.com/branding/easycrm.html">
+<meta property="og:title" content="EasyCRM · Branding e motion | Franco Maia">
+<meta property="og:description" content="Marca, identidade visual e motion de lançamento da plataforma EasyCRM.">
+<meta property="og:image" content="https://ofrancomaia.com/assets/optimized/easycrm-1080.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/favicon-gelo-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" as="image" href="/branding/easycrm/poster.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap"></noscript>
+<style>
+  :root { --cyan: #67e8f9; --line: rgb(255 255 255 / 12%); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: #050505; color: #f8f7f4; font-family: Archivo, Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  header { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+           padding: 14px clamp(16px, 4vw, 48px); background: rgb(5 5 5 / 88%); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+  header a { text-decoration: none; font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  header a:hover { color: var(--cyan); }
+  .hero { max-width: 1400px; margin: 0 auto; padding: clamp(36px, 7vw, 88px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px); }
+  .kicker { color: var(--cyan); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .9rem; }
+  h1 { margin: 0; font-size: clamp(2.6rem, 8vw, 6.4rem); font-weight: 900; line-height: .88; letter-spacing: -.045em; text-transform: uppercase; }
+  .sub { margin: 1.1rem 0 0; color: rgb(255 255 255 / 66%); font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.5; max-width: 46rem; }
+  /* carrossel de projetos */
+  .projects { position: relative; overflow: hidden; isolation: isolate; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0 28px; }
+  .projects::before, .projects::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+  .projects::before { width: 46vw; height: 260px; left: -8vw; top: 10px; background: radial-gradient(circle, rgb(34 211 238 / 55%), transparent 70%); }
+  .projects::after { width: 40vw; height: 240px; right: -6vw; bottom: -40px; background: radial-gradient(circle, rgb(129 140 248 / 45%), transparent 70%); }
+  .projects-head { max-width: 1400px; margin: 0 auto 12px; padding: 0 clamp(16px, 4vw, 48px); display: flex; justify-content: space-between; align-items: center; }
+  .projects-head span { font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgb(255 255 255 / 55%); }
+  .arrows { display: flex; gap: 6px; }
+  .arrows button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgb(255 255 255 / 22%); background: transparent; color: #fff; cursor: pointer; font-size: 1rem; }
+  .arrows button:hover { background: var(--cyan); color: #000; border-color: var(--cyan); }
+  .track { display: flex; align-items: center; gap: clamp(40px, 6vw, 88px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 clamp(16px, 4vw, 48px);
+           padding: 6px clamp(16px, 4vw, 48px) 14px; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .track::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 auto; scroll-snap-align: center; display: grid; place-items: center; height: clamp(76px, 8vw, 104px);
+           padding: 8px 4px 16px; position: relative; text-decoration: none; }
+  .card img { width: auto; height: auto; max-height: clamp(48px, 5.4vw, 72px); max-width: clamp(140px, 15vw, 210px); object-fit: contain; display: block;
+              filter: grayscale(1) brightness(1.15); opacity: .55;
+              transition: filter .45s ease, opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .card:hover img, .card:focus-visible img { filter: none; opacity: 1; transform: translateY(-3px) scale(1.04); }
+  .card.current img { filter: none; opacity: 1; }
+  .card.current::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+                          transform: translateX(-50%); box-shadow: 0 0 12px var(--cyan); }
+  /* apresentação */
+  main { max-width: 1400px; margin: 0 auto; padding: clamp(20px, 3vw, 36px) clamp(10px, 2vw, 24px) 64px; }
+  .stack { border-radius: 24px; overflow: hidden; border: 1px solid rgb(255 255 255 / 12%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 14%), 0 30px 80px -40px rgb(0 0 0 / 90%); }
+  .stack img { width: 100%; height: auto; display: block; background: #f1f1f1; }
+  .stack img + img { content-visibility: auto; }
+  .video-wrap { position: relative; background: #000; border-radius: 24px; overflow: hidden; margin-bottom: 18px; border: 1px solid rgb(255 255 255 / 12%); }
+  .video-wrap video { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; }
+  .sound { position: absolute; right: 14px; bottom: 14px; border: 1px solid rgb(255 255 255 / 30%); background: rgb(0 0 0 / 60%);
+           color: #fff; border-radius: 999px; padding: 9px 14px; font: 700 .72rem/1 Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .sound:hover { background: var(--cyan); color: #000; border-color: var(--cyan); }
+  footer { text-align: center; padding: 40px 16px 56px; }
+  footer a { display: inline-block; color: #000; background: var(--cyan); text-decoration: none; font-weight: 700; font-size: .8rem;
+             letter-spacing: .1em; text-transform: uppercase; padding: 14px 22px; border-radius: 999px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card img { transition: none; } }
+  
+</style>
+</head>
+<body>
+<header><a href="/#branding">← Franco Maia</a><a href="/#contato">Contato</a></header>
+<section class="hero"><p class="kicker">Branding e motion · Plataforma de CRM</p><h1>EasyCRM</h1><p class="sub">Marca, identidade visual e motion de lançamento da plataforma EasyCRM.</p></section>
+<nav class="projects" aria-label="Outros projetos de branding">
+  <div class="projects-head"><span>Projetos de branding</span><div class="arrows"><button type="button" data-dir="-1" aria-label="Projetos anteriores">←</button><button type="button" data-dir="1" aria-label="Próximos projetos">→</button></div></div>
+  <div class="track" id="track">
+    <a class="card current" href="/branding/easycrm.html" aria-current="page" aria-label="EasyCRM (Branding e motion)"><img src="/branding/logos/easycrm-dark.png" alt="Logo EasyCRM" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/estancia.html" aria-label="Estância Casa de Carnes (Branding)"><img src="/branding/logos/estancia-dark.png" alt="Logo Estância Casa de Carnes" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/araguaia.html" aria-label="Araguaia Consult (Branding)"><img src="/branding/logos/araguaia-dark.png" alt="Logo Araguaia Consult" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/maia-fagundes.html" aria-label="Maia &amp; Fagundes (Rebranding)"><img src="/branding/logos/maia-fagundes-dark.png" alt="Logo Maia &amp; Fagundes" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/piloto.html" aria-label="Autopeças Piloto (Rebranding)"><img src="/branding/logos/piloto-dark.png" alt="Logo Autopeças Piloto" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/pedrosa.html" aria-label="Pedrosa (Rebranding)"><img src="/branding/logos/pedrosa-dark.png" alt="Logo Pedrosa" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/flor-e-ser.html" aria-label="Casa Terapêutica Flor &amp; Ser (Rebranding)"><img src="/branding/logos/flor-e-ser-dark.png" alt="Logo Casa Terapêutica Flor &amp; Ser" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/senna.html" aria-label="Senna Autopeças (Rebranding)"><img src="/branding/logos/senna-dark.png" alt="Logo Senna Autopeças" loading="lazy" decoding="async"></a>
+  </div>
+</nav>
+<main>
+<div class="video-wrap"><video id="motion" src="/branding/easycrm/motion.mp4" poster="/branding/easycrm/poster.jpg" autoplay muted loop playsinline preload="metadata" width="1920" height="1080"></video><button class="sound" id="sound" type="button">Ativar som</button></div>
+<div class="stack">
+<img src="/branding/easycrm/p01.svg" width="960" height="12330" alt="EasyCRM, apresentação da marca, página 1" fetchpriority="high" decoding="async">
+</div>
+</main>
+<footer><a href="/#branding">Ver mais projetos</a></footer>
+<script>
+(() => {
+  const t = document.getElementById('track');
+  const cur = t.querySelector('.current');
+  if (cur) t.scrollLeft = cur.offsetLeft - t.offsetLeft - (t.clientWidth - cur.clientWidth) / 2;
+  document.querySelectorAll('.arrows button').forEach(b => b.addEventListener('click', () => {
+    t.scrollBy({ left: Number(b.dataset.dir) * t.clientWidth * 0.8, behavior: 'smooth' });
+  }));
+  // pré-carrega a página do projeto quando o cursor passa pelo card
+  const seen = new Set();
+  t.querySelectorAll('a.card:not(.current)').forEach(a => a.addEventListener('pointerenter', () => {
+    if (seen.has(a.href)) return; seen.add(a.href);
+    const l = document.createElement('link'); l.rel = 'prefetch'; l.href = a.href; document.head.appendChild(l);
+  }, { once: true }));
+  const v = document.getElementById("motion"), s = document.getElementById("sound");s.onclick = () => { v.muted = !v.muted; s.textContent = v.muted ? "Ativar som" : "Desativar som"; if (!v.muted) v.play(); };
+})();
+</script>
+</body>
+</html>

@@ -129,8 +129,8 @@ export function EditorialHero() {
             <p className="max-w-[23rem] text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
               {site.tagline}
             </p>
-            <a href="#trabalhos" className="editorial-button group w-fit">
-              Explorar trabalhos{' '}
+            <a href="#branding" className="editorial-button group w-fit">
+              Explorar projetos{' '}
               <ArrowDownRight
                 aria-hidden="true"
                 className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
