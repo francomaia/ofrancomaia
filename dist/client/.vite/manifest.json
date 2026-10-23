@@ -42,8 +42,8 @@
     "file": "_next/static/chunks/simple-icons-DGthlZvy.js",
     "name": "simple-icons"
   },
-  "_site-BmOr1CPK.js": {
-    "file": "_next/static/chunks/site-BmOr1CPK.js",
+  "_site-CMwkMliw.js": {
+    "file": "_next/static/chunks/site-CMwkMliw.js",
     "name": "site"
   },
   "app/back-to-top.tsx": {
@@ -59,38 +59,38 @@
     ]
   },
   "app/contact-form.tsx": {
-    "file": "_next/static/chunks/contact-form-BtVM8MYD.js",
+    "file": "_next/static/chunks/contact-form-B0m8-l1a.js",
     "name": "contact-form",
     "src": "app/contact-form.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-BmOr1CPK.js",
+      "_site-CMwkMliw.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_arrow-up-right-CvDGuvWp.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "app/editorial-hero.tsx": {
-    "file": "_next/static/chunks/editorial-hero-DhTtUrp7.js",
+    "file": "_next/static/chunks/editorial-hero-CyDKSFYV.js",
     "name": "editorial-hero",
     "src": "app/editorial-hero.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-BmOr1CPK.js",
+      "_site-CMwkMliw.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_framework-D_rUT4EX.js"
     ]
   },
   "app/instagram-feed.tsx": {
-    "file": "_next/static/chunks/instagram-feed-CEaMpove.js",
+    "file": "_next/static/chunks/instagram-feed-CCywST3b.js",
     "name": "instagram-feed",
     "src": "app/instagram-feed.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-BmOr1CPK.js",
+      "_site-CMwkMliw.js",
       "_arrow-up-right-CvDGuvWp.js",
       "_framework-D_rUT4EX.js",
       "_simple-icons-DGthlZvy.js"
@@ -108,13 +108,13 @@
     ]
   },
   "app/site-header.tsx": {
-    "file": "_next/static/chunks/site-header-a4oB_XQV.js",
+    "file": "_next/static/chunks/site-header-BbrsOANe.js",
     "name": "site-header",
     "src": "app/site-header.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-C60lm6uB.js",
-      "_site-BmOr1CPK.js",
+      "_site-CMwkMliw.js",
       "_createLucideIcon-BrNKFXBt.js",
       "_arrow-up-right-CvDGuvWp.js",
       "_framework-D_rUT4EX.js",
@@ -136,7 +136,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
-    "file": "_next/static/chunks/app-route-prefetch-policy-DjJvH0_w.js",
+    "file": "_next/static/chunks/app-route-prefetch-policy-DcuvfmMr.js",
     "name": "app-route-prefetch-policy",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
     "isDynamicEntry": true,
@@ -145,7 +145,7 @@
     ]
   },
   "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-VUkbtOJ8.js",
+    "file": "_next/static/chunks/layout-segment-context-Px1YgZJj.js",
     "name": "layout-segment-context",
     "src": "node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs_0d8b69a3c523d16faf68c463bea7ea0c/node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
@@ -166,7 +166,7 @@
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-CJjpU6eT.js",
+    "file": "_next/static/chunks/index-CSxjF2EB.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
