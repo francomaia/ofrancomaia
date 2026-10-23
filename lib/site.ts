@@ -64,6 +64,48 @@ export const selectedProjects: SelectedProject[] = [
     href: 'https://bethaniafilizzola.com/',
   },
   {
+    name: 'DOM Estética Automotiva',
+    sector: 'Estética Automotiva',
+    image: '/assets/cases/dom-automotiva-screen.jpg',
+    href: 'https://domautomotiva.com.br/',
+  },
+  {
+    name: 'Sindicato Rural de Jataí',
+    sector: 'Entidade do Agronegócio',
+    image: '/assets/cases/sindicato-rural-screen.jpg',
+    href: 'https://sindicatoruraljatai.org/',
+  },
+  {
+    name: 'Torra Tudo',
+    sector: 'E-commerce de Utilidades',
+    image: '/assets/cases/torra-tudo-screen.jpg',
+    href: 'https://torratudo.exascompany.com.br/',
+  },
+  {
+    name: 'Summer Fit Academia',
+    sector: 'Academia',
+    image: '/assets/cases/summer-fit-site-screen.jpg',
+    href: 'https://summerfitacademia.com.br/',
+  },
+  {
+    name: 'Equillibrium Agro',
+    sector: 'Soluções Biológicas',
+    image: '/assets/cases/equillibrium-screen.jpg',
+    href: 'https://equillibriumagro.com.br/',
+  },
+  {
+    name: 'Shineray Rondonópolis',
+    sector: 'Concessionária de Motos',
+    image: '/assets/cases/shineray-roo-screen.jpg',
+    href: 'https://shinerayrondonopolis.com.br/',
+  },
+  {
+    name: 'Shineray Catalão',
+    sector: 'Concessionária de Motos',
+    image: '/assets/cases/shineray-cat-screen.jpg',
+    href: 'https://shineraycatalao.com.br/',
+  },
+  {
     name: 'Agronova Transportes',
     sector: 'Logística e Transporte',
     image: '/assets/cases/agronova.avif',

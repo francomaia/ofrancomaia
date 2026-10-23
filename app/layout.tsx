@@ -67,7 +67,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
   icons: {
-    icon: '/assets/brand/fm-mark.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/assets/brand/favicon-gelo-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/assets/brand/favicon-gelo-192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   category: 'design',
 };
