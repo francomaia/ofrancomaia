@@ -78,6 +78,8 @@ export function EditorialHero() {
         {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
         <img
           src="/assets/character/franco-3d-v4.webp"
+          srcSet="/assets/character/franco-3d-v4-480.webp 480w, /assets/character/franco-3d-v4-768.webp 768w, /assets/character/franco-3d-v4.webp 1024w"
+          sizes="(max-width: 640px) 62vw, 30vw"
           alt="Franco Maia em 3D, sentado numa poltrona com o notebook"
           width={1024}
           height={1536}
@@ -89,7 +91,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
         <img
-          src="/assets/motifs/chrome-flower-cyan-v3.png"
+          src="/assets/motifs/chrome-flower-cyan-v3.webp"
           alt=""
           width={460}
           height={420}
@@ -100,7 +102,7 @@ export function EditorialHero() {
 
         {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
         <img
-          src="/assets/motifs/cursor-orb-cyan-v3.png"
+          src="/assets/motifs/cursor-orb-cyan-v3.webp"
           alt=""
           width={420}
           height={420}

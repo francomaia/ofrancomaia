@@ -2504,7 +2504,11 @@ footer a:hover {
   animation-timing-function: ease-out;
   animation-fill-mode: both;
   animation-delay: calc(var(--i) * 4.5s - var(--o, 0s));
-  will-change: opacity, filter;
+  animation-play-state: paused;
+}
+.cycle.is-live .cycle-img,
+.cycle.is-live::before {
+  animation-play-state: running;
 }
 .cycle-2 { --n: 2; }
 .cycle-3 { --n: 3; }
@@ -2513,27 +2517,24 @@ footer a:hover {
 .cycle-3 .cycle-img { animation-name: cycle-3; }
 .cycle-4 .cycle-img { animation-name: cycle-4; }
 @keyframes cycle-2 {
-  0% { opacity: 0; filter: brightness(1.9) saturate(1.4) blur(6px); }
-  5% { opacity: 1; filter: brightness(1.3) saturate(1.15) blur(1px); }
-  11% { opacity: 1; filter: none; }
-  50% { opacity: 1; filter: none; }
-  55% { opacity: 0; filter: brightness(1.25); }
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
   100% { opacity: 0; }
 }
 @keyframes cycle-3 {
-  0% { opacity: 0; filter: brightness(1.9) saturate(1.4) blur(6px); }
-  3.5% { opacity: 1; filter: brightness(1.3) saturate(1.15) blur(1px); }
-  7.5% { opacity: 1; filter: none; }
-  33.3% { opacity: 1; filter: none; }
-  37% { opacity: 0; filter: brightness(1.25); }
+  0% { opacity: 0; }
+  3.5% { opacity: 1; }
+  33.3% { opacity: 1; }
+  37% { opacity: 0; }
   100% { opacity: 0; }
 }
 @keyframes cycle-4 {
-  0% { opacity: 0; filter: brightness(1.9) saturate(1.4) blur(6px); }
-  2.6% { opacity: 1; filter: brightness(1.3) saturate(1.15) blur(1px); }
-  5.6% { opacity: 1; filter: none; }
-  25% { opacity: 1; filter: none; }
-  28% { opacity: 0; filter: brightness(1.25); }
+  0% { opacity: 0; }
+  2.6% { opacity: 1; }
+  25% { opacity: 1; }
+  28% { opacity: 0; }
   100% { opacity: 0; }
 }
 /* pulso de luz ciano a cada troca */
@@ -2548,6 +2549,7 @@ footer a:hover {
   opacity: 0;
   animation: cycle-glow 4.5s ease-out infinite;
   animation-delay: calc(0s - var(--o, 0s));
+  animation-play-state: paused;
 }
 @keyframes cycle-glow {
   0% { opacity: 0.85; }

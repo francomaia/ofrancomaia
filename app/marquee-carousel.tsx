@@ -100,7 +100,8 @@ export function MarqueeCarousel({
               const span = document.createElement('span');
               span.textContent = word;
               span.style.setProperty('--w', String(i));
-              bubble.append(span, ' ');
+              bubble.appendChild(span);
+              bubble.appendChild(document.createTextNode(' '));
             });
             bubble.classList.remove('is-talking');
             void bubble.offsetWidth;

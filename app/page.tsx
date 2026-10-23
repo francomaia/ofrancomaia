@@ -17,6 +17,7 @@ import {
   socials,
 } from '@/lib/site';
 import { BackToTop } from './back-to-top';
+import { CycleObserver } from './cycle-observer';
 import { BrandMark } from './brand-mark';
 import { ContactForm } from './contact-form';
 import { EditorialHero } from './editorial-hero';
@@ -76,7 +77,7 @@ function slideCycle(slides: readonly string[] | undefined, index: number) {
   };
 }
 
-function SlideImages({ slides, name }: { slides?: readonly string[]; name: string }) {
+function SlideImages({ slides }: { slides?: readonly string[] }) {
   if (!slides?.length) return null;
   return (
     <>
@@ -85,6 +86,8 @@ function SlideImages({ slides, name }: { slides?: readonly string[]; name: strin
         <img
           key={src}
           src={src}
+          srcSet={`${src.replace(/\.jpg$/, '-640.jpg')} 640w, ${src} 1080w`}
+          sizes="(max-width: 640px) 78vw, 28vw"
           alt=""
           aria-hidden="true"
           width={1080}
@@ -247,7 +250,7 @@ export default function Home() {
                         />
                         )}
                         {'slides' in project ? (
-                          <SlideImages slides={project.slides} name={project.name} />
+                          <SlideImages slides={project.slides} />
                         ) : null}
                         <span className="behance-arrow">
                           <ArrowUpRight aria-hidden="true" className="size-5" />
@@ -273,7 +276,7 @@ export default function Home() {
           <div className="noise-layer absolute inset-0" aria-hidden="true" />
           {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
           <img
-            src="/assets/motifs/cursor-orb-cyan-v3.png"
+            src="/assets/motifs/cursor-orb-cyan-v3.webp"
             alt=""
             width={420}
             height={420}
@@ -344,7 +347,7 @@ export default function Home() {
                           className="project-image cycle-img"
                           style={{ '--i': 0 } as React.CSSProperties}
                         />
-                        <SlideImages slides={project.slides} name={project.name} />
+                        <SlideImages slides={project.slides} />
                         <span className="project-arrow">
                           <ArrowUpRight aria-hidden="true" className="size-5" />
                         </span>
@@ -387,7 +390,7 @@ export default function Home() {
           </div>
           {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
           <img
-            src="/assets/motifs/chrome-flower-cyan-v3.png"
+            src="/assets/motifs/chrome-flower-cyan-v3.webp"
             alt=""
             width={460}
             height={420}
@@ -401,6 +404,8 @@ export default function Home() {
               {/* oxlint-disable-next-line next/no-img-element -- personagem gerado é um PNG local com transparência */}
               <img
                 src="/assets/character/franco-3d-v4-cadeira.webp"
+                srcSet="/assets/character/franco-3d-v4-cadeira-480.webp 480w, /assets/character/franco-3d-v4-cadeira-768.webp 768w, /assets/character/franco-3d-v4-cadeira.webp 1024w"
+                sizes="(max-width: 640px) 70vw, 34vw"
                 alt="Franco Maia em 3D, trabalhando no notebook numa cadeira de escritório"
                 width={1024}
                 height={1536}
@@ -533,7 +538,7 @@ export default function Home() {
           />
           {/* oxlint-disable-next-line next/no-img-element -- motivo gerado é um PNG local com transparência */}
           <img
-            src="/assets/motifs/cursor-orb-cyan-v3.png"
+            src="/assets/motifs/cursor-orb-cyan-v3.webp"
             alt=""
             width={420}
             height={420}
@@ -600,6 +605,7 @@ export default function Home() {
         </div>
       </footer>
 
+      <CycleObserver />
       <BackToTop />
       <a
         className="whatsapp-float"

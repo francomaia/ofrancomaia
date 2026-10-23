@@ -110,6 +110,12 @@ function pruneUnusedAssets() {
       // As capas responsivas têm URLs construídas a partir do nome do projeto;
       // elas não aparecem como caminhos literais completos no código-fonte.
       if (publicPath.startsWith('/assets/optimized/')) continue;
+      // As versões de 640 px das imagens de troca também são montadas no código.
+      if (
+        publicPath.startsWith('/assets/slides/') &&
+        sources.includes(publicPath.replace(/-640\.jpg$/, '.jpg'))
+      )
+        continue;
       if (!sources.includes(publicPath)) {
         bytes += statSync(full).size;
         rmSync(full);
