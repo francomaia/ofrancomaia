@@ -58,6 +58,12 @@ export const selectedProjects: SelectedProject[] = [
     href: 'https://exascompany.com.br/',
   },
   {
+    name: 'ArqViva · Arquitetando Processos',
+    sector: 'Curso para arquitetos',
+    image: '/assets/cases/arqviva-screen.jpg',
+    href: 'https://bethaniafilizzola.com/',
+  },
+  {
     name: 'Agronova Transportes',
     sector: 'Logística e Transporte',
     image: '/assets/cases/agronova.avif',
