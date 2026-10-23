@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autopeças Piloto · Rebranding | Franco Maia</title>
+<meta name="description" content="Logo refeita, reformada e corrigida por Franco Maia, com o guia de aplicação da nova marca.">
+<meta name="theme-color" content="#050505">
+<link rel="canonical" href="https://ofrancomaia.com/branding/piloto.html">
+<meta property="og:title" content="Autopeças Piloto · Rebranding | Franco Maia">
+<meta property="og:description" content="Logo refeita, reformada e corrigida por Franco Maia, com o guia de aplicação da nova marca.">
+<meta property="og:image" content="https://ofrancomaia.com/assets/optimized/rebranding-piloto-1080.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/favicon-gelo-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" as="image" href="/branding/piloto/f01-1400.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap"></noscript>
+<style>
+  :root { --cyan: #67e8f9; --line: rgb(255 255 255 / 12%); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: #050505; color: #f8f7f4; font-family: Archivo, Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  header { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+           padding: 14px clamp(16px, 4vw, 48px); background: rgb(5 5 5 / 88%); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+  header a { text-decoration: none; font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  header a:hover { color: var(--cyan); }
+  .hero { max-width: 1400px; margin: 0 auto; padding: clamp(36px, 7vw, 88px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px); }
+  .kicker { color: var(--cyan); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .9rem; }
+  h1 { margin: 0; font-size: clamp(2.6rem, 8vw, 6.4rem); font-weight: 900; line-height: .88; letter-spacing: -.045em; text-transform: uppercase; }
+  .sub { margin: 1.1rem 0 0; color: rgb(255 255 255 / 66%); font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.5; max-width: 46rem; }
+  /* carrossel de projetos */
+  .projects { position: relative; overflow: hidden; isolation: isolate; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0 28px; }
+  .projects::before, .projects::after { content: ''; position: absolute; z-index: -1; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+  .projects::before { width: 46vw; height: 260px; left: -8vw; top: 10px; background: radial-gradient(circle, rgb(34 211 238 / 55%), transparent 70%); }
+  .projects::after { width: 40vw; height: 240px; right: -6vw; bottom: -40px; background: radial-gradient(circle, rgb(129 140 248 / 45%), transparent 70%); }
+  .projects-head { max-width: 1400px; margin: 0 auto 12px; padding: 0 clamp(16px, 4vw, 48px); display: flex; justify-content: space-between; align-items: center; }
+  .projects-head span { font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgb(255 255 255 / 55%); }
+  .arrows { display: flex; gap: 6px; }
+  .arrows button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgb(255 255 255 / 22%); background: transparent; color: #fff; cursor: pointer; font-size: 1rem; }
+  .arrows button:hover { background: var(--cyan); color: #000; border-color: var(--cyan); }
+  .track { display: flex; align-items: center; gap: clamp(40px, 6vw, 88px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 clamp(16px, 4vw, 48px);
+           padding: 6px clamp(16px, 4vw, 48px) 14px; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .track::-webkit-scrollbar { display: none; }
+  .card { flex: 0 0 auto; scroll-snap-align: center; display: grid; place-items: center; height: clamp(76px, 8vw, 104px);
+           padding: 8px 4px 16px; position: relative; text-decoration: none; }
+  .card img { width: auto; height: auto; max-height: clamp(48px, 5.4vw, 72px); max-width: clamp(140px, 15vw, 210px); object-fit: contain; display: block;
+              filter: grayscale(1) brightness(1.15); opacity: .55;
+              transition: filter .45s ease, opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .card:hover img, .card:focus-visible img { filter: none; opacity: 1; transform: translateY(-3px) scale(1.04); }
+  .card.current img { filter: none; opacity: 1; }
+  .card.current::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+                          transform: translateX(-50%); box-shadow: 0 0 12px var(--cyan); }
+  /* apresentação */
+  main { max-width: 1400px; margin: 0 auto; padding: clamp(20px, 3vw, 36px) clamp(10px, 2vw, 24px) 64px; }
+  .stack { border-radius: 24px; overflow: hidden; border: 1px solid rgb(255 255 255 / 12%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 14%), 0 30px 80px -40px rgb(0 0 0 / 90%); }
+  .stack img { width: 100%; height: auto; display: block; background: #e9e9e9; }
+  .stack img + img { content-visibility: auto; }
+  .video-wrap { position: relative; background: #000; border-radius: 24px; overflow: hidden; margin-bottom: 18px; border: 1px solid rgb(255 255 255 / 12%); }
+  .video-wrap video { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; }
+  .sound { position: absolute; right: 14px; bottom: 14px; border: 1px solid rgb(255 255 255 / 30%); background: rgb(0 0 0 / 60%);
+           color: #fff; border-radius: 999px; padding: 9px 14px; font: 700 .72rem/1 Archivo, sans-serif; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .sound:hover { background: var(--cyan); color: #000; border-color: var(--cyan); }
+  footer { text-align: center; padding: 40px 16px 56px; }
+  footer a { display: inline-block; color: #000; background: var(--cyan); text-decoration: none; font-weight: 700; font-size: .8rem;
+             letter-spacing: .1em; text-transform: uppercase; padding: 14px 22px; border-radius: 999px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card img { transition: none; } }
+  
+</style>
+</head>
+<body>
+<header><a href="/#branding">← Franco Maia</a><a href="/#contato">Contato</a></header>
+<section class="hero"><p class="kicker">Rebranding · Autopeças</p><h1>Autopeças Piloto</h1><p class="sub">Logo refeita, reformada e corrigida por Franco Maia, com o guia de aplicação da nova marca.</p></section>
+<nav class="projects" aria-label="Outros projetos de branding">
+  <div class="projects-head"><span>Projetos de branding</span><div class="arrows"><button type="button" data-dir="-1" aria-label="Projetos anteriores">←</button><button type="button" data-dir="1" aria-label="Próximos projetos">→</button></div></div>
+  <div class="track" id="track">
+    <a class="card" href="/branding/easycrm.html" aria-label="EasyCRM (Branding e motion)"><img src="/branding/logos/easycrm-dark.webp" width="220" height="90" alt="Logo EasyCRM" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/estancia.html" aria-label="Estância Casa de Carnes (Branding)"><img src="/branding/logos/estancia-dark.webp" width="220" height="90" alt="Logo Estância Casa de Carnes" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/araguaia.html" aria-label="Araguaia Consult (Branding)"><img src="/branding/logos/araguaia-dark.webp" width="220" height="90" alt="Logo Araguaia Consult" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/maia-fagundes.html" aria-label="Maia &amp; Fagundes (Rebranding)"><img src="/branding/logos/maia-fagundes-dark.webp" width="220" height="90" alt="Logo Maia &amp; Fagundes" loading="lazy" decoding="async"></a>
+    <a class="card current" href="/branding/piloto.html" aria-current="page" aria-label="Autopeças Piloto (Rebranding)"><img src="/branding/logos/piloto-dark.webp" width="220" height="90" alt="Logo Autopeças Piloto" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/pedrosa.html" aria-label="Pedrosa (Rebranding)"><img src="/branding/logos/pedrosa-dark.webp" width="220" height="90" alt="Logo Pedrosa" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/flor-e-ser.html" aria-label="Casa Terapêutica Flor &amp; Ser (Rebranding)"><img src="/branding/logos/flor-e-ser-dark.webp" width="220" height="90" alt="Logo Casa Terapêutica Flor &amp; Ser" loading="lazy" decoding="async"></a>
+    <a class="card" href="/branding/senna.html" aria-label="Senna Autopeças (Rebranding)"><img src="/branding/logos/senna-dark.webp" width="220" height="90" alt="Logo Senna Autopeças" loading="lazy" decoding="async"></a>
+  </div>
+</nav>
+<main>
+<div class="stack">
+<img src="/branding/piloto/f01-1400.webp" srcset="/branding/piloto/f01-1400.webp 1400w, /branding/piloto/f01-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 1" fetchpriority="high" decoding="async">
+<img src="/branding/piloto/f02-1400.webp" srcset="/branding/piloto/f02-1400.webp 1400w, /branding/piloto/f02-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 2" decoding="async">
+<img src="/branding/piloto/f03-1400.webp" srcset="/branding/piloto/f03-1400.webp 1400w, /branding/piloto/f03-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 3" loading="lazy" decoding="async">
+<img src="/branding/piloto/f04-1400.webp" srcset="/branding/piloto/f04-1400.webp 1400w, /branding/piloto/f04-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 4" loading="lazy" decoding="async">
+<img src="/branding/piloto/f05-1400.webp" srcset="/branding/piloto/f05-1400.webp 1400w, /branding/piloto/f05-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 5" loading="lazy" decoding="async">
+<img src="/branding/piloto/f06-1400.webp" srcset="/branding/piloto/f06-1400.webp 1400w, /branding/piloto/f06-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 6" loading="lazy" decoding="async">
+<img src="/branding/piloto/f07-1400.webp" srcset="/branding/piloto/f07-1400.webp 1400w, /branding/piloto/f07-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 7" loading="lazy" decoding="async">
+<img src="/branding/piloto/f08-1400.webp" srcset="/branding/piloto/f08-1400.webp 1400w, /branding/piloto/f08-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 8" loading="lazy" decoding="async">
+<img src="/branding/piloto/f09-1400.webp" srcset="/branding/piloto/f09-1400.webp 1400w, /branding/piloto/f09-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 9" loading="lazy" decoding="async">
+<img src="/branding/piloto/f10-1400.webp" srcset="/branding/piloto/f10-1400.webp 1400w, /branding/piloto/f10-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 10" loading="lazy" decoding="async">
+<img src="/branding/piloto/f11-1400.webp" srcset="/branding/piloto/f11-1400.webp 1400w, /branding/piloto/f11-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 11" loading="lazy" decoding="async">
+<img src="/branding/piloto/f12-1400.webp" srcset="/branding/piloto/f12-1400.webp 1400w, /branding/piloto/f12-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 12" loading="lazy" decoding="async">
+<img src="/branding/piloto/f13-1400.webp" srcset="/branding/piloto/f13-1400.webp 1400w, /branding/piloto/f13-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 13" loading="lazy" decoding="async">
+<img src="/branding/piloto/f14-1400.webp" srcset="/branding/piloto/f14-1400.webp 1400w, /branding/piloto/f14-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 14" loading="lazy" decoding="async">
+<img src="/branding/piloto/f15-1400.webp" srcset="/branding/piloto/f15-1400.webp 1400w, /branding/piloto/f15-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 15" loading="lazy" decoding="async">
+<img src="/branding/piloto/f16-1400.webp" srcset="/branding/piloto/f16-1400.webp 1400w, /branding/piloto/f16-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 16" loading="lazy" decoding="async">
+<img src="/branding/piloto/f17-1400.webp" srcset="/branding/piloto/f17-1400.webp 1400w, /branding/piloto/f17-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 17" loading="lazy" decoding="async">
+<img src="/branding/piloto/f18-1400.webp" srcset="/branding/piloto/f18-1400.webp 1400w, /branding/piloto/f18-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 18" loading="lazy" decoding="async">
+<img src="/branding/piloto/f19-1400.webp" srcset="/branding/piloto/f19-1400.webp 1400w, /branding/piloto/f19-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 19" loading="lazy" decoding="async">
+<img src="/branding/piloto/f20-1400.webp" srcset="/branding/piloto/f20-1400.webp 1400w, /branding/piloto/f20-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 20" loading="lazy" decoding="async">
+<img src="/branding/piloto/f21-1400.webp" srcset="/branding/piloto/f21-1400.webp 1400w, /branding/piloto/f21-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 21" loading="lazy" decoding="async">
+<img src="/branding/piloto/f22-1400.webp" srcset="/branding/piloto/f22-1400.webp 1400w, /branding/piloto/f22-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 22" loading="lazy" decoding="async">
+<img src="/branding/piloto/f23-1400.webp" srcset="/branding/piloto/f23-1400.webp 1400w, /branding/piloto/f23-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 23" loading="lazy" decoding="async">
+<img src="/branding/piloto/f24-1400.webp" srcset="/branding/piloto/f24-1400.webp 1400w, /branding/piloto/f24-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 24" loading="lazy" decoding="async">
+<img src="/branding/piloto/f25-1400.webp" srcset="/branding/piloto/f25-1400.webp 1400w, /branding/piloto/f25-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 25" loading="lazy" decoding="async">
+<img src="/branding/piloto/f26-1400.webp" srcset="/branding/piloto/f26-1400.webp 1400w, /branding/piloto/f26-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 26" loading="lazy" decoding="async">
+<img src="/branding/piloto/f27-1400.webp" srcset="/branding/piloto/f27-1400.webp 1400w, /branding/piloto/f27-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 27" loading="lazy" decoding="async">
+<img src="/branding/piloto/f28-1400.webp" srcset="/branding/piloto/f28-1400.webp 1400w, /branding/piloto/f28-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 28" loading="lazy" decoding="async">
+<img src="/branding/piloto/f29-1400.webp" srcset="/branding/piloto/f29-1400.webp 1400w, /branding/piloto/f29-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 29" loading="lazy" decoding="async">
+<img src="/branding/piloto/f30-1400.webp" srcset="/branding/piloto/f30-1400.webp 1400w, /branding/piloto/f30-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 30" loading="lazy" decoding="async">
+<img src="/branding/piloto/f31-1400.webp" srcset="/branding/piloto/f31-1400.webp 1400w, /branding/piloto/f31-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 31" loading="lazy" decoding="async">
+<img src="/branding/piloto/f32-1400.webp" srcset="/branding/piloto/f32-1400.webp 1400w, /branding/piloto/f32-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 32" loading="lazy" decoding="async">
+<img src="/branding/piloto/f33-1400.webp" srcset="/branding/piloto/f33-1400.webp 1400w, /branding/piloto/f33-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 33" loading="lazy" decoding="async">
+<img src="/branding/piloto/f34-1400.webp" srcset="/branding/piloto/f34-1400.webp 1400w, /branding/piloto/f34-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="700" alt="Autopeças Piloto, apresentação da marca, parte 34" loading="lazy" decoding="async">
+<img src="/branding/piloto/f35-1400.webp" srcset="/branding/piloto/f35-1400.webp 1400w, /branding/piloto/f35-2800.webp 2800w" sizes="(max-width: 1400px) 100vw, 1400px" width="1400" height="202" alt="Autopeças Piloto, apresentação da marca, parte 35" loading="lazy" decoding="async">
+</div>
+</main>
+<footer><a href="/#branding">Ver mais projetos</a></footer>
+<script>
+(() => {
+  const t = document.getElementById('track');
+  const cur = t.querySelector('.current');
+  if (cur) t.scrollLeft = cur.offsetLeft - t.offsetLeft - (t.clientWidth - cur.clientWidth) / 2;
+  document.querySelectorAll('.arrows button').forEach(b => b.addEventListener('click', () => {
+    t.scrollBy({ left: Number(b.dataset.dir) * t.clientWidth * 0.8, behavior: 'smooth' });
+  }));
+  // pré-carrega a página do projeto quando o cursor passa pelo card
+  const seen = new Set();
+  t.querySelectorAll('a.card:not(.current)').forEach(a => a.addEventListener('pointerenter', () => {
+    if (seen.has(a.href)) return; seen.add(a.href);
+    const l = document.createElement('link'); l.rel = 'prefetch'; l.href = a.href; document.head.appendChild(l);
+  }, { once: true }));
+  
+})();
+</script>
+</body>
+</html>
